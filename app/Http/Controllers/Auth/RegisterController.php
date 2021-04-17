@@ -74,7 +74,6 @@ class RegisterController extends Controller
             $sms->send('this is test', $user->mobile, null);*/
             $url = route("registration.message",
                 [
-                    'user' => 'user',
                     'entity_id' => Crypt::encryptString($user->id),
                     'token' => Crypt::encryptString(request()->input('password')),
                 ]);
@@ -94,7 +93,7 @@ class RegisterController extends Controller
         $id = Crypt::decryptString($entity_id);
         $user = $user->find($id);
         $token = Crypt::decryptString($token);
-        return view("guest.auth.register.message", compact('user', 'token'));
+        return view("guest.auth.message", compact('user', 'token'));
 
     }
 
