@@ -5,8 +5,8 @@
         <div class="row">
 
             <div class="col-lg-3 col-md-6 col-sm-12">
-                <p>demo website</p>
-                <p class="text-success font-weight-bolder">
+                <p class="text-theme-1">demo website</p>
+                <p class="text-theme-1 font-weight-bolder">
                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.
                 </p>
                 <a href="mailto: info@krishakvikas.com" class="card-link font-weight-bolder text-theme-1">demo@exmpale.com</a>
@@ -26,17 +26,17 @@
                 <h5 class="text-theme-1 font-weight-bolder">Company</h5>
                 <ul>
                     <li class="d-block my-4"><a href="{{route('contact')}}"
-                                                class="card-link text-success font-weight-bolder"><img
+                                                class="card-link text-theme-1 font-weight-bolder"><img
                                 src="{{ asset('assets/assets/icons/right-arrow.svg') }}" alt="right-arrow" class="mr-2">Contact
                             Us</a></li>
 
                     <li class="d-block my-4"><a href="{{route('terms')}}"
-                                                class="card-link text-success font-weight-bolder"><img
+                                                class="card-link text-theme-1 font-weight-bolder"><img
                                 src="{{ asset('assets/assets/icons/right-arrow.svg') }}" alt="right-arrow" class="mr-2">Terms
                             of service</a></li>
 
                     <li class="d-block my-4"><a href="{{route('privacy')}}"
-                                                class="card-link text-success font-weight-bolder"><img
+                                                class="card-link text-theme-1 font-weight-bolder"><img
                                 src="{{ asset('assets/assets/icons/right-arrow.svg') }}" alt="right-arrow" class="mr-2">Privacy
                             policy</a></li>
                 </ul>

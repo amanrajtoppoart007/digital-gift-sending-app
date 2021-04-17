@@ -29,6 +29,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/assets/css/index.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/assets/css/theme-color.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/assets/css/panjikaran.css')}}">
 
     <!-- Slick Slider -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"
@@ -63,7 +64,42 @@
         <br>
         <div class="container">
 
+            <div class="card border-0 shadow">
+                <div class="card-body text-center">
+                    <h4 class="font-weight-bolder text-theme-1">हमसे जुड़ें</h4>
+                    <p class="description-1 text-secondary">अपनी आवश्यकता के बारे में बताएं?</p>
+                    <hr>
+                    <h5 class="text-theme-1 font-weight-bolder">Join us and start good</h5>
 
+                    <div class="row mt-3 justify-content-center">
+
+                        <div class="col-lg-4 col-md-2 col-sm-12">
+                            <a href="{{ route('login') }}" class="card-link">
+                                <div class="card panjikaran-card">
+                                    <div class="card-body">
+                                        <img src="{{ asset('assets/assets/icons/panjikaran/farmer.svg') }}"
+                                             alt="farmer" class="img-fluid img-thumbnail p-3 bg-white shadow">
+                                        <h5 class="font-weight-bolder text-theme-1 mt-4">Login</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-lg-4 col-md-2 col-sm-12">
+                            <a href="{{ route('register') }}" class="card-link">
+                                <div class="card panjikaran-card">
+                                    <div class="card-body">
+                                        <img src="{{ asset('assets/assets/icons/panjikaran/franchise.svg') }}"
+                                             alt="franchise" class="img-fluid img-thumbnail p-3 bg-white shadow">
+                                        <h5 class="font-weight-bolder text-theme-1 mt-4">Register</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
         <br>
     </section>

@@ -1,21 +1,21 @@
 *.bg-theme-1 {
-	background-color: #008000;
+	background-color: #003088;
 }
 *.bg-theme-2 {
-	background-color: #38b000;
+	background-color: #003088;
 }
 *.bg-theme-3 {
-	background-color: #ccff33;
+	background-color: #003088;
 }
 
 *.text-theme-1 {
-	color: #008000;
+	color: #003088;
 }
 *.text-theme-2 {
-	color: #38b000;
+	color: #003088;
 }
 *.text-theme-3 {
-	color: #ccff33;
+	color: #003088;
 }
 p.description-1 {
 	font-size: 14px;
@@ -29,13 +29,13 @@ a.btn-theme-1,
 button.btn-theme-1 {
 	border-radius: 25px;
 	transition: 0.3s ease;
-	background-color: #38b000;
+	background-color: #003088;
 	color: #fff;
 }
 a.btn-theme-1:hover,
 button.btn-theme-1:hover {
 	transition: 0.3s ease;
-	background-color: #008000;
+	background-color: #0056b3;
 	color: #fff;
 }
 a.btn-theme-2,
@@ -43,13 +43,13 @@ button.btn-theme-2 {
 	border-radius: 25px;
 	transition: 0.3s ease;
 	background-color: #fff;
-	color: #38b000;
+	color: #003088;
 }
 a.btn-theme-2:hover,
 button.btn-theme-2:hover {
 	transition: 0.3s ease;
-	background-color: #008000;
-	color: #008000;
+	background-color: #00a6e4;
+	color: #00a6e4;
 }
 img.btn-icon {
 	height: 17px;

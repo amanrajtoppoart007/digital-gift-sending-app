@@ -14,7 +14,7 @@ div.page-title::after {
 	content: " ";
 	height: 100%;
 	width: 5px;
-	background-color: #008000;
+	background-color: #003088;
 	position: absolute;
 	left: 0px;
 	top: 0px;
@@ -26,7 +26,7 @@ div#contact-from-card::after {
 	content: " ";
 	height: 3px;
 	width: 100%;
-	background-color: #38b000;
+	background-color: #003088;
 	position: absolute;
 	top: 0px;
 }
@@ -34,7 +34,7 @@ div#contact-from-card::before {
 	content: " ";
 	height: 3px;
 	width: 100%;
-	background-color: #38b000;
+	background-color: #003088;
 	position: absolute;
 	bottom: -1px;
 }
