@@ -26,7 +26,7 @@ div.tab button:hover {
 }
 div.tab button.active {
   	transition: 0.3s ease;
-	background-color: #008000;
+	background-color: #00a6e4;
 	color: #fff;
 }
 div.tabContentName {
