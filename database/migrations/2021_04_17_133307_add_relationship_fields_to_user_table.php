@@ -13,7 +13,7 @@ class AddRelationshipFieldsToUserTable extends Migration
      */
     public function up()
     {
-        Schema::table('user', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->unsignedBigInteger('state_id');
             $table->foreign('state_id', 'state__fk_3068042')->references('id')->on('states');
         });
