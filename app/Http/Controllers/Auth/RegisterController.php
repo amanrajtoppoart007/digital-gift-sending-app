@@ -69,9 +69,9 @@ class RegisterController extends Controller
         try {
             $user = User::create($request->all());
             Mail::to($user)->send(new UserWelcomeMessage());
-            $sms = new TextLocal();
+            /*$sms = new TextLocal();
             $sms->send(trans('sms.registration',['reg_number'=>$user->mobile]),$user->mobile,null);
-            $sms->send('this is test', $user->mobile, null);
+            $sms->send('this is test', $user->mobile, null);*/
             $url = route("registration.message",
                 [
                     'user' => 'user',
