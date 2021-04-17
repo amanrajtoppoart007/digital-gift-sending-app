@@ -9,8 +9,8 @@
                 <p class="text-theme-1 font-weight-bolder">
                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.
                 </p>
-                <a href="mailto: info@krishakvikas.com" class="card-link font-weight-bolder text-theme-1">demo@exmpale.com</a>
-                <a href="tel: +918815752022" class="card-link font-weight-bolder text-theme-1">+1234567890</a>
+                <a href="#" class="card-link font-weight-bolder text-theme-1">demo@exmpale.com</a>
+                <a href="#" class="card-link font-weight-bolder text-theme-1">+1234567890</a>
                 <br>
                 <br>
             </div>
@@ -46,9 +46,9 @@
                 <h5 class="text-theme-1 font-weight-bolder">Our Social Networks</h5>
                 <p class="text-theme-1 font-weight-bolder">You are welcome to join us in our social media pages</p>
                 <div>
-                    <a href="https://www.facebook.com/krishakvikas/" class="btn btn-theme-1 pb-2 rounded"><img
+                    <a href="#" class="btn btn-theme-1 pb-2 rounded"><img
                             src="{{ asset('assets/assets/icons/facebook.svg') }}" alt="facebook"></a>
-                    <a href="https://www.youtube.com/channel/UCL6xNGQQsE3xTkZTnvh6vRA"
+                    <a href="#"
                        class="btn btn-theme-1 pb-2 rounded"><img src="{{ asset('assets/assets/icons/youtube.svg') }}"
                                                                  alt="youtube"></a>
                     <a href="#" class="btn btn-theme-1 pb-2 rounded"><img
