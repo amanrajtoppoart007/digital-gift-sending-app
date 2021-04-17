@@ -14,7 +14,7 @@ div.page-title::after {
 	content: " ";
 	height: 100%;
 	width: 5px;
-	background-color: #00a6e4;
+	background-color: #003088;
 	position: absolute;
 	left: 0px;
 	top: 0px;

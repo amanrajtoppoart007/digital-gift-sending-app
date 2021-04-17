@@ -10,7 +10,7 @@
 
     <!-- Google Fonts Poppins light -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Glegoo:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
@@ -66,8 +66,8 @@
 
             <div class="card border-0 shadow">
                 <div class="card-body text-center">
-                    <h4 class="font-weight-bolder text-theme-1">हमसे जुड़ें</h4>
-                    <p class="description-1 text-secondary">अपनी आवश्यकता के बारे में बताएं?</p>
+                    <h4 class="font-weight-bolder text-theme-1">Join Us</h4>
+                    <p class="description-1 text-secondary">Tell us about your requirements?</p>
                     <hr>
                     <h5 class="text-theme-1 font-weight-bolder">Join us and start good</h5>
 

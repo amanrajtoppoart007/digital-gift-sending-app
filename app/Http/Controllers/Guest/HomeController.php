@@ -45,9 +45,7 @@ class HomeController extends Controller
 
     public function about()
     {
-        $contents = ContentPage::whereHas('categories', function (Builder $query) {
-            $query->where('name', 'about');
-        })->get();
+        $contents = [];
         return view("guest.company.about",compact("contents"));
     }
     public function contact()
@@ -58,18 +56,14 @@ class HomeController extends Controller
 
     public function terms()
     {
-        $contents = ContentPage::whereHas('categories', function (Builder $query) {
-            $query->where('name', 'terms');
-        })->get();
+        $contents = [];
         return view("guest.company.terms",compact("contents"));
 
     }
 
     public function privacy()
     {
-        $contents = ContentPage::whereHas('categories', function (Builder $query) {
-            $query->where('name', 'privacy');
-        })->get();
+        $contents = [];
         return view("guest.company.privacy",compact("contents"));
 
     }

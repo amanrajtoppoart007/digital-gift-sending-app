@@ -14,18 +14,16 @@
             <div class="collapse navbar-collapse ml-auto" id="navbar-collapse">
                 <ul class="navbar-nav ml-auto" align="center">
                     <hr>
-                    <li class="nav-item px-1"><a href="{{route('about')}}" class="nav-link text-theme-1">हमारे बारे
-                            में</a></li>
+                    <li class="nav-item px-1"><a href="{{route('about')}}" class="nav-link text-theme-1">About Us</a></li>
                     <hr>
 
                     <hr>
-                    <li class="nav-item px-1"><a href="{{ route('contact') }}" class="nav-link text-theme-1">संपर्क
-                            करें</a></li>
+                    <li class="nav-item px-1"><a href="{{ route('contact') }}" class="nav-link text-theme-1">Contact Us</a></li>
                     <hr>
-                    <li class="nav-item px-1"><a href="{{ route('career') }}" class="nav-link text-theme-1">कैरियर</a>
+                    <li class="nav-item px-1"><a href="{{ route('career') }}" class="nav-link text-theme-1">Career</a>
                     </li>
                     <hr>
-                    <li class="px-1"><a href="{{ route('register') }}" class="btn shadow btn-theme-1 px-4 mx-2 py-2">पंजीकरण<img
+                    <li class="px-1"><a href="{{ route('register') }}" class="btn shadow btn-theme-1 px-4 mx-2 py-2">Register<img
                                 src="{{asset('assets/assets/icons/circle-arrow.svg')}}" class="btn-icon"
                                 alt="arrow-right"></a></li>
                     <hr>
