@@ -2,7 +2,7 @@
 @section("content")
 
     <!-- Main (Start) -->
-    <main data-aos="fade-in">
+    <main data-aos="fade-in" id="test">
 
         <!-- Section First (Start) -->
         <section class="bg-light" id="registration-form-section">
@@ -19,7 +19,7 @@
                 <div class="card border-0 shadow">
 
                     <form class="form-group"
-                          id="user_registration_form">
+                          id="user_registration_form" enctype="multipart/form-data">
                     @csrf
                     <!-- Card Header -->
                         <div class="card-header bg-white" align="center">
@@ -165,7 +165,6 @@
         $(document).ready(function () {
             $.ajaxSetup({headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'}});
 
-
             $("#user_registration_form").on("submit", function (e) {
                 e.preventDefault();
 
@@ -196,10 +195,18 @@
                                 $(`#${index}`).addClass("is-invalid").tooltip({title: item[0]});
 
                                 $.notify(item[0], 'white');
+                                toastr.success(item[0], '', {
+                                    progressBar: true,
+                                    timeOut: 2000
+                                });
                             })
                         }
                         if (data.message) {
                             $.notify(data.message, 'white');
+                            toastr.error(data.message, '', {
+                                progressBar: true,
+                                timeOut: 2000
+                            });
                         }
                     },
 

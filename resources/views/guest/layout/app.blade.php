@@ -10,7 +10,8 @@
 
     <!-- Google Fonts Poppins light -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Glegoo:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
 
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
@@ -26,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/assets/css/panjikaran.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/assets/css/krishisamadhan.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/assets/css/registration.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/toastr.min.css') }}">
 
     <!-- Slick Slider -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"
@@ -100,7 +102,7 @@
 
 <!-- AOS Script -->
 <script src="{{asset('assets/vendor/aos/aos.js')}}"></script>
-
+<script src="{{asset('assets/vendor/toastr.min.js')}}"></script>
 <script>
     AOS.init({
         offset: 150,
