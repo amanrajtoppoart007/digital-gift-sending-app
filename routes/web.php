@@ -1,7 +1,7 @@
 <?php
 Route::get('test/sms/api','TestController');
 Route::post('submit/enquiry/form','Guest\EnquiryController@store')->name('store.guest.enquiry');
-
+Route::get('/home','User\HomeController@index')->name('home');
 
 
 Route::group(['prefix' => 'admin'], function () {
@@ -22,7 +22,6 @@ Route::prefix('ajax')->group(function(){
 });
 
 Route::get('/', 'Guest\HomeController@index');
-Route::get('/solution/{entity}', 'Guest\HomeController@solution')->name('solutions');
 Route::get('/services', 'Guest\HomeController@services')->name('services');
 Route::get('/career', 'Guest\HomeController@career')->name('career');
 Route::get('/about', 'Guest\HomeController@about')->name('about');
