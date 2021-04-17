@@ -64,7 +64,7 @@ div.contact-img-div::after {
 	transform: translate(-50%,-0%);
 	top: 0%;
 	z-index: 1;
-	background-color: #e5ffd9;
+	background-color: rgb(171, 191, 255);
 }
 div.contact-card {
 	position: relative;
@@ -73,7 +73,7 @@ div.contact-card::after {
 	content: " ";
 	height: 90px;
 	width: 90px;
-	background-color: #e5ffd9;
+	background-color: rgb(171, 191, 255);
 	position: absolute;
 	border-bottom-left-radius: 120px;
 	top: 0px;
@@ -83,7 +83,7 @@ div.contact-card::before {
 	content: " ";
 	height: 50px;
 	width: 50px;
-	background-color: #e5ffd9;
+	background-color: rgb(171, 191, 255);
 	position: absolute;
 	border-top-right-radius: 120px;
 	bottom: 0px;

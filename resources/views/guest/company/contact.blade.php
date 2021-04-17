@@ -13,9 +13,8 @@
                 <!-- Introduction Title (Start) -->
                 <div class="text-left page-title">
                     <h1 class="font-weight-bold display-4 text-theme-1 ml-3">Contact us</h1>
-                    <p class="description-1 ml-3 text-secondary">नीचे दिए गए फॉर्म को भरें और हमारे प्रतिनिधि आपसे बहुत
-                        जल्द संपर्क करेंगे,या आप हमें कॉल कर सकते हैं या हमें एक ईमेल लिख सकते हैं, हम आपसे संपर्क
-                        करेंगे</p>
+                    <p class="description-1 ml-3 text-secondary">Please fill the below form and our representative will contact you, or you may call us or write us a email, we will contact you.
+                    </p>
                 </div>
                 <!-- Introduction Title (End) -->
 
@@ -96,9 +95,8 @@
                                     </div>
                                     <h4 class="font-weight-bolder mt-2 text-theme-1">Location</h4>
                                     <p class="text-secondary">
-                                        Creatrix Health Private Limited,
-                                        2nd Floor, Satish Tower, Above Kamla Medicose,
-                                        Near Gharhi Chowk, Supela, Bhilai Nagar, 490023
+                                        Company name
+                                        Company Address
                                     </p>
                                 </div>
                             </div>
@@ -115,7 +113,7 @@
                                     </div>
                                     <h4 class="font-weight-bolder mt-2 text-theme-1">E-Mail</h4>
                                     <p class="text-secondary">
-                                        info@krishakvikas.com
+                                        demo@exmpale.com
                                     </p>
                                 </div>
                             </div>
@@ -132,7 +130,7 @@
                                     </div>
                                     <h4 class="font-weight-bolder mt-2 text-theme-1">Phone</h4>
                                     <p class="text-secondary">
-                                        +918815752022
+                                        +1234567890
                                     </p>
                                 </div>
                             </div>
