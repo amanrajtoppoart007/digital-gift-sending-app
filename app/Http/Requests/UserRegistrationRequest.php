@@ -24,7 +24,16 @@ class UserRegistrationRequest extends FormRequest
     public function rules()
     {
         return [
-            "email"=>"required",
+            "name" => "required",
+            "mobile" => "required",
+            "email" => "required|email",
+             "address" => "required",
+            "state_id" => "required",
+            "city" => "required",
+            "identity_proof" => "required",
+            "pin_code" => "required",
+            "password" => "required",
+            "confirm_password" => "required",
         ];
     }
 }
