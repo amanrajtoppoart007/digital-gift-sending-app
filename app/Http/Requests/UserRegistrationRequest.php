@@ -33,6 +33,7 @@ class UserRegistrationRequest extends FormRequest
             "pin_code" => "required",
             "password" => "required",
             "confirm_password" => "required",
+            'identity_proof' => 'nullable'
         ];
     }
 }

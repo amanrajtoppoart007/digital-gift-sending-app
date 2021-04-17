@@ -167,11 +167,10 @@
 
             $("#user_registration_form").on("submit", function (e) {
                 e.preventDefault();
-
                 $.ajax({
                     url: "{{route('store.user.registration')}}",
                     type: 'POST',
-                    data: $("#user_registration_form").serialize(),
+                    data: $('user_registration_form').serialize(),
                     dataType: 'json',
                     beforeSend: function () {
                         $("#overlay").show();
@@ -179,9 +178,17 @@
                     success: function (res) {
                         if (res.response === "success") {
                             $.notify("Farmers registration successful", 'white');
+                            toastr.success("Registration successful", '', {
+                                progressBar: true,
+                                timeOut: 2000
+                            });
                             window.open(res.url, '_self');
                         } else {
                             $.notify(res.message, 'white');
+                            toastr.error(res.message, '', {
+                                progressBar: true,
+                                timeOut: 2000
+                            });
                         }
 
 
@@ -195,7 +202,7 @@
                                 $(`#${index}`).addClass("is-invalid").tooltip({title: item[0]});
 
                                 $.notify(item[0], 'white');
-                                toastr.success(item[0], '', {
+                                toastr.error(item[0], '', {
                                     progressBar: true,
                                     timeOut: 2000
                                 });
