@@ -14,8 +14,8 @@ class UsersTableSeeder extends Seeder
         $users = [
             [
                 'id'                 => 1,
-                'name'               => 'Krishak Vikas',
-                'email'              => 'moderator@krishakvikas.com',
+                'name'               => 'demo user',
+                'email'              => 'user@demoexample.com',
                 'password'           => bcrypt('password'),
                 'remember_token'     => null,
                  'state_id'           => (State::inRandomOrder()->first())->id,

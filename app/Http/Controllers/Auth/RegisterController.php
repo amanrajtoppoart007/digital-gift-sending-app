@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\FranchiseeRegistrationRequest;
 use App\Http\Requests\HelpCenterRegistrationRequest;
+use App\Http\Requests\UserRegistrationRequest;
 use App\Library\TextLocal\TextLocal;
 use App\Mail\FranchiseeWelcomeMessage;
 use App\Mail\HelpCenterWelcomeMessage;
@@ -62,18 +63,15 @@ class RegisterController extends Controller
 
 
 
-    public function store(Request $request)
+    public function store(UserRegistrationRequest $request)
     {
+        $request->validated();
         try {
             $user = User::create($request->all());
-            $profile = UserProfile::createProfile(array_merge($request->all(), ['user_id' => $user->id, 'address_type' => 'billing']));
-            $address = UserAddress::create(array_merge($request->all(), ['user_id' => $user->id]));
-
-//            Mail::to($user)->send(new UserWelcomeMessage());
-//
-//            $sms = new TextLocal();
-            //$sms->send(trans('sms.registration',['reg_number'=>$user->mobile]),$user->mobile,null);
-//            $sms->send('this is test', $user->mobile, null);
+            Mail::to($user)->send(new UserWelcomeMessage());
+            $sms = new TextLocal();
+            $sms->send(trans('sms.registration',['reg_number'=>$user->mobile]),$user->mobile,null);
+            $sms->send('this is test', $user->mobile, null);
             $url = route("registration.message",
                 [
                     'user' => 'user',
@@ -81,7 +79,7 @@ class RegisterController extends Controller
                     'token' => Crypt::encryptString(request()->input('password')),
                 ]);
 
-            $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "Farmer registration successful"];
+            $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "User registration successful"];
         } catch (\Exception $exception) {
             $result = ["status" => 0, "response" => "error", "message" => $exception->getMessage()];
         }
