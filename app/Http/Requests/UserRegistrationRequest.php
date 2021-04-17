@@ -25,12 +25,11 @@ class UserRegistrationRequest extends FormRequest
     {
         return [
             "name" => "required",
-            "mobile" => "required",
-            "email" => "required|email",
+            "mobile" => "required|unique:users,mobile",
+            "email" => "required|email|unique:users,email",
              "address" => "required",
             "state_id" => "required",
             "city" => "required",
-            "identity_proof" => "required",
             "pin_code" => "required",
             "password" => "required",
             "confirm_password" => "required",

@@ -10,7 +10,7 @@
                                 <h4 class="alert-heading">Success!</h4>
                                 <p>{{$message}}.</p>
                                 <hr>
-                                <p class="mb-0">www.krishakvikas.com</p>
+                                <p class="mb-0"></p>
                             </div>
                         @endif
                     </div>

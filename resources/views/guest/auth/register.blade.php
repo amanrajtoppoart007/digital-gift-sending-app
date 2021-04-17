@@ -99,9 +99,9 @@
                                         </select>
                                     </div>
                                     <div class="mt-3">
-                                        <label class="font-weight-bolder text-dark" for="city_id">City</label><label
+                                        <label class="font-weight-bolder text-dark" for="city">City</label><label
                                             class="text-danger ml-2 font-weight-bolder">*</label>
-                                        <input type="text" name="city_id" id="city_id"
+                                        <input type="text" name="city" id="city"
                                                class="input-group-text bg-transparent w-100 text-left" required>
                                     </div>
 
@@ -209,32 +209,7 @@
                 });
             });
 
-            $("#state_id").on("change", function () {
 
-                $("#district_id").empty();
-                $.ajax({
-                    url: "{{route('ajax.district.list')}}",
-                    type: 'POST',
-                    data: {'state_id': $(this).val()},
-                    dataType: 'json',
-                    success: function (res) {
-                        if (res.response === "success") {
-                            let option = $($.parseHTML(`<option value="">Select District</option>`));
-                            $("#district_id").append(option);
-                            $.each(res.data, function (key, item) {
-                                let $option = $($.parseHTML(`<option value="${item.id}">${item.name}</option>`));
-                                $("#district_id").append($option);
-                            });
-                            // $("#district_id").select2();
-                        }
-
-
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.log(textStatus);
-                    }
-                });
-            });
 
 
         });

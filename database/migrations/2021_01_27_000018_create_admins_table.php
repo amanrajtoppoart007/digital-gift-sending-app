@@ -12,7 +12,7 @@ class CreateAdminsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->nullable()->unique();
-            $table->string('mobile')->nullable()->unique();
+            $table->string('mobile')->nullable();
             $table->string('password')->nullable();
             $table->datetime('email_verified_at')->nullable();
             $table->boolean('approved')->default(0)->nullable();

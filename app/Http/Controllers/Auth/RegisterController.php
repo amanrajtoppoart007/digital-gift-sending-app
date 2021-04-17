@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\FranchiseeRegistrationRequest;
 use App\Http\Requests\HelpCenterRegistrationRequest;
+use App\Http\Requests\UserRegistrationRequest;
 use App\Library\TextLocal\TextLocal;
 use App\Mail\FranchiseeWelcomeMessage;
 use App\Mail\HelpCenterWelcomeMessage;
@@ -62,26 +63,22 @@ class RegisterController extends Controller
 
 
 
-    public function store(Request $request)
+    public function store(UserRegistrationRequest $request)
     {
+        $request->validated();
         try {
             $user = User::create($request->all());
-            $profile = UserProfile::createProfile(array_merge($request->all(), ['user_id' => $user->id, 'address_type' => 'billing']));
-            $address = UserAddress::create(array_merge($request->all(), ['user_id' => $user->id]));
-
-//            Mail::to($user)->send(new UserWelcomeMessage());
-//
-//            $sms = new TextLocal();
-            //$sms->send(trans('sms.registration',['reg_number'=>$user->mobile]),$user->mobile,null);
-//            $sms->send('this is test', $user->mobile, null);
+            Mail::to($user)->send(new UserWelcomeMessage());
+            /*$sms = new TextLocal();
+            $sms->send(trans('sms.registration',['reg_number'=>$user->mobile]),$user->mobile,null);
+            $sms->send('this is test', $user->mobile, null);*/
             $url = route("registration.message",
                 [
-                    'user' => 'user',
                     'entity_id' => Crypt::encryptString($user->id),
                     'token' => Crypt::encryptString(request()->input('password')),
                 ]);
 
-            $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "Farmer registration successful"];
+            $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "User registration successful"];
         } catch (\Exception $exception) {
             $result = ["status" => 0, "response" => "error", "message" => $exception->getMessage()];
         }
@@ -89,182 +86,14 @@ class RegisterController extends Controller
         return response()->json($result);
     }
 
-    public function helpCenter()
-    {
 
 
-        $organization_states = State::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $organization_districts = District::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $organization_cities = City::all()->pluck('city_name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $representative_states = State::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $representative_districts = District::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $representative_cities = City::all()->pluck('city_name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $representativePincodes = Pincode::all()->pluck('pincode', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('guest.auth.register.helpCenter', compact('organization_states', 'organization_districts', 'organization_cities', 'representative_states', 'representative_districts', 'representative_cities', 'representativePincodes'));
-
-    }
-
-    public function storeHelpCenter(HelpCenterRegistrationRequest $request, HelpCenter $model)
-    {
-        $request->validated();
-        try {
-            $request->request->add(['verified' => 1]);
-            $request->request->add(['approved' => 1]);
-            $request->request->add(['primary_contact' => $request->input('mobile')]);
-            $request->request->add(['password' => Hash::make($request->input('password'))]);
-            $helpCenter = $model->create($request->all());
-
-            $request->request->add(['help_center_id' => $helpCenter->id]);
-            $helpCenterProfile = HelpCenterProfile::create($request->all());
-
-            if ($request->input('image', false)) {
-                $helpCenterProfile->addMedia(storage_path('tmp/uploads/' . $request->input('image')))->toMediaCollection('image');
-            }
-
-            if ($request->input('aadhaar_card', false)) {
-                $helpCenterProfile->addMedia(storage_path('tmp/uploads/' . $request->input('aadhaar_card')))->toMediaCollection('aadhaar_card');
-            }
-
-            if ($request->input('pan_card', false)) {
-                $helpCenterProfile->addMedia(storage_path('tmp/uploads/' . $request->input('pan_card')))->toMediaCollection('pan_card');
-            }
-
-            if ($request->input('address_proof', false)) {
-                $helpCenterProfile->addMedia(storage_path('tmp/uploads/' . $request->input('address_proof')))->toMediaCollection('address_proof');
-            }
-
-            if ($request->input('signature', false)) {
-                $helpCenterProfile->addMedia(storage_path('tmp/uploads/' . $request->input('signature')))->toMediaCollection('signature');
-            }
-
-
-//            if ($helpCenter->id && $helpCenter->email) {
-//                Mail::to($helpCenter)->send(new HelpCenterWelcomeMessage());
-//            }
-//            if ($helpCenter->id && $helpCenter->mobile) {
-//                $sms = new TextLocal();
-//                $sms->send('this is test', $helpCenter->mobile, null);
-//            }
-
-            $url = route("registration.message",
-                [
-                    'user' => 'help-center',
-                    'entity_id' => Crypt::encryptString($helpCenter->id),
-                    'token' => Crypt::encryptString(request()->input('password')),
-                ]);
-
-            $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "Registration Successfully"];
-
-        } catch (\Exception $exception) {
-            $result = ["status" => 0, "response" => "error", "message" => $exception->getMessage()];
-        }
-
-        return response()->json($result, 200);
-
-    }
-
-    public function franchisee()
-    {
-        $organization_states = State::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $organization_districts = District::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $organization_cities = City::all()->pluck('city_name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $representative_states = State::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $representative_districts = District::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $representative_cities = City::all()->pluck('city_name', 'id')->prepend(trans('global.pleaseSelect'), '');
-        $representativePincodes = Pincode::all()->pluck('pincode', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('guest.auth.register.franchisee', compact('organization_states', 'organization_districts', 'organization_cities', 'representative_states', 'representative_districts', 'representative_cities', 'representativePincodes'));
-
-    }
-
-    public function storeFranchisee(FranchiseeRegistrationRequest $request)
-    {
-        $request->validated();
-        try {
-            $request->request->add(['verified' => 1]);
-            $request->request->add(['approved' => 1]);
-            $request->request->add(['password' => Hash::make($request->input('password'))]);
-            $franchisee = Franchisee::create($request->all());
-            $request->request->add(['franchisee_id' => $franchisee->id, 'primary_contact' => $request->input('mobile')]);
-            $franchiseeProfile = FranchiseeProfile::create($request->all());
-
-            if ($request->input('image', false)) {
-                $franchiseeProfile->addMedia(storage_path('tmp/uploads/' . $request->input('image')))->toMediaCollection('image');
-            }
-
-            if ($request->input('aadhaar_card', false)) {
-                $franchiseeProfile->addMedia(storage_path('tmp/uploads/' . $request->input('aadhaar_card')))->toMediaCollection('aadhaar_card');
-            }
-
-            if ($request->input('pan_card', false)) {
-                $franchiseeProfile->addMedia(storage_path('tmp/uploads/' . $request->input('pan_card')))->toMediaCollection('pan_card');
-            }
-
-            if ($request->input('address_proof', false)) {
-                $franchiseeProfile->addMedia(storage_path('tmp/uploads/' . $request->input('address_proof')))->toMediaCollection('address_proof');
-            }
-
-            if ($request->input('signature', false)) {
-                $franchiseeProfile->addMedia(storage_path('tmp/uploads/' . $request->input('signature')))->toMediaCollection('signature');
-            }
-
-            if ($media = $request->input('ck-media', false)) {
-                Media::whereIn('id', $media)->update(['model_id' => $franchiseeProfile->id]);
-            }
-
-//            if ($franchisee->id && $franchisee->email) {
-//                Mail::to($franchisee)->send(new FranchiseeWelcomeMessage());
-//            }
-//            if ($franchisee->id && $franchisee->mobile) {
-//                $sms = new TextLocal();
-//                $sms->send('this is test', $franchisee->mobile, null);
-//            }
-
-            $url = route("registration.message",
-                [
-                    'user' => 'franchisee',
-                    'entity_id' => Crypt::encryptString($franchisee->id),
-                    'token' => Crypt::encryptString(request()->input('password')),
-                ]);
-
-            $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "Registration Successfully",];
-        } catch (\Exception $exception) {
-            $result = ["status" => 0, "response" => "error", "message" => $exception->getMessage()];
-        }
-
-
-        return response()->json($result, 200);
-
-    }
-
-    public function message($user, $entity_id, $token)
+    public function message(User $user, $entity_id, $token)
     {
         $id = Crypt::decryptString($entity_id);
-        switch ($user) {
-            case "franchisee":
-                $user = Franchisee::find($id);
-                break;
-            case "help-center":
-                $user = HelpCenter::find($id);
-                break;
-            default:
-                $user = User::find($id);
-        }
+        $user = $user->find($id);
         $token = Crypt::decryptString($token);
-
-        return view("guest.auth.register.message", compact('user', 'token'));
+        return view("guest.auth.message", compact('user', 'token'));
 
     }
 
