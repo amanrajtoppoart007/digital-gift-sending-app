@@ -35,7 +35,7 @@ Auth::routes();
 
 Route::prefix('registration')->group(function () {
      Route::get('/', 'Auth\RegisterController@showRegistrationForm')->name("register");
-     Route::post('/store', 'Auth\RegisterController@storeFarmer')->name("store.user.registration");
+     Route::post('/store', 'Auth\RegisterController@store')->name("store.user.registration");
      Route::post('upload/media', 'Auth\RegisterController@storeMedia')->name('registration.storeMedia');
      Route::get('/message/{user}/{entity_id}/{token}', 'Auth\RegisterController@message')->name("registration.message");
 
