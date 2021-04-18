@@ -75,7 +75,7 @@ class RegisterController extends Controller
             /*$sms = new TextLocal();
             $sms->send(trans('sms.registration',['reg_number'=>$user->mobile]),$user->mobile,null);
             $sms->send('this is test', $user->mobile, null);*/
-            
+
             $url = route("registration.message",
                 [
                     'entity_id' => Crypt::encryptString($user->id),

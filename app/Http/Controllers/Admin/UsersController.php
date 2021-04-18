@@ -127,39 +127,14 @@ class UsersController extends Controller
     public function edit(User $user)
     {
         abort_if(Gate::denies('user_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $pincodes = Pincode::all()->pluck('pincode', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $districts = District::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $blocks = Block::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $states = State::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $areas = Area::all()->pluck('area', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $userAddress = UserAddress::where(['user_id'=>$user->id])->first();
-
-        $userAddress->load('district', 'block', 'state', 'area');
-        $userProfile = UserProfile::where(['user_id'=>$user->id])->first();
-
-        $crops = Crop::all()->pluck('name', 'id');
-
-        return view('admin.users.edit', compact('crops','user','userAddress','userProfile','pincodes', 'districts', 'blocks', 'states', 'areas'));
+         $states = State::all();
+        return view('admin.users.edit', compact('user','states'));
     }
 
-    public function update(UpdateUserRequest $request, User $user,UserProfile $userProfile,UserAddress $userAddress)
+    public function update(UpdateUserRequest $request, User $user)
     {
         $user->update($request->all());
-        $request->request->add(['crops'=>json_encode($request->input('crops',[]))]);
 
-        $userProfile = $userProfile->where(['user_id'=>$user->id])->update($request->only(
-            ['name','mobile','secondary_mobile','agricultural_land','crops']
-        ));
-
-        $userAddress->where(['user_id'=>$user->id])->update($request->only(
-            ['user_id','street','address','state_id','district_id','block_id','area_id','pincode']
-        ));
         return redirect()->route('admin.users.show',$user->id);
     }
 
@@ -167,7 +142,7 @@ class UsersController extends Controller
     {
         abort_if(Gate::denies('user_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $user->load('roles', 'userOrders', 'userArticles', 'userArticleComments', 'userFollowers', 'followFollowers', 'userArticleLikes', 'userTransactions', 'userUserAddresses', 'userUserProfile', 'userUserAlerts');
+        $user->load('roles');
 
         return view('admin.users.show', compact('user'));
     }
