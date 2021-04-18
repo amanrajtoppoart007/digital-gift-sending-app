@@ -15,16 +15,23 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use \DateTimeInterface;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail,HasMedia
 {
-    use SoftDeletes, Notifiable, Auditable, HasFactory, HasApiTokens;
+    use SoftDeletes, Notifiable, Auditable, HasFactory, HasApiTokens,InteractsWithMedia;
+
 
     public $table = 'users';
 
     protected $hidden = [
         'remember_token',
         'password',
+    ];
+      protected $appends = [
+        'image',
     ];
 
     protected $dates = [
@@ -56,6 +63,27 @@ class User extends Authenticatable implements MustVerifyEmail
         'updated_at',
         'deleted_at',
     ];
+
+
+
+    public function getImageAttribute()
+    {
+        $file = $this->getMedia('identity_proof')->last();
+
+        if ($file) {
+            $file->url       = $file->getUrl();
+            $file->thumbnail = $file->getUrl('thumb');
+            $file->preview   = $file->getUrl('preview');
+        }
+
+        return $file;
+    }
+
+      public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')->fit('crop', 50, 50);
+        $this->addMediaConversion('preview')->fit('crop', 120, 120);
+    }
 
     protected function serializeDate(DateTimeInterface $date)
     {

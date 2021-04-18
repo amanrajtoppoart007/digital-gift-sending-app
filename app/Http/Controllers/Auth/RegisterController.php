@@ -68,13 +68,14 @@ class RegisterController extends Controller
         $request->validated();
         try {
             $user = User::create($request->all());
+             if ($request->input('identity_proof', false)) {
+            $user->addMedia(storage_path('tmp/uploads/' . $request->input('identity_proof')))->toMediaCollection('identity_proof');
+         }
             Mail::to($user)->send(new UserWelcomeMessage());
             /*$sms = new TextLocal();
             $sms->send(trans('sms.registration',['reg_number'=>$user->mobile]),$user->mobile,null);
             $sms->send('this is test', $user->mobile, null);*/
-            if ($request->input('identity_proof', false)) {
-                $user->addMedia(storage_path('tmp/uploads/' . $request->input('identity_proof')))->toMediaCollection('images');
-            }
+            
             $url = route("registration.message",
                 [
                     'entity_id' => Crypt::encryptString($user->id),
