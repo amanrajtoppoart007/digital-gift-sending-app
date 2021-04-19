@@ -1,23 +1,21 @@
 @extends("guest.layout.app")
 @section("content")
-
     <!-- Main (Start) -->
-    <main data-aos="fade-in" id="test">
+    <main id="main">
 
-        <!-- Section First (Start) -->
-        <section class="bg-light" id="registration-form-section">
+        <section id="second-section">
             <br>
             <div class="container">
 
                 <!-- Back Buttton -->
-                <a href="{{ URL::to('/') }}" class="btn btn-theme-1 btn-sm rounded shadow"><img
+                <a href="{{ URL::to('/') }}" class="btn btn-theme-2 shadow">
+                    <img
                         src="{{ asset('assets/assets/icons/back.svg') }}" class="img-fluid btn-icon ml-0 mr-1">Back</a>
                 <br>
                 <br>
 
                 <!-- Registration Form Card (Start) -->
                 <div class="card border-0 shadow">
-
                     <form class="form-group"
                           id="user_registration_form" enctype="multipart/form-data">
                     @csrf
@@ -50,7 +48,6 @@
                                                pattern="[1-9]{1}[0-9]{9}" required
                                                class="input-group-text bg-transparent w-100 text-left" required>
                                     </div>
-
 
 
                                     <div class="mt-3">
@@ -112,19 +109,14 @@
                                                class="input-group-text bg-transparent w-100 text-left" required>
                                     </div>
 
-                                     <div class="mt-3">
-                                        <label class="font-weight-bolder text-dark" for="pin_code">Id card </label><label
+                                    <div class="mt-3">
+                                        <label class="font-weight-bolder text-dark" for="pin_code">Id
+                                            card </label><label
                                             class="text-danger ml-2 font-weight-bolder">*</label>
                                         <input type="file" name="file" id="file"
                                                class="input-group-text bg-transparent w-100 text-left" required>
-                                         <input type="hidden" name="identity_proof" id="identity_proof" value="">
+                                        <input type="hidden" name="identity_proof" id="identity_proof" value="">
                                     </div>
-
-
-
-
-
-
 
 
                                 </div>
@@ -143,9 +135,9 @@
                                         & conditions </a>and <a href="#" class="card-link">privacy policy</a></p>
                             </div>
                             <br>
-                            <button type="submit" class="btn btn-theme-1 rounded px-4">Submit<img
+                            <button type="submit" class="btn btn-theme-2 shadow">Submit<img
                                     src="{{ asset('assets/assets/icons/circle-arrow.svg') }}" alt="submit"
-                                    class="btn-icon"></button>
+                                    class="btn-icon ml-2"></button>
                         </div>
 
                     </form>
@@ -155,17 +147,15 @@
             </div>
             <br>
         </section>
-        <!-- Section First (End) -->
 
     </main>
     <!-- Main (End) -->
 @endsection
 
+
 @section("script")
     <script>
         $(document).ready(function () {
-            $.ajaxSetup({headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'}});
-
 
             $("#file").on("change",function(){
 
@@ -187,7 +177,10 @@
 
                         } else
                         {
-                            $.notify("File upload failed", 'white');
+                            toastr.error("File upload failed", '', {
+                                progressBar: true,
+                                timeOut: 2000
+                            });
                         }
 
 
@@ -199,8 +192,6 @@
                         if (data.errors) {
                             $.each(data.errors, function (index, item) {
                                 $(`#${index}`).addClass("is-invalid").tooltip({title: item[0]});
-
-                                $.notify(item[0], 'white');
                                 toastr.success(item[0], '', {
                                     progressBar: true,
                                     timeOut: 2000
@@ -208,7 +199,6 @@
                             })
                         }
                         if (data.message) {
-                            $.notify(data.message, 'white');
                             toastr.error(data.message, '', {
                                 progressBar: true,
                                 timeOut: 2000
@@ -220,7 +210,6 @@
                         $("#overlay").hide();
                     }
                 });
-
             });
 
             $("#user_registration_form").on("submit", function (e) {
@@ -228,28 +217,24 @@
                 $.ajax({
                     url: "{{route('store.user.registration')}}",
                     type: 'POST',
-                    data: $('user_registration_form').serialize(),
+                    data: $('#user_registration_form').serialize(),
                     dataType: 'json',
                     beforeSend: function () {
                         $("#overlay").show();
                     },
                     success: function (res) {
                         if (res.response === "success") {
-                            $.notify("Farmers registration successful", 'white');
                             toastr.success("Registration successful", '', {
                                 progressBar: true,
                                 timeOut: 2000
                             });
                             window.open(res.url, '_self');
                         } else {
-                            $.notify(res.message, 'white');
                             toastr.error(res.message, '', {
                                 progressBar: true,
                                 timeOut: 2000
                             });
                         }
-
-
                     },
                     error: function (jqXhr, json, errorThrown) {
                         console.log('errr')
@@ -258,8 +243,6 @@
                         if (data.errors) {
                             $.each(data.errors, function (index, item) {
                                 $(`#${index}`).addClass("is-invalid").tooltip({title: item[0]});
-
-                                $.notify(item[0], 'white');
                                 toastr.error(item[0], '', {
                                     progressBar: true,
                                     timeOut: 2000
@@ -267,7 +250,6 @@
                             })
                         }
                         if (data.message) {
-                            $.notify(data.message, 'white');
                             toastr.error(data.message, '', {
                                 progressBar: true,
                                 timeOut: 2000

@@ -1,67 +1,71 @@
 <!-- Footer (Start) -->
-<footer class="bg-white rounded-0" id="footer">
+<footer class="bg-light" id="footer">
     <br>
-    <div class="container card-body">
+    <div class="container py-5">
+
         <div class="row">
 
             <div class="col-lg-3 col-md-6 col-sm-12">
-                <p class="text-theme-1">demo website</p>
-                <p class="text-theme-1 font-weight-bolder">
-                   Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.
-                </p>
-                <a href="#" class="card-link font-weight-bolder text-theme-1">demo@exmpale.com</a>
-                <a href="#" class="card-link font-weight-bolder text-theme-1">+1234567890</a>
+                <h5 class="font-weight-bold text-theme-1">Logo</h5>
+                <p class="text-secondary">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis autem, nobis
+                    non inventore accusantium minus, voluptatum, cupiditate tempora neque id placeat qui velit animi
+                    quas laboriosam perferendis eaque accusamus cumque.</p>
+                <a href="#" class="card-link text-theme-1">Learn more <img
+                        src="{{ asset('front-assets/images/arrow-right-circle.svg') }}" class="ml-1"
+                        alt="learn more"></a>
                 <br>
                 <br>
             </div>
 
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <h5 class="text-theme-1 font-weight-bolder">Solutions</h5>
-                <ul>
-
+            <div class="col-lg-2 col-md-6 col-sm-12 card-body">
+                <h5 class="font-weight-bold text-theme-1 mb-2">Quick Links</h5>
+                <ul class="ml-4">
+                    <li class="my-2"><a href="#" class="card-link text-theme-1">Home</a></li>
+                    <li class="my-2"><a href="#" class="card-link text-theme-1">How it works ?</a></li>
+                    <li class="my-2"><a href="#" class="card-link text-theme-1">Who are we ?</a></li>
+                    <li class="my-2"><a href="#" class="card-link text-theme-1">About us</a></li>
                 </ul>
             </div>
 
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <h5 class="text-theme-1 font-weight-bolder">Company</h5>
-                <ul>
-                    <li class="d-block my-4"><a href="{{route('contact')}}"
-                                                class="card-link text-theme-1 font-weight-bolder"><img
-                                src="{{ asset('assets/assets/icons/right-arrow.svg') }}" alt="right-arrow" class="mr-2">Contact
-                            Us</a></li>
-
-                    <li class="d-block my-4"><a href="{{route('terms')}}"
-                                                class="card-link text-theme-1 font-weight-bolder"><img
-                                src="{{ asset('assets/assets/icons/right-arrow.svg') }}" alt="right-arrow" class="mr-2">Terms
-                            of service</a></li>
-
-                    <li class="d-block my-4"><a href="{{route('privacy')}}"
-                                                class="card-link text-theme-1 font-weight-bolder"><img
-                                src="{{ asset('assets/assets/icons/right-arrow.svg') }}" alt="right-arrow" class="mr-2">Privacy
-                            policy</a></li>
+            <div class="col-lg-2 col-md-6 col-sm-12 card-body">
+                <h5 class="font-weight-bold text-theme-1 mb-2">Quick Links</h5>
+                <ul class="ml-4">
+                    <li class="my-2"><a href="#" class="card-link text-theme-1">Home</a></li>
+                    <li class="my-2"><a href="#" class="card-link text-theme-1">How it works ?</a></li>
+                    <li class="my-2"><a href="#" class="card-link text-theme-1">Who are we ?</a></li>
+                    <li class="my-2"><a href="#" class="card-link text-theme-1">About us</a></li>
                 </ul>
             </div>
 
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <h5 class="text-theme-1 font-weight-bolder">Our Social Networks</h5>
-                <p class="text-theme-1 font-weight-bolder">You are welcome to join us in our social media pages</p>
-                <div>
-                    <a href="#" class="btn btn-theme-1 pb-2 rounded"><img
-                            src="{{ asset('assets/assets/icons/facebook.svg') }}" alt="facebook"></a>
-                    <a href="#"
-                       class="btn btn-theme-1 pb-2 rounded"><img src="{{ asset('assets/assets/icons/youtube.svg') }}"
-                                                                 alt="youtube"></a>
-                    <a href="#" class="btn btn-theme-1 pb-2 rounded"><img
-                            src="{{ asset('assets/assets/icons/twitter.svg') }}" alt="twitter"></a>
-                </div>
+            <div class="col-lg-2 col-md-6 col-sm-12 card-body">
+                <h5 class="font-weight-bold text-theme-1 mb-2">Quick Links</h5>
+                <ul class="ml-4">
+                    <li class="my-2"><a href="#" class="card-link text-theme-1">Home</a></li>
+                    <li class="my-2"><a href="#" class="card-link text-theme-1">How it works ?</a></li>
+                    <li class="my-2"><a href="#" class="card-link text-theme-1">Who are we ?</a></li>
+                    <li class="my-2"><a href="#" class="card-link text-theme-1">About us</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-12 card-body">
+                <h5 class="font-weight-bold text-theme-1">Follow us on</h5>
+                <p class="text-secondary">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis autem, nobis
+                    non inventore accusantium minus.</p>
+                <ul class="mt-3">
+                    <li class="d-inline-block mr-1"><a href="#"><img
+                                src="{{ asset('front-assets/images/facebook.svg') }}" alt="facebook"></a></li>
+                    <li class="d-inline-block mx-1"><a href="#"><img
+                                src="{{ asset('front-assets/images/linkedin.svg') }}" alt="linkedin"></a></li>
+                    <li class="d-inline-block mx-1"><a href="#"><img
+                                src="{{ asset('front-assets/images/twitter.svg') }}" alt="twitter"></a></li>
+                </ul>
             </div>
 
         </div>
+
     </div>
-    <div class="container-fluid card-body d-lg-flex d-md-block d-sm-block justify-content-around bg-theme-1">
-        <h6 class="text-white d-inline mt-2">2021 © Copyright <b>YOUR COMPANY NAME</b>. All Rights Reserved</h6>
-        <br>
-        <h6 class="text-white d-inline mt-2"><a href="https://www.softwarefuels.com/" class="card-link text-white">#</a></h6>
+    <div class="card-body bg-theme-1 pb-2" align="center">
+        <h6 class="text-white">Copyright @Lorem Ispum 2021</h6>
     </div>
 </footer>
 <!-- Footer (End) -->
