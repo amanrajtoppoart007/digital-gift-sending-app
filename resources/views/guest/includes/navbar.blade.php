@@ -1,34 +1,30 @@
 <!-- Header (Start) -->
-<header>
-    <nav class="navbar navbar-expand-lg bg-white fixed-top" id="navbar">
-        <div class="container justify-content-between">
-            <!-- Brand Logo -->
-            <a href="{{URL::to('/')}}" class="navbar-brand text-theme-1 font-weight-bolder">DEMO WEBSITE</a>
-
-            <!-- Toggler Button -->
-            <button class="navbar-toggler" id="navbar-toggler" onclick="$('#navbar-collapse').toggle(300);">
-                <img src="{{ asset('assets/assets/icons/menu.svg') }}" alt="toggler-menu">
-            </button>
-
-            <!-- Navigation Menu -->
-            <div class="collapse navbar-collapse ml-auto" id="navbar-collapse">
-                <ul class="navbar-nav ml-auto" align="center">
+<header id="header">
+    <nav class="navbar navbar-expand-md shadow-sm">
+        <div class="container py-3">
+            <a href="#" class="navbar-brand logo font-weight-bold">Logo</a>
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <ul class="navbar-nav ml-auto">
                     <hr>
-                    <li class="nav-item px-1"><a href="{{route('about')}}" class="nav-link text-theme-1">About Us</a></li>
-                    <hr>
-
-                    <hr>
-                    <li class="nav-item px-1"><a href="{{ route('contact') }}" class="nav-link text-theme-1">Contact Us</a></li>
-                    <hr>
-                    <li class="nav-item px-1"><a href="{{ route('career') }}" class="nav-link text-theme-1">Career</a>
+                    <li class="nav-item mx-auto px-1">
+                        <a href="{{ route('index') }}" class="nav-link text-secondary">Home</a>
                     </li>
                     <hr>
-                    <li class="px-1"><a href="{{ route('register') }}" class="btn shadow btn-theme-1 px-4 mx-2 py-2">Register<img
-                                src="{{asset('assets/assets/icons/circle-arrow.svg')}}" class="btn-icon"
-                                alt="arrow-right"></a></li>
+                    <li class="nav-item mx-auto px-1"><a href="#" class="nav-link text-secondary">How it Works</a></li>
+                    <hr>
+                    <li class="nav-item mx-auto px-1"><a href="#" class="nav-link text-secondary">Why us</a></li>
+                    <hr>
+                    <li class="nav-item mx-auto px-1"><a href="#" class="nav-link text-secondary">Contact us</a></li>
                     <hr>
                 </ul>
             </div>
+            <div class="ml-auto">
+                <a href="{{ route('register') }}" class="btn btn-theme-1 mx-1 shadow-sm">Register</a>
+                <a href="{{ route('login') }}" class="btn btn-theme-2 mx-1 shadow-sm">Login</a>
+            </div>
+            <button class="navbar-toggler" id="navbar-toggler">
+                <img src="{{ asset('front-assets/images/menu.svg') }}" alt="navbar-menu">
+            </button>
         </div>
     </nav>
 </header>

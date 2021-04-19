@@ -39,9 +39,9 @@ class UsersController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'user_show';
-                $editGate      = 'user_edit';
-                $deleteGate    = 'user_delete';
+                $viewGate = 'user_show';
+                $editGate = 'user_edit';
+                $deleteGate = 'user_delete';
                 $crudRoutePart = 'users';
 
                 return view('partials.datatablesActions', compact(
@@ -110,32 +110,32 @@ class UsersController extends Controller
         $states = State::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $areas = Area::all()->pluck('area', 'id')->prepend(trans('global.pleaseSelect'), '');
-        return view('admin.users.create', compact('crops','pincodes','states','districts','blocks','areas'));
+        return view('admin.users.create', compact('crops', 'pincodes', 'states', 'districts', 'blocks', 'areas'));
     }
 
     public function store(StoreUserRequest $request)
     {
-         abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-         $user = User::create($request->all());
-         UserProfile::createProfile(array_merge($request->all(),['user_id' => $user->id,'address_type'=>'billing']));
-         UserAddress::create(array_merge($request->all(),['user_id' => $user->id]));
-         $user->notify(new RegistrationSuccessSms());
-         return redirect()->route('admin.users.show',$user->id);
+        $user = User::create($request->all());
+        UserProfile::createProfile(array_merge($request->all(), ['user_id' => $user->id, 'address_type' => 'billing']));
+        UserAddress::create(array_merge($request->all(), ['user_id' => $user->id]));
+        $user->notify(new RegistrationSuccessSms());
+        return redirect()->route('admin.users.show', $user->id);
     }
 
     public function edit(User $user)
     {
         abort_if(Gate::denies('user_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-         $states = State::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-        return view('admin.users.edit', compact('user','states'));
+        $states = State::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        return view('admin.users.edit', compact('user', 'states'));
     }
 
     public function update(UpdateUserRequest $request, User $user)
     {
         $user->update($request->all());
 
-        return redirect()->route('admin.users.show',$user->id);
+        return redirect()->route('admin.users.show', $user->id);
     }
 
     public function show(User $user)
@@ -161,5 +161,25 @@ class UsersController extends Controller
         User::whereIn('id', request('ids'))->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function addProfile(Request $request, User $user)
+    {
+        $request->validate([
+            'username' => 'required',
+            'banner' => 'required',
+            'description' => 'nullable'
+        ]);
+
+        $profile = new UserProfile();
+        $profile->user_id = $user->id;
+        $profile->username = $request->username;
+        $profile->user_id = $request->description;
+        $profile->save();
+        if ($request->input('banner', false)) {
+            $profile->addMedia(storage_path('tmp/uploads/' . $request->input('banner')))->toMediaCollection('banner');
+        }
+
+        return redirect()->route('admin.users.show', $user->id);
     }
 }

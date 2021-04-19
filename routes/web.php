@@ -21,7 +21,7 @@ Route::prefix('ajax')->group(function(){
    Route::post('get/areas', 'Ajax\RegionController@getAreaList')->name('ajax.area.list');
 });
 
-Route::get('/', 'Guest\HomeController@index');
+Route::get('/', 'Guest\HomeController@index')->name('index');
 Route::get('/services', 'Guest\HomeController@services')->name('services');
 Route::get('/career', 'Guest\HomeController@career')->name('career');
 Route::get('/about', 'Guest\HomeController@about')->name('about');
