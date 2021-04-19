@@ -115,8 +115,9 @@
                                      <div class="mt-3">
                                         <label class="font-weight-bolder text-dark" for="pin_code">Id card </label><label
                                             class="text-danger ml-2 font-weight-bolder">*</label>
-                                        <input type="file" name="identity_proof" id="identity_proof"
+                                        <input type="file" name="file" id="file"
                                                class="input-group-text bg-transparent w-100 text-left" required>
+                                         <input type="hidden" name="identity_proof" id="identity_proof" value="">
                                     </div>
 
 
@@ -164,6 +165,63 @@
     <script>
         $(document).ready(function () {
             $.ajaxSetup({headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'}});
+
+
+            $("#file").on("change",function(){
+
+                let form = new FormData(document.getElementById('user_registration_form'));
+
+                $.ajax({
+                    url: "{{route('upload.registration.media')}}",
+                    type: 'POST',
+                    data: form,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function () {
+                        $("#overlay").show();
+                    },
+                    success: function (response) {
+                        if (response.name)
+                        {
+                            $("#identity_proof").val(response.name)
+
+                        } else
+                        {
+                            $.notify("File upload failed", 'white');
+                        }
+
+
+                    },
+                    error: function (jqXhr, json, errorThrown) {
+
+                        let data = jqXhr.responseJSON;
+
+                        if (data.errors) {
+                            $.each(data.errors, function (index, item) {
+                                $(`#${index}`).addClass("is-invalid").tooltip({title: item[0]});
+
+                                $.notify(item[0], 'white');
+                                toastr.success(item[0], '', {
+                                    progressBar: true,
+                                    timeOut: 2000
+                                });
+                            })
+                        }
+                        if (data.message) {
+                            $.notify(data.message, 'white');
+                            toastr.error(data.message, '', {
+                                progressBar: true,
+                                timeOut: 2000
+                            });
+                        }
+                    },
+
+                    complete: function () {
+                        $("#overlay").hide();
+                    }
+                });
+
+            });
 
             $("#user_registration_form").on("submit", function (e) {
                 e.preventDefault();

@@ -27,9 +27,7 @@
 
     <div class="c-sidebar-brand d-md-down-none bg-white">
         <a class="c-sidebar-brand-full" href="{{ route("admin.home") }}">
-            <img
-                style="height: 80px"
-                src="{{ asset('assets/assets/images/logo-1.png') }}" alt="logo">
+            DEMO WEB
         </a>
     </div>
 

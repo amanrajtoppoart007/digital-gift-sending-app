@@ -1,9 +1,9 @@
 <?php
-Route::get('test/sms/api','TestController');
+
 Route::post('submit/enquiry/form','Guest\EnquiryController@store')->name('store.guest.enquiry');
 Route::get('/home','User\HomeController@index')->name('home');
 
-
+Route::post('/store/registration/media','Ajax\MediaUploadController')->name('upload.registration.media');
 Route::group(['prefix' => 'admin'], function () {
     Route::get('login', 'AdminAuth\LoginController@showLoginForm')->name('admin.login');
     Route::post('login', 'AdminAuth\LoginController@login')->name('admin.login.check');
