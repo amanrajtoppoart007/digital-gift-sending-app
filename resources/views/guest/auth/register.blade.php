@@ -4,7 +4,6 @@
     <main id="main">
 
         <section id="second-section">
-            <br>
             <div class="container">
 
                 <!-- Back Buttton -->
@@ -110,12 +109,45 @@
                                     </div>
 
                                     <div class="mt-3">
-                                        <label class="font-weight-bolder text-dark" for="pin_code">Id
-                                            card </label><label
+
+                                        <div class="row">
+                                            <div class="col">
+                                                <h6>Account type</h6>
+                                            </div>
+                                            <div class="col form-check">
+<input class="form-check-input" type="radio" value="self" name="account_type" id="checkbox-for-self" checked>
+                                                <label class="form-check-label" for="checkbox-for-self">
+                                                    Creating for self
+                                                </label>
+                                            </div>
+                                            <div class="col form-check">
+                                                <input class="form-check-input" type="radio" value="other-person"
+                                                       name="account_type" id="checkbox-for-on-behalf">
+                                                <label class="form-check-label" for="checkbox-for-on-behalf">
+                                                    Creating on behalf of other person
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col">
+                                                <label class="font-weight-bolder text-dark" for="identity_proof">Id
+                                            card self </label><label
                                             class="text-danger ml-2 font-weight-bolder">*</label>
-                                        <input type="file" name="file" id="file"
+                                        <input type="file" name="identity_proof_file" id="identity_proof_file"
                                                class="input-group-text bg-transparent w-100 text-left" required>
                                         <input type="hidden" name="identity_proof" id="identity_proof" value="">
+                                            </div>
+                                            <div class="col other-person-id-proof-div" style="display: none">
+                                                <label class="font-weight-bolder text-dark" for="identity_proof_other_person">Id
+                                            card of other person </label><label
+                                            class="text-danger ml-2 font-weight-bolder">*</label>
+                                        <input type="file" name="identity_proof_other_file" id="identity_proof_other_file"
+                                               class="input-group-text bg-transparent w-100 text-left">
+                                        <input type="hidden" name="identity_proof_other_person" id="identity_proof_other_person" value="">
+                                            </div>
+                                        </div>
+
                                     </div>
 
 
@@ -157,9 +189,10 @@
     <script>
         $(document).ready(function () {
 
-            $("#file").on("change",function(){
+            $("#identity_proof_file").on("change",function(){
 
-                let form = new FormData(document.getElementById('user_registration_form'));
+                let form = new FormData();
+                form.append('file',$("#identity_proof_file")[0].files[0]);
 
                 $.ajax({
                     url: "{{route('upload.registration.media')}}",
@@ -212,6 +245,64 @@
                 });
             });
 
+
+            $("#identity_proof_other_file").on("change",function(){
+
+                let form = new FormData();
+                form.append('file',$("#identity_proof_other_file")[0].files[0]);
+
+                $.ajax({
+                    url: "{{route('upload.registration.media')}}",
+                    type: 'POST',
+                    data: form,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function () {
+                        $("#overlay").show();
+                    },
+                    success: function (response) {
+                        if (response.name)
+                        {
+                            $("#identity_proof_other_person").val(response.name)
+
+                        } else
+                        {
+                            toastr.error("File upload failed", '', {
+                                progressBar: true,
+                                timeOut: 2000
+                            });
+                        }
+
+
+                    },
+                    error: function (jqXhr, json, errorThrown) {
+
+                        let data = jqXhr.responseJSON;
+
+                        if (data.errors) {
+                            $.each(data.errors, function (index, item) {
+                                $(`#${index}`).addClass("is-invalid").tooltip({title: item[0]});
+                                toastr.success(item[0], '', {
+                                    progressBar: true,
+                                    timeOut: 2000
+                                });
+                            })
+                        }
+                        if (data.message) {
+                            toastr.error(data.message, '', {
+                                progressBar: true,
+                                timeOut: 2000
+                            });
+                        }
+                    },
+
+                    complete: function () {
+                        $("#overlay").hide();
+                    }
+                });
+            });
+
+
             $("#user_registration_form").on("submit", function (e) {
                 e.preventDefault();
                 $.ajax({
@@ -262,6 +353,20 @@
                     }
                 });
             });
+
+
+            $("input[name='account_type']").on('click',function(){
+                if($(this).val()==='self')
+                {
+                    $(".other-person-id-proof-div").hide();
+                    $("#identity_proof_other_file").attr({'required':false});
+                }
+                else
+                {
+                    $(".other-person-id-proof-div").show();
+                    $("#identity_proof_other_file").attr({'required':true});
+                }
+            })
 
 
 
