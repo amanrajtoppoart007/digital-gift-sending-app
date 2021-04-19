@@ -27,18 +27,11 @@ class UserProfile extends Model implements HasMedia
         'deleted_at',
     ];
 
-    protected $casts = [
-        'crops' => 'array',
-    ];
-
     protected $fillable = [
         'user_id',
-        'name',
-        'email',
+        'username',
+        'description',
         'mobile',
-        'secondary_mobile',
-        'agricultural_land',
-        'crops',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -51,26 +44,10 @@ class UserProfile extends Model implements HasMedia
 
     public function registerMediaConversions(Media $media = null): void
     {
-        $this->addMediaConversion('thumb')->fit('crop', 50, 50);
-        $this->addMediaConversion('preview')->fit('crop', 120, 120);
+        $this->addMediaConversion('thumb')->fit('banner', 50, 50);
+        $this->addMediaConversion('preview')->fit('banner', 120, 120);
     }
 
-
-    public static function createProfile($array)
-    {
-        $without = Arr::except($array, ['crops']);
-        $crops = ['crops'=>$array['crops']];
-        $store = array_merge($without,$crops);
-        return UserProfile::create($store);
-    }
-
-    public  function updateProfile($array)
-    {
-        $without = Arr::except($array, ['crops']);
-        $crops = ['crops'=>json_encode($array['crops'])];
-        $update = array_merge($without,$crops);
-        return $this->where(['user_id'=>$array['user_id']])->update($update);
-    }
 
     public function user()
     {

@@ -12,6 +12,7 @@
     Route::post('users/parse-csv-import', 'Admin\UsersController@parseCsvImport')->name('users.parseCsvImport');
     Route::post('users/process-csv-import', 'Admin\UsersController@processCsvImport')->name('users.processCsvImport');
     Route::resource('users', 'Admin\UsersController');
+    Route::post('users/add-profile/{$user}', [\App\Http\Controllers\Admin\UsersController::class, 'addProfile'])->name('users.add-profile');
     // User Alerts
     Route::delete('user-alerts/destroy', 'Admin\UserAlertsController@massDestroy')->name('user-alerts.massDestroy');
     Route::resource('user-alerts', 'Admin\UserAlertsController', ['except' => ['edit', 'update']]);
