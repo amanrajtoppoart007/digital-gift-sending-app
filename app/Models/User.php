@@ -31,7 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail,HasMedia
         'password',
     ];
       protected $appends = [
-        'image',
+        'identity_proof', 'identity_proof_other_person',
     ];
 
     protected $dates = [
@@ -66,9 +66,22 @@ class User extends Authenticatable implements MustVerifyEmail,HasMedia
 
 
 
-    public function getImageAttribute()
+    public function getIdentityProofAttribute()
     {
         $file = $this->getMedia('identity_proof')->last();
+
+        if ($file) {
+            $file->url       = $file->getUrl();
+            $file->thumbnail = $file->getUrl('thumb');
+            $file->preview   = $file->getUrl('preview');
+        }
+
+        return $file;
+    }
+
+     public function getIdentityProofOtherPersonAttribute()
+    {
+        $file = $this->getMedia('identity_proof_other_person')->last();
 
         if ($file) {
             $file->url       = $file->getUrl();

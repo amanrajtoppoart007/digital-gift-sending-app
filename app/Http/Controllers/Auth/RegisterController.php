@@ -71,6 +71,15 @@ class RegisterController extends Controller
              if ($request->input('identity_proof', false)) {
             $user->addMedia(storage_path('tmp/uploads/' . $request->input('identity_proof')))->toMediaCollection('identity_proof');
          }
+
+             if($request->hasFile('identity_proof_other_person'))
+             {
+                 if ($request->input('identity_proof_other_person', false)) {
+                     $user->addMedia(storage_path('tmp/uploads/' . $request->input('identity_proof_other_person')))->toMediaCollection('identity_proof_other_person');
+                 }
+             }
+
+
             Mail::to($user)->send(new UserWelcomeMessage());
             /*$sms = new TextLocal();
             $sms->send(trans('sms.registration',['reg_number'=>$user->mobile]),$user->mobile,null);
