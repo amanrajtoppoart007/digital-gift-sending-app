@@ -14,6 +14,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class Template extends Model implements HasMedia
 {
     use SoftDeletes, Auditable, HasFactory,InteractsWithMedia;
+    public $table = 'templates';
      protected $dates = [
         'created_at',
         'updated_at',
@@ -32,9 +33,9 @@ class Template extends Model implements HasMedia
         'updated_at',
         'deleted_at',
     ];
-     protected function  getBannerImageAttribute()
+     public function  getBannerImageAttribute()
      {
-       $file = $this->getMedia('identity_proof_other_person')->last();
+       $file = $this->getMedia('banner_image')->last();
         if ($file) {
             $file->url       = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');

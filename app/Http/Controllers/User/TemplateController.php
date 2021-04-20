@@ -51,15 +51,12 @@ class TemplateController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-        //
+        $template = Template::find($id);
+
+        return view("user.template.show",compact('template'));
     }
 
     /**
