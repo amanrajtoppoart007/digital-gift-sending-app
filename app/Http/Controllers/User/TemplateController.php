@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreTemplateRequest;
+use App\Models\Template;
 use Illuminate\Http\Request;
 
 class TemplateController extends Controller
@@ -27,14 +29,26 @@ class TemplateController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreTemplateRequest $request
      */
-    public function store(Request $request)
+    public function store(StoreTemplateRequest $request)
     {
-        //
+        try {
+            $template = Template::create($request->all());
+            if ($request->input('banner_image', false))
+            {
+                $template->addMedia(storage_path('tmp/uploads/' . $request->input('banner_image')))->toMediaCollection('banner_image');
+            }
+            $url = route('template.show',['id'=>$template->id]);
+            $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "Template created successful"];
+        }
+        catch (\Exception $exception)
+        {
+            $result = ["status" => 0, "response" => "error", "message" => $exception->getMessage()];
+        }
+
+        return response()->json($result,200);
+
     }
 
     /**

@@ -53,4 +53,5 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
 Route::group(['prefix' => 'template', 'as' => 'template.',  'middleware' => ['auth']], function () {
 Route::get('create', 'User\TemplateController@create')->name('create');
 Route::post('store', 'User\TemplateController@store')->name('store');
+Route::post('show/{id}', 'User\TemplateController@show')->name('show');
 });

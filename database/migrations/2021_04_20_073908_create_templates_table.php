@@ -16,7 +16,11 @@ class CreateTemplatesTable extends Migration
         Schema::create('templates', function (Blueprint $table) {
             $table->id();
             $table->string('username');
-            $table->string('description')->nullable();
+            $table->text('banner_title');
+            $table->text('description')->nullable();
+            $table->string('payment_type');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -10,6 +10,13 @@
                 <div class="card-body" style="min-height:450px">
                     <form  id="create_template_form" method="POST"  action="{{route('template.store')}}"  enctype="multipart/form-data">
                         @csrf
+
+                         <div class="form-group">
+                            <label for="username"><strong>User Name </strong> <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="username" name="username"
+                                   aria-describedby="username_help">
+                            <small id="username_help" class="form-text text-muted">Create your custom username for viewing your profile.</small>
+                        </div>
                         <div class="form-group">
                             <label for="banner_image"> <strong>Banner Image</strong> <span class="text-danger">*</span></label>
                             <div class="needsclick  dropzone {{ $errors->has('banner_image') ? 'is-invalid' : '' }}"
@@ -24,34 +31,42 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="banner_title"><strong>Banner Tilte </strong> <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="banner_title"
+                            <label for="banner_title"><strong>Banner Title </strong> <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="banner_title" name="banner_title"
                                    aria-describedby="banner_title_help">
                             <small id="banner_title_help" class="form-text text-muted">Enter title for the banner.</small>
                         </div>
                         <div class="form-group">
                             <label for="description"><strong>About Your Page (Description) </strong> <span class="text-danger">*</span></label>
-                            <textarea  class="form-control" id="description"
+                            <textarea  class="form-control" id="description" name="description"
                                        aria-describedby="description_help"></textarea>
                             <small id="description_help" class="form-text text-muted">Enter the detail of the event for you want to collect the blessings.</small>
                         </div>
                         <div class="form-group">
-                            <div class="d-inline d-md-inline d-xl-inline d-lg-inline">
-                                <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                                       value="option1" checked>
-                                <label class="form-check-label" for="exampleRadios1">
-                                    Default radio
-                                </label>
+                            <h6> <strong>Receive payment with</strong></h6>
+                            <div class="row col-md-6">
+                               <div class="col">
+                                   <div class="form-check">
+                                       <input class="form-check-input" type="radio" name="payment_type"
+                                              id="payment_type_sender_detail"
+                                              value="with_sender_detail" checked>
+                                       <label class="form-check-label" for="payment_type_sender_detail">
+                                           Sender detail required
+                                       </label>
+                                   </div>
+                               </div>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="payment_type"
+                                               id="payment_type_anonymous"
+                                               value="without_sender_detail">
+                                        <label class="form-check-label" for="payment_type_anonymous">
+                                            Anonymous sender detail not required
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
-                                       value="option2">
-                                <label class="form-check-label" for="exampleRadios2">
-                                    Second default radio
-                                </label>
-                            </div>
-                            </div>
+
                         </div>
                          <button type="submit" class="btn btn-primary">Create Template</button>
                     </form>
@@ -141,8 +156,8 @@
                         }
                     },
                     error: function (jqXhr, json, errorThrown) {
-                        let data = jqXhr.responseJSON;
 
+                        let data = jqXhr.responseJSON;
                         if (data.errors) {
                             let error = '';
                             $.each(data.errors, function (index, item) {
