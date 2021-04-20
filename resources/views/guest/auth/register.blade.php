@@ -65,9 +65,9 @@
                                     </div>
 
                                     <div class="mt-3">
-                                        <label class="font-weight-bolder text-dark" for="confirm_password">Confirm
+                                        <label class="font-weight-bolder text-dark" for="password_confirmation">Confirm
                                             Password</label><label class="text-danger ml-2 font-weight-bolder">*</label>
-                                        <input type="password" name="confirm_password" id="confirm_password"
+                                        <input type="password" name="password_confirmation" id="password_confirmation"
                                                class="input-group-text bg-transparent w-100 text-left" required autocomplete="false">
                                     </div>
 
