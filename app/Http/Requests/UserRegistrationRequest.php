@@ -30,8 +30,8 @@ class UserRegistrationRequest extends FormRequest
              "address" => "required",
             "state_id" => "required",
             "city" => "required",
-            "pin_code" => "required",
-            "password" => "required",
+            "pin_code" => "required|numeric|digits:6",
+            "password" => "required|required_with:confirm_password|confirmed|min:6|same:confirm_password",
             "confirm_password" => "required",
             'identity_proof' => 'nullable'
         ];

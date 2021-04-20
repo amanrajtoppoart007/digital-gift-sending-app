@@ -45,7 +45,7 @@
                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                id="mobile" maxlength="10"
                                                pattern="[1-9]{1}[0-9]{9}" required
-                                               class="input-group-text bg-transparent w-100 text-left" required>
+                                               class="input-group-text bg-transparent w-100 text-left" required autocomplete>
                                     </div>
 
 
@@ -53,7 +53,7 @@
                                         <label class="font-weight-bolder text-dark" for="email">Email</label><label
                                             class="text-danger ml-2 font-weight-bolder">*</label>
                                         <input type="email" name="email" id="email"
-                                               class="input-group-text bg-transparent w-100 text-left" required>
+                                               class="input-group-text bg-transparent w-100 text-left" required autocomplete>
                                     </div>
 
                                     <div class="mt-3">
@@ -61,14 +61,14 @@
                                                for="password">Password</label><label
                                             class="text-danger ml-2 font-weight-bolder">*</label>
                                         <input type="password" name="password" id="password"
-                                               class="input-group-text bg-transparent w-100 text-left" required>
+                                               class="input-group-text bg-transparent w-100 text-left" required autocomplete>
                                     </div>
 
                                     <div class="mt-3">
                                         <label class="font-weight-bolder text-dark" for="confirm_password">Confirm
                                             Password</label><label class="text-danger ml-2 font-weight-bolder">*</label>
                                         <input type="password" name="confirm_password" id="confirm_password"
-                                               class="input-group-text bg-transparent w-100 text-left" required>
+                                               class="input-group-text bg-transparent w-100 text-left" required autocomplete="false">
                                     </div>
 
                                 </div>
@@ -314,38 +314,31 @@
                         $("#overlay").show();
                     },
                     success: function (res) {
-                        if (res.response === "success") {
-                            toastr.success("Registration successful", '', {
-                                progressBar: true,
-                                timeOut: 2000
-                            });
+                        if (res.response === "success")
+                        {
+
+                            $.notify(res.message,'success','top-right');
                             window.open(res.url, '_self');
-                        } else {
-                            toastr.error(res.message, '', {
-                                progressBar: true,
-                                timeOut: 2000
-                            });
+                        } else
+                            {
+
+                             $.notify(res.message,'error','top-right');
                         }
                     },
                     error: function (jqXhr, json, errorThrown) {
-                        console.log('errr')
                         let data = jqXhr.responseJSON;
 
                         if (data.errors) {
+                            let error = '';
                             $.each(data.errors, function (index, item) {
+                                console.log(index);
                                 $(`#${index}`).addClass("is-invalid").tooltip({title: item[0]});
-                                toastr.error(item[0], '', {
-                                    progressBar: true,
-                                    timeOut: 2000
-                                });
-                            })
-                        }
-                        if (data.message) {
-                            toastr.error(data.message, '', {
-                                progressBar: true,
-                                timeOut: 2000
+                               error += item[0]+"\n";
                             });
+
+                             $.notify(error,'error','top-right');
                         }
+
                     },
 
                     complete: function () {
