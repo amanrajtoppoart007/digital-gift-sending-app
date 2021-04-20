@@ -195,7 +195,7 @@
                 form.append('file',$("#identity_proof_file")[0].files[0]);
 
                 $.ajax({
-                    url: "{{route('upload.registration.media')}}",
+                    url: "{{route('upload.media')}}",
                     type: 'POST',
                     data: form,
                     contentType: false,
@@ -252,7 +252,7 @@
                 form.append('file',$("#identity_proof_other_file")[0].files[0]);
 
                 $.ajax({
-                    url: "{{route('upload.registration.media')}}",
+                    url: "{{route('upload.media')}}",
                     type: 'POST',
                     data: form,
                     contentType: false,

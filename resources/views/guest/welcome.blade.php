@@ -77,8 +77,7 @@
                     consequat.</p>
             </div>
 
-            <a href="#" class="btn btn-lg btn-theme-2 m-1 shadow">Get Started</a>
-            <a href="{{ route('register') }}" class="btn btn-lg btn-theme-2 m-1 shadow">Register</a>
+            <a href="{{route('register')}}" class="btn btn-lg btn-theme-2 m-1 shadow">Get Started</a>
         </div>
         <br>
     </section>

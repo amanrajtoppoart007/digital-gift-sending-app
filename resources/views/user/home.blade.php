@@ -13,31 +13,33 @@
                <div class="row mt-3">
 
                 <div class="col-lg-3 col-md-6 col-sm-12 p-3">
-                    <div class="card border-0 shadow">
-                        <a class="card-body">
+                    <a href="{{route('template.create')}}">
+                        <div class="card border-0 shadow" style="cursor: pointer">
+                        <div class="card-body">
                             <br>
                             <img src="http://127.0.0.1:8000/front-assets/images/account.svg" alt="img-1" class="img-fluid how-work-img">
                             <h3 class="font-weight-bold mt-3 text-theme-1">Create Template</h3>
                             <hr class="w-50">
                             <p class="text-secondary">Create your blessing page to get started.</p>
-                        </a>
+                        </div>
                     </div>
+                    </a>
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-sm-12 p-3">
-                    <div class="card border-0 shadow">
+                    <div class="card border-0 shadow" style="cursor: pointer">
                         <div class="card-body">
                             <br>
                             <img src="{{asset('front-assets/images/create.svg')}}" alt="img-2" class="img-fluid how-work-img">
                             <h3 class="font-weight-bold mt-3 text-theme-1">Add Account</h3>
                             <hr class="w-50">
-                            <p class="text-secondary">Add your bank account detail to get payment directly in your bank account.</p>
+                            <p class="text-secondary">Add your bank account detail to get paid.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-sm-12 p-3">
-                    <div class="card border-0 shadow">
+                    <div class="card border-0 shadow" style="cursor: pointer">
                         <div class="card-body">
                             <br>
                             <img src="{{asset('front-assets/images/link.svg')}}" alt="img-3" class="img-fluid how-work-img">
@@ -49,7 +51,7 @@
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-sm-12 p-3">
-                    <div class="card border-0 shadow">
+                    <div class="card border-0 shadow" style="cursor: pointer">
                         <div class="card-body">
                             <br>
                             <img src="{{asset('front-assets/images/delivered.svg')}}" alt="img-4" class="img-fluid how-work-img">

@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-toast/jquery.toast.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/dropzone/min/dropzone.min.css') }}">
     <!-- Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/index.css') }}">
 
@@ -65,6 +66,7 @@
 <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('plugins/popper/popper.min.js')}}"></script>
 <script src="{{asset('plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('plugins/dropzone/min/dropzone.min.js')}}"></script>
 <script src="{{asset('plugins/jquery-toast/jquery.toast.min.js')}}"></script>
 <script src="{{asset('js/function.js')}}"></script>
 <script>

@@ -3,7 +3,7 @@
 Route::post('submit/enquiry/form','Guest\EnquiryController@store')->name('store.guest.enquiry');
 Route::get('/home','User\HomeController@index')->name('home');
 
-Route::post('/store/registration/media','Ajax\MediaUploadController')->name('upload.registration.media');
+Route::post('/store/registration/media','Ajax\MediaUploadController')->name('upload.media');
 Route::group(['prefix' => 'admin'], function () {
     Route::get('login', 'AdminAuth\LoginController@showLoginForm')->name('admin.login');
     Route::post('login', 'AdminAuth\LoginController@login')->name('admin.login.check');
@@ -48,4 +48,9 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
         Route::post('profile', 'ChangePasswordController@updateProfile')->name('password.updateProfile');
         Route::post('profile/destroy', 'ChangePasswordController@destroy')->name('password.destroyProfile');
     }
+});
+
+Route::group(['prefix' => 'template', 'as' => 'template.',  'middleware' => ['auth']], function () {
+Route::get('create', 'User\TemplateController@create')->name('create');
+Route::post('store', 'User\TemplateController@store')->name('store');
 });
