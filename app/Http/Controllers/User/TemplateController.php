@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTemplateRequest;
 use App\Models\Template;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TemplateController extends Controller
@@ -18,11 +19,7 @@ class TemplateController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         return view('user.template.create');
@@ -34,12 +31,13 @@ class TemplateController extends Controller
     public function store(StoreTemplateRequest $request)
     {
         try {
-            $template = Template::create($request->all());
+            $user = User::find(auth()->user()->id);
+            $template = $user->template()->create($request->all());
             if ($request->input('banner_image', false))
             {
                 $template->addMedia(storage_path('tmp/uploads/' . $request->input('banner_image')))->toMediaCollection('banner_image');
             }
-            $url = route('template.show',['id'=>$template->id]);
+            $url = route('template.show',['username'=>$user->template->username]);
             $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "Template created successful"];
         }
         catch (\Exception $exception)
@@ -52,9 +50,9 @@ class TemplateController extends Controller
     }
 
 
-    public function show($id)
+    public function show($username)
     {
-        $template = Template::find($id);
+        $template = Template::where(['username'=>$username])->first();
 
         return view("user.template.show",compact('template'));
     }

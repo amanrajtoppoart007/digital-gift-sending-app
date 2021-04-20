@@ -65,6 +65,17 @@ class User extends Authenticatable implements MustVerifyEmail,HasMedia
     ];
 
 
+    public function template()
+    {
+        return $this->hasOne(Template::class);
+    }
+
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
+
+
 
     public function getIdentityProofAttribute()
     {

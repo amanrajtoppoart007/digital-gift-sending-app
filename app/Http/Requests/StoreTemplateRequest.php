@@ -24,7 +24,7 @@ class StoreTemplateRequest extends FormRequest
     public function rules()
     {
         return [
-            'username'=>'required',
+            'username'=>'required|unique:templates,username',
             'banner_image'=>'required',
             'banner_title'=>'required',
             'description'=>'required',

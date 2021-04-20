@@ -53,5 +53,10 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
 Route::group(['prefix' => 'template', 'as' => 'template.',  'middleware' => ['auth']], function () {
 Route::get('create', 'User\TemplateController@create')->name('create');
 Route::post('store', 'User\TemplateController@store')->name('store');
-Route::get('show/{id}', 'User\TemplateController@show')->name('show');
+Route::get('show/{username}', 'User\TemplateController@show')->name('show');
+});
+Route::group(['prefix' => 'payment', 'as' => 'payment.',  'middleware' => ['auth']], function () {
+Route::get('init/{username}', 'Guest\PaymentController@init')->name('init');
+Route::get('create', 'Guest\PaymentController@create')->name('create');
+Route::post('store', 'Guest\PaymentController@store')->name('store');
 });

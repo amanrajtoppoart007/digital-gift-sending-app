@@ -33,6 +33,11 @@ class Template extends Model implements HasMedia
         'updated_at',
         'deleted_at',
     ];
+
+     public function user()
+     {
+        return $this->belongsTo(User::class);
+     }
      public function  getBannerImageAttribute()
      {
        $file = $this->getMedia('banner_image')->last();
