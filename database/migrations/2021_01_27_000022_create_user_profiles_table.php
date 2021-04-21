@@ -14,7 +14,6 @@ class CreateUserProfilesTable extends Migration
             $table->string('bank_name');
             $table->string('ifsc_code');
             $table->string('account_number');
-            $table->text('user_image');
             $table->timestamps();
             $table->softDeletes();
         });

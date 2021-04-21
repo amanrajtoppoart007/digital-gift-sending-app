@@ -18,7 +18,7 @@ class UserProfile extends Model implements HasMedia
     public $table = 'user_profiles';
 
     protected $appends = [
-        'image',
+        'passbook',
     ];
 
     protected $dates = [
@@ -54,9 +54,9 @@ class UserProfile extends Model implements HasMedia
         return $this->belongsTo(User::class, 'user_id','id');
     }
 
-    public function getImageAttribute()
+    public function getPassbookAttribute()
     {
-        $file = $this->getMedia('image')->last();
+        $file = $this->getMedia('passbook')->last();
 
         if ($file) {
             $file->url       = $file->getUrl();

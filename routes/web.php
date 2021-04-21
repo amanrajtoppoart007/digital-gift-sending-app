@@ -39,7 +39,7 @@ Route::prefix('registration')->group(function () {
      Route::get('/message/{entity_id}/{token}', 'Auth\RegisterController@message')->name("registration.message");
 
 });
-
+Route::resource('profile', 'User\ProfileController');
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
 // Change password
     if (file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php'))) {

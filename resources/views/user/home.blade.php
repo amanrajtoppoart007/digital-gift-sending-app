@@ -41,7 +41,8 @@
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-sm-12 p-3">
-                    <div class="card border-0 shadow" style="cursor: pointer">
+                    <a href="{{route('profile.create')}}">
+                        <div class="card border-0 shadow" style="cursor: pointer">
                         <div class="card-body">
                             <br>
                             <img src="{{asset('front-assets/images/create.svg')}}" alt="img-2" class="img-fluid how-work-img">
@@ -50,6 +51,7 @@
                             <p class="text-secondary">Add your bank account detail to get paid.</p>
                         </div>
                     </div>
+                    </a>
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-sm-12 p-3">
