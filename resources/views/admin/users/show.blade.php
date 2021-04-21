@@ -46,6 +46,19 @@
                     </tr>
 
                     <tr>
+                        <th>Address</th>
+                        <td>{{$user->address}}</td>
+                        <th>City</th>
+                        <td>{{$user->city}}</td>
+                    </tr>
+                     <tr>
+                        <th>State</th>
+                        <td>{{$user->state->name}}</td>
+                        <th>PinCode</th>
+                        <td>{{$user->pin_code}}</td>
+                    </tr>
+
+                    <tr>
                         <th>
                             {{ trans('cruds.user.fields.approved') }}
                         </th>
@@ -92,48 +105,18 @@
     </div>
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
         <li class="nav-item">
-            <a class="nav-link" href="#user_orders" role="tab" data-toggle="tab">
-                {{ trans('cruds.order.title') }}
+            <a class="nav-link" href="#user_payments" role="tab" data-toggle="tab">
+                Payments
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#user_articles" role="tab" data-toggle="tab">
-                {{ trans('cruds.article.title') }}
+            <a class="nav-link" href="#user_templates" role="tab" data-toggle="tab">
+                Template
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#user_article_comments" role="tab" data-toggle="tab">
-                {{ trans('cruds.articleComment.title') }}
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#user_followers" role="tab" data-toggle="tab">
-                {{ trans('cruds.follower.title') }}
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#follow_followers" role="tab" data-toggle="tab">
-                {{ trans('cruds.follower.title') }}
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#user_article_likes" role="tab" data-toggle="tab">
-                {{ trans('cruds.articleLike.title') }}
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#user_transactions" role="tab" data-toggle="tab">
-                {{ trans('cruds.transaction.title') }}
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#user_user_addresses" role="tab" data-toggle="tab">
-                {{ trans('cruds.userAddress.title') }}
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#user_user_profiles" role="tab" data-toggle="tab">
-                {{ trans('cruds.userProfile.title') }}
+            <a class="nav-link" href="#user_profile" role="tab" data-toggle="tab">
+                Bank Account Detail
             </a>
         </li>
         <li class="nav-item">
@@ -143,31 +126,13 @@
         </li>
     </ul>
     <div class="tab-content">
-        <div class="tab-pane" role="tabpanel" id="user_orders">
+        <div class="tab-pane" role="tabpanel" id="user_payments">
 
         </div>
-        <div class="tab-pane" role="tabpanel" id="user_articles">
+        <div class="tab-pane" role="tabpanel" id="user_templates">
 
         </div>
-        <div class="tab-pane" role="tabpanel" id="user_article_comments">
-
-        </div>
-        <div class="tab-pane" role="tabpanel" id="user_followers">
-
-        </div>
-        <div class="tab-pane" role="tabpanel" id="follow_followers">
-
-        </div>
-        <div class="tab-pane" role="tabpanel" id="user_article_likes">
-
-        </div>
-        <div class="tab-pane" role="tabpanel" id="user_transactions">
-
-        </div>
-        <div class="tab-pane" role="tabpanel" id="user_user_addresses">
-
-        </div>
-        <div class="tab-pane" role="tabpanel" id="user_user_profiles">
+        <div class="tab-pane" role="tabpanel" id="user_profile">
 
         </div>
         <div class="tab-pane" role="tabpanel" id="user_user_alerts">
