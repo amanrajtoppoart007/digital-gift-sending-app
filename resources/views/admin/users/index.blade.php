@@ -37,9 +37,7 @@
                     <th>
                         {{ trans('cruds.user.fields.email') }}
                     </th>
-                    <th>
-                        {{ trans('cruds.user.fields.email_verified_at') }}
-                    </th>
+
                     <th>
                         {{ trans('cruds.user.fields.approved') }}
                     </th>
@@ -47,23 +45,13 @@
                         {{ trans('cruds.user.fields.verified') }}
                     </th>
                     <th>
-                        {{ trans('cruds.user.fields.roles') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.user.fields.mobile_verified_at') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.user.fields.referral_code') }}
-                    </th>
-                    <th>
-                        &nbsp;
+                        Action
                     </th>
                 </tr>
                 <tr>
                     <td>
                     </td>
                     <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
                     <td>
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
@@ -75,25 +63,8 @@
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
                     <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
                     <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                        <select class="search">
-                            <option value>{{ trans('global.all') }}</option>
-                            @foreach($roles as $key => $item)
-                                <option value="{{ $item->title }}">{{ $item->title }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
                     <td>
                     </td>
@@ -154,12 +125,8 @@
 { data: 'name', name: 'name' },
 { data: 'mobile', name: 'mobile' },
 { data: 'email', name: 'email' },
-{ data: 'email_verified_at', name: 'email_verified_at' },
 { data: 'approved', name: 'approved' },
 { data: 'verified', name: 'verified' },
-{ data: 'roles', name: 'roles.title' },
-{ data: 'mobile_verified_at', name: 'mobile_verified_at' },
-{ data: 'referral_code', name: 'referral_code' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,
