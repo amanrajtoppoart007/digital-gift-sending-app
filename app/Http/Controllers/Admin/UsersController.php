@@ -7,6 +7,7 @@ use App\Http\Controllers\Traits\CsvImportTrait;
 use App\Http\Requests\MassDestroyUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Mail\UserWelcomeMessage;
 use App\Models\Area;
 use App\Models\Block;
 use App\Models\Crop;
@@ -20,6 +21,8 @@ use App\Models\UserProfile;
 use App\Notifications\RegistrationSuccessSms;
 use Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -99,29 +102,42 @@ class UsersController extends Controller
     public function create()
     {
         abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $crops = Crop::all()->pluck('name', 'id');
-        $pincodes = Pincode::all()->pluck('pincode', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $districts = District::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $blocks = Block::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
         $states = State::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $areas = Area::all()->pluck('area', 'id')->prepend(trans('global.pleaseSelect'), '');
-        return view('admin.users.create', compact('crops', 'pincodes', 'states', 'districts', 'blocks', 'areas'));
+        return view('admin.users.create', compact( 'states'));
     }
 
     public function store(StoreUserRequest $request)
     {
-        abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        try {
+             $user = User::create($request->validated());
+             if ($request->input('identity_proof', false))
+             {
+               $user->addMedia(storage_path('tmp/uploads/' . $request->input('identity_proof')))->toMediaCollection('identity_proof');
+             }
 
-        $user = User::create($request->all());
-        UserProfile::createProfile(array_merge($request->all(), ['user_id' => $user->id, 'address_type' => 'billing']));
-        UserAddress::create(array_merge($request->all(), ['user_id' => $user->id]));
-        $user->notify(new RegistrationSuccessSms());
-        return redirect()->route('admin.users.show', $user->id);
+             if($request->hasFile('identity_proof_other_person'))
+             {
+                 if ($request->input('identity_proof_other_person', false)) {
+                     $user->addMedia(storage_path('tmp/uploads/' . $request->input('identity_proof_other_person')))->toMediaCollection('identity_proof_other_person');
+                 }
+             }
+
+
+           // Mail::to($user)->send(new UserWelcomeMessage());
+            /*$sms = new TextLocal();
+            $sms->send(trans('sms.registration',['reg_number'=>$user->mobile]),$user->mobile,null);
+            $sms->send('this is test', $user->mobile, null);*/
+
+            $url = route("admin.users.show",$user->id);
+
+            $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "User registration successful"];
+        } catch (\Exception $exception)
+                {
+            $result = ["status" => 0, "response" => "error", "message" => $exception->getMessage()];
+        }
+
+        return response()->json($result);
     }
 
     public function edit(User $user)

@@ -65,9 +65,8 @@ class RegisterController extends Controller
 
     public function store(UserRegistrationRequest $request)
     {
-        $request->validated();
         try {
-            $user = User::create($request->all());
+            $user = User::create($request->validated());
              if ($request->input('identity_proof', false)) {
             $user->addMedia(storage_path('tmp/uploads/' . $request->input('identity_proof')))->toMediaCollection('identity_proof');
          }

@@ -210,33 +210,13 @@
 
                         } else
                         {
-                            toastr.error("File upload failed", '', {
-                                progressBar: true,
-                                timeOut: 2000
-                            });
+                            $.notify('File upload failed','error','top-right');
                         }
-
 
                     },
-                    error: function (jqXhr, json, errorThrown) {
+                    error: function () {
 
-                        let data = jqXhr.responseJSON;
-
-                        if (data.errors) {
-                            $.each(data.errors, function (index, item) {
-                                $(`#${index}`).addClass("is-invalid").tooltip({title: item[0]});
-                                toastr.success(item[0], '', {
-                                    progressBar: true,
-                                    timeOut: 2000
-                                });
-                            })
-                        }
-                        if (data.message) {
-                            toastr.error(data.message, '', {
-                                progressBar: true,
-                                timeOut: 2000
-                            });
-                        }
+                        $.notify('File upload failed','error','top-right');
                     },
 
                     complete: function () {
@@ -267,33 +247,12 @@
 
                         } else
                         {
-                            toastr.error("File upload failed", '', {
-                                progressBar: true,
-                                timeOut: 2000
-                            });
+                            $.notify('File upload failed','error','top-right');
                         }
-
 
                     },
-                    error: function (jqXhr, json, errorThrown) {
-
-                        let data = jqXhr.responseJSON;
-
-                        if (data.errors) {
-                            $.each(data.errors, function (index, item) {
-                                $(`#${index}`).addClass("is-invalid").tooltip({title: item[0]});
-                                toastr.success(item[0], '', {
-                                    progressBar: true,
-                                    timeOut: 2000
-                                });
-                            })
-                        }
-                        if (data.message) {
-                            toastr.error(data.message, '', {
-                                progressBar: true,
-                                timeOut: 2000
-                            });
-                        }
+                    error: function () {
+                        $.notify('File upload failed','error','top-right');
                     },
 
                     complete: function () {

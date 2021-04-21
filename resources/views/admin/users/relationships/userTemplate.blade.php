@@ -1,3 +1,4 @@
+@if(!empty($template))
 <div class="card">
     <div class="card-header">
         Template
@@ -70,3 +71,4 @@
         </div>
     </div>
 </div>
+@endif
