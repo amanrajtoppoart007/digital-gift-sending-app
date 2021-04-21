@@ -25,34 +25,28 @@
                             {{ trans('cruds.userProfile.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.userProfile.fields.user') }}
+                            Name
                         </th>
                         <th>
-                            {{ trans('cruds.userProfile.fields.name') }}
+                            Bank Name
                         </th>
                         <th>
-                            {{ trans('cruds.userProfile.fields.email') }}
+                            Account Number
                         </th>
                         <th>
-                            {{ trans('cruds.userProfile.fields.primary_contact') }}
+                            IFSC CODE
                         </th>
                         <th>
-                            {{ trans('cruds.userProfile.fields.secondary_contact') }}
+                            Created at
                         </th>
                         <th>
-                            {{ trans('cruds.userProfile.fields.farming_land_area') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.userProfile.fields.image') }}
-                        </th>
-                        <th>
-                            &nbsp;
+                            Action
                         </th>
                     </tr>
                 </thead>
                 <tbody>
 
-                        <tr data-entry-id="{{ $userProfile->id }}">
+                        <tr data-entry-id="{{ $userProfile->id??'' }}">
                             <td>
 
                             </td>
@@ -60,51 +54,34 @@
                                 {{ $userProfile->id ?? '' }}
                             </td>
                             <td>
-                                {{ $userProfile->user->name ?? '' }}
+                                {{ $userProfile->name?? '' }}
                             </td>
                             <td>
-                                {{ $userProfile->name ?? '' }}
+                                {{ $userProfile->bank_name ?? '' }}
                             </td>
                             <td>
-                                {{ $userProfile->email ?? '' }}
+                                {{ $userProfile->account_number ?? '' }}
                             </td>
                             <td>
-                                {{ $userProfile->primary_contact ?? '' }}
+                                {{ $userProfile->ifsc_code ?? '' }}
                             </td>
                             <td>
-                                {{ $userProfile->secondary_contact ?? '' }}
+                                {{ $userProfile->created_at ?? '' }}
                             </td>
-                            <td>
-                                {{ $userProfile->farming_land_area ?? '' }}
-                            </td>
-                            <td>
-                                @if($userProfile->image)
-                                    <a href="{{ $userProfile->image->getUrl() }}" target="_blank" style="display: inline-block">
-                                        <img src="{{ $userProfile->image->getUrl('thumb') }}">
-                                    </a>
-                                @endif
-                            </td>
-                            <td>
-                                @can('user_profile_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.user-profiles.show', $userProfile->id) }}">
-                                        {{ trans('global.view') }}
-                                    </a>
-                                @endcan
 
-                                @can('user_profile_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.user-profiles.edit', $userProfile->id) }}">
+                            <td>
+                                @if(!empty($userProfile))
+                                    <a class="btn btn-xs btn-info" href="{{ route('admin.user-profiles.edit', $userProfile->id??0) }}">
                                         {{ trans('global.edit') }}
                                     </a>
-                                @endcan
-
-                                @can('user_profile_delete')
-                                    <form action="{{ route('admin.user-profiles.destroy', $userProfile->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                @endif
+                                @if(!empty($userProfile))
+                                    <form action="{{ route('admin.user-profiles.destroy', $userProfile->id??0) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
                                     </form>
-                                @endcan
-
+                                @endif
                             </td>
 
                         </tr>
@@ -121,32 +98,6 @@
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
 @can('user_profile_delete')
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
-  let deleteButton = {
-    text: deleteButtonTrans,
-    url: "{{ route('admin.user-profiles.massDestroy') }}",
-    className: 'btn-danger',
-    action: function (e, dt, node, config) {
-      var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
-          return $(entry).data('entry-id')
-      });
-
-      if (ids.length === 0) {
-        alert('{{ trans('global.datatables.zero_selected') }}')
-
-        return
-      }
-
-      if (confirm('{{ trans('global.areYouSure') }}')) {
-        $.ajax({
-          headers: {'x-csrf-token': _token},
-          method: 'POST',
-          url: config.url,
-          data: { ids: ids, _method: 'DELETE' }})
-          .done(function () { location.reload() })
-      }
-    }
-  }
-  dtButtons.push(deleteButton)
 @endcan
 
   $.extend(true, $.fn.dataTable.defaults, {

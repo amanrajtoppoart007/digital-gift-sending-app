@@ -80,6 +80,11 @@ class User extends Authenticatable implements MustVerifyEmail,HasMedia
         return $this->hasMany(Payment::class);
     }
 
+    public function userUserProfile()
+    {
+        return $this->hasOne(UserProfile::class);
+    }
+
 
 
     public function getIdentityProofAttribute()
@@ -119,10 +124,7 @@ class User extends Authenticatable implements MustVerifyEmail,HasMedia
         return $date->format('Y-m-d H:i:s');
     }
 
-    public function getIsAdminAttribute()
-    {
-        return $this->roles()->where('id', 1)->exists();
-    }
+
 
     public function __construct(array $attributes = [])
     {

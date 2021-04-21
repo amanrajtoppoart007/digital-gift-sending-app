@@ -128,7 +128,7 @@
             @includeIf('admin.users.relationships.userTemplate',['template'=>$user->template])
         </div>
         <div class="tab-pane" role="tabpanel" id="user_profile">
-
+          @includeIf('admin.users.relationships.userUserProfile',['userProfile'=>$user->userUserProfile])
         </div>
     </div>
 </div>
