@@ -27,10 +27,6 @@ class Kernel extends HttpKernel
         'throttle'         => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified'         => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin'            => \App\Http\Middleware\IsAdmin::class,
-        'check_if_help_center_documents_are_uploaded' => \App\Http\Middleware\CheckIfHelpCenterDocumentsAreUploaded::class,
-        'check_if_franchisee_documents_are_uploaded' => \App\Http\Middleware\CheckIfFranchiseeDocumentsAreUploaded::class,
-        'check_if_help_center_has_active_membership_plan' => \App\Http\Middleware\CheckIfHelpCenterHasActiveMembershipPlan::class,
-        'check_if_franchisee_has_active_membership_plan' => \App\Http\Middleware\CheckIfFranchiseeHasActiveMembershipPlan::class,
     ];
 
     protected $middlewareGroups = [

@@ -10,7 +10,7 @@
      <div class="class">
          <h3 class="font-weight-bold">About Us</h3>
          <p class="lead">{!! $template->description !!}.</p>
-         <a href="{{route('payment.init',['username'=>$template->username])}}" class="btn btn-success">Send Gift</a>
+         <a href="{{route('template.edit',['id'=>$template->id])}}" class="btn btn-success">Edit Template</a>
      </div>
  </div>
 @endsection

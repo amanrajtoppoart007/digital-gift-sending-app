@@ -13,7 +13,20 @@
                <div class="row mt-3">
 
                 <div class="col-lg-3 col-md-6 col-sm-12 p-3">
-                    <a href="{{route('template.create')}}">
+                   @if(!empty($template->id))
+                    <a href="{{route('template.edit',$template->id)}}">
+                        <div class="card border-0 shadow" style="cursor: pointer">
+                        <div class="card-body">
+                            <br>
+                            <img src="http://127.0.0.1:8000/front-assets/images/account.svg" alt="img-1" class="img-fluid how-work-img">
+                            <h3 class="font-weight-bold mt-3 text-theme-1">Edit Template</h3>
+                            <hr class="w-50">
+                            <p class="text-secondary">Create your blessing page to get started.</p>
+                        </div>
+                    </div>
+                    </a>
+                    @else
+                       <a href="{{route('template.create')}}">
                         <div class="card border-0 shadow" style="cursor: pointer">
                         <div class="card-body">
                             <br>
@@ -24,6 +37,7 @@
                         </div>
                     </div>
                     </a>
+                    @endif
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-sm-12 p-3">

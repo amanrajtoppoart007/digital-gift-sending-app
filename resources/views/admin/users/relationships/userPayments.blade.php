@@ -1,43 +1,30 @@
-@can('transaction_create')
-    <div style="margin-bottom: 10px;" class="row">
-        <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.transactions.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.transaction.title_singular') }}
-            </a>
-        </div>
-    </div>
-@endcan
-
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.transaction.title_singular') }} {{ trans('global.list') }}
+        Payment List
     </div>
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-userTransactions">
+            <table class=" table table-bordered table-striped table-hover datatable datatable-userOrders">
                 <thead>
                     <tr>
                         <th width="10">
 
                         </th>
                         <th>
-                            {{ trans('cruds.transaction.fields.id') }}
+                            {{ trans('cruds.order.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.transaction.fields.order') }}
+                            {{ trans('cruds.order.fields.order_number') }}
                         </th>
                         <th>
-                            {{ trans('cruds.transaction.fields.user') }}
+                            {{ trans('cruds.order.fields.user') }}
                         </th>
                         <th>
-                            {{ trans('cruds.transaction.fields.status') }}
+                            {{ trans('cruds.order.fields.payment_type') }}
                         </th>
                         <th>
-                            {{ trans('cruds.transaction.fields.amount') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.transaction.fields.transaction_number') }}
+                            {{ trans('cruds.order.fields.address') }}
                         </th>
                         <th>
                             &nbsp;
@@ -45,44 +32,41 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($transactions as $key => $transaction)
-                        <tr data-entry-id="{{ $transaction->id }}">
+                    @foreach($orders as $key => $order)
+                        <tr data-entry-id="{{ $order->id }}">
                             <td>
 
                             </td>
                             <td>
-                                {{ $transaction->id ?? '' }}
+                                {{ $order->id ?? '' }}
                             </td>
                             <td>
-                                {{ $transaction->order->order_number ?? '' }}
+                                {{ $order->order_number ?? '' }}
                             </td>
                             <td>
-                                {{ $transaction->user->name ?? '' }}
+                                {{ $order->user->name ?? '' }}
                             </td>
                             <td>
-                                {{ App\Models\Transaction::STATUS_SELECT[$transaction->status] ?? '' }}
+                                {{ App\Models\Order::PAYMENT_TYPE_SELECT[$order->payment_type] ?? '' }}
                             </td>
                             <td>
-                                {{ $transaction->amount ?? '' }}
+                                {{ $order->address->address ?? '' }}
                             </td>
                             <td>
-                                {{ $transaction->transaction_number ?? '' }}
-                            </td>
-                            <td>
-                                @can('transaction_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.transactions.show', $transaction->id) }}">
+                                @can('order_show')
+                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.orders.show', $order->id) }}">
                                         {{ trans('global.view') }}
                                     </a>
                                 @endcan
 
-                                @can('transaction_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.transactions.edit', $transaction->id) }}">
+                                @can('order_edit')
+                                    <a class="btn btn-xs btn-info" href="{{ route('admin.orders.edit', $order->id) }}">
                                         {{ trans('global.edit') }}
                                     </a>
                                 @endcan
 
-                                @can('transaction_delete')
-                                    <form action="{{ route('admin.transactions.destroy', $transaction->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                @can('order_delete')
+                                    <form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
@@ -104,11 +88,11 @@
 <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('transaction_delete')
+@can('order_delete')
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
   let deleteButton = {
     text: deleteButtonTrans,
-    url: "{{ route('admin.transactions.massDestroy') }}",
+    url: "{{ route('admin.orders.massDestroy') }}",
     className: 'btn-danger',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
@@ -139,12 +123,12 @@
     order: [[ 1, 'desc' ]],
     pageLength: 100,
   });
-  let table = $('.datatable-userTransactions:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+  let table = $('.datatable-userOrders:not(.ajaxTable)').DataTable({ buttons: dtButtons })
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 })
 
 </script>

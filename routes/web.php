@@ -52,11 +52,24 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
 
 Route::group(['prefix' => 'template', 'as' => 'template.',  'middleware' => ['auth']], function () {
 Route::get('create', 'User\TemplateController@create')->name('create');
+Route::get('edit/{id}', 'User\TemplateController@edit')->name('edit');
 Route::post('store', 'User\TemplateController@store')->name('store');
+Route::post('update/{id}', 'User\TemplateController@update')->name('update');
 Route::get('show/{username}', 'User\TemplateController@show')->name('show');
 });
 Route::group(['prefix' => 'payment', 'as' => 'payment.',  'middleware' => ['auth']], function () {
-Route::get('init/{username}', 'Guest\PaymentController@init')->name('init');
+Route::get('init/{username}', 'User\PaymentController@init')->name('init');
+Route::get('create', 'User\PaymentController@create')->name('create');
+Route::post('store', 'User\PaymentController@store')->name('store');
+});
+//function for guest to view user profile
+Route::group(['prefix' => 'view', 'as' => 'view.'], function () {
+Route::get('show/{username}', 'User\TemplateController@show')->name('show');
+});
+//function for guest to init payment to the user
+Route::group(['prefix' => 'gift', 'as' => 'gift.'], function () {
+Route::any('init/{username}', 'Guest\PaymentController@init')->name('init');
 Route::get('create', 'Guest\PaymentController@create')->name('create');
 Route::post('store', 'Guest\PaymentController@store')->name('store');
+Route::get('message/{txn_number}', 'Guest\PaymentController@message')->name('message');
 });

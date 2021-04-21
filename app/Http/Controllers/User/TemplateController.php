@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTemplateRequest;
+use App\Http\Requests\UpdateTemplateRequest;
 use App\Models\Template;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -57,27 +58,51 @@ class TemplateController extends Controller
         return view("user.template.show",compact('template'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
-        //
+       $template = Template::find($id);
+       $payment_types = [
+           [
+               'id'=>'payment_type_sender_detail',
+               'value'=>'with_sender_detail',
+               'title'=>'Sender detail required'
+           ],
+           [
+               'id'=>'payment_type_anonymous',
+               'value'=>'without_sender_detail',
+               'title'=>'Anonymous sender detail not required'
+           ],
+       ];
+
+        return view("user.template.edit",compact('template','payment_types'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(UpdateTemplateRequest $request,$id)
     {
-        //
+        try {
+             Template::where(['id' => $id])->update($request->only(['banner_title','description','payment_type']));
+             $template = Template::find($id);
+            if ($request->input('banner_image', false)) {
+                if (!$template->banner_image || $request->input('banner_image') !== $template->banner_image->file_name) {
+                    if ($template->banner_image) {
+                        $template->banner_image->delete();
+                    }
+
+                    $template->addMedia(storage_path('tmp/uploads/' . $request->input('banner_image')))->toMediaCollection('banner_image');
+                }
+            } elseif ($template->banner_image) {
+                $template->banner_image->delete();
+            }
+            $url = route('template.show',['username'=>$template->username]);
+            $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "Template updated successful"];
+        }
+        catch (\Exception $exception)
+        {
+             $result = ["status" => 0, "response" => "error", "message" => $exception->getMessage()];
+        }
+        return response()->json($result,200);
     }
 
     /**

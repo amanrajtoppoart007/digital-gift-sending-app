@@ -21,6 +21,7 @@
 
     <!-- Website Title -->
     <title>Website Title</title>
+    @yield("head")
     @yield("styles")
     <style>
         #overlay {
