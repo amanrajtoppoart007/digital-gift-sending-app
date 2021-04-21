@@ -104,8 +104,8 @@
         {{ trans('global.relatedData') }}
     </div>
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
-        <li class="nav-item">
-            <a class="nav-link" href="#user_payments" role="tab" data-toggle="tab">
+        <li class="nav-item active">
+            <a class="nav-link active" href="#user_payments" role="tab" data-toggle="tab">
                 Payments
             </a>
         </li>
@@ -119,23 +119,15 @@
                 Bank Account Detail
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#user_user_alerts" role="tab" data-toggle="tab">
-                {{ trans('cruds.userAlert.title') }}
-            </a>
-        </li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="user_payments">
-
+          @includeIf('admin.users.relationships.userPayments',['payments'=>$user->payments])
         </div>
         <div class="tab-pane" role="tabpanel" id="user_templates">
-
+            @includeIf('admin.users.relationships.userTemplate',['template'=>$user->template])
         </div>
         <div class="tab-pane" role="tabpanel" id="user_profile">
-
-        </div>
-        <div class="tab-pane" role="tabpanel" id="user_user_alerts">
 
         </div>
     </div>

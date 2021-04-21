@@ -9,69 +9,73 @@
                 <thead>
                     <tr>
                         <th width="10">
-
+                            SN
                         </th>
                         <th>
-                            {{ trans('cruds.order.fields.id') }}
+                            Transaction No.
                         </th>
                         <th>
-                            {{ trans('cruds.order.fields.order_number') }}
+                            Amount
                         </th>
                         <th>
-                            {{ trans('cruds.order.fields.user') }}
+                            Payee name
                         </th>
                         <th>
-                            {{ trans('cruds.order.fields.payment_type') }}
+                            Mobile
                         </th>
                         <th>
-                            {{ trans('cruds.order.fields.address') }}
+                            Email
                         </th>
                         <th>
-                            &nbsp;
+                            Address
+                        </th>
+                        <th>
+                            Payment Type
+                        </th>
+                        <th>
+                            Action
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($orders as $key => $order)
-                        <tr data-entry-id="{{ $order->id }}">
+                    @foreach($payments as $key => $payment)
+                        <tr data-entry-id="{{ $payment->id }}">
                             <td>
 
                             </td>
                             <td>
-                                {{ $order->id ?? '' }}
+                                {{ $payment->txn_number ?? '' }}
                             </td>
                             <td>
-                                {{ $order->order_number ?? '' }}
+                                {{ $payment->amount ?? '' }}
                             </td>
                             <td>
-                                {{ $order->user->name ?? '' }}
+                                {{ $payment->name ?? '' }}
                             </td>
                             <td>
-                                {{ App\Models\Order::PAYMENT_TYPE_SELECT[$order->payment_type] ?? '' }}
+                                {{ $payment->mobile ?? '' }}
                             </td>
                             <td>
-                                {{ $order->address->address ?? '' }}
+                                {{ $payment->email ?? '' }}
                             </td>
                             <td>
-                                @can('order_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.orders.show', $order->id) }}">
+                                {{ ($payment->address ?? '').','.($payment->city??'').','.($payment->state->name??'') }}
+                            </td>
+                            <td>
+                                {{ $payment->payment_type ?? '' }}
+                            </td>
+                            <td>
+                                    <a class="btn btn-xs btn-primary" href="">
                                         {{ trans('global.view') }}
                                     </a>
-                                @endcan
-
-                                @can('order_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.orders.edit', $order->id) }}">
+                                    <a class="btn btn-xs btn-info" href="">
                                         {{ trans('global.edit') }}
                                     </a>
-                                @endcan
-
-                                @can('order_delete')
-                                    <form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                    <form action="" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
                                     </form>
-                                @endcan
 
                             </td>
 
@@ -88,11 +92,11 @@
 <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('order_delete')
+
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
   let deleteButton = {
     text: deleteButtonTrans,
-    url: "{{ route('admin.orders.massDestroy') }}",
+    url: "",
     className: 'btn-danger',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
@@ -116,7 +120,7 @@
     }
   }
   dtButtons.push(deleteButton)
-@endcan
+
 
   $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,

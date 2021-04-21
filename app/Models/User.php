@@ -75,7 +75,7 @@ class User extends Authenticatable implements MustVerifyEmail,HasMedia
         return $this->belongsTo(State::class);
     }
 
-    public function payment()
+    public function payments()
     {
         return $this->hasMany(Payment::class);
     }
