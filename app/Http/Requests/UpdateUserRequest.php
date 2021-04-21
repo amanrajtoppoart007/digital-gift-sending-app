@@ -18,33 +18,17 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'               => [
-                'string',
-                'required',
-            ],
-            'mobile'             => [
-                'string',
-                'required',
-            ],
-            'email'              => [
-                'required',
-                'unique:users,email,' . request()->route('user')->id,
-            ],
-            'crops.*'            => [
-                'integer',
-            ],
-            'crops'              => [
-                'required',
-                'array',
-            ],
-            'mobile_verified_at' => [
-                'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
-                'nullable',
-            ],
-            'referral_code'      => [
-                'string',
-                'nullable',
-            ],
+            "account_type" => "required",
+            "name" => "required",
+            "mobile" => "required|unique:users,mobile",
+            "email" => "required|email|unique:users,email",
+             "address" => "required",
+            "state_id" => "required",
+            "city" => "required",
+            "pin_code" => "required|numeric|digits:6",
+            "password" => "required|min:6",
+            'identity_proof' => 'nullable',
+            'identity_proof_other_person' => 'nullable'
         ];
     }
 }

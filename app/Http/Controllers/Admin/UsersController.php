@@ -143,13 +143,25 @@ class UsersController extends Controller
     public function edit(User $user)
     {
         abort_if(Gate::denies('user_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $account_types = [
+            [
+                'id' => 'checkbox-for-self',
+                'value' => 'self',
+                'title' => 'Creating for self'
+            ],
+            [
+                'id' => 'checkbox-for-on-behalf',
+                'value' => 'other-person',
+                'title' => 'Creating on behalf of other person'
+            ],
+        ];
         $states = State::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-        return view('admin.users.edit', compact('user', 'states'));
+        return view('admin.users.edit', compact('user', 'states','account_types'));
     }
 
     public function update(UpdateUserRequest $request, User $user)
     {
-        $user->update($request->all());
+        $user->update($request->validated());
 
         return redirect()->route('admin.users.show', $user->id);
     }

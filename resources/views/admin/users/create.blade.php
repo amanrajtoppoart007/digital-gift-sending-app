@@ -14,7 +14,7 @@
                         <label class="font-weight-bolder text-dark" for="name">Name</label><label
                             class="text-danger ml-2 font-weight-bolder">*</label>
                         <input type="text" name="name" id="name"
-                               class="input-group-text bg-transparent w-100 text-left" required>
+                               class="form-control" required>
                     </div>
 
                     <div class="mt-3">
@@ -24,7 +24,7 @@
                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                id="mobile" maxlength="10"
                                pattern="[1-9]{1}[0-9]{9}"
-                               class="input-group-text bg-transparent w-100 text-left" required autocomplete>
+                               class="form-control" required autocomplete>
                     </div>
 
 
@@ -32,7 +32,7 @@
                         <label class="font-weight-bolder text-dark" for="email">Email</label><label
                             class="text-danger ml-2 font-weight-bolder">*</label>
                         <input type="email" name="email" id="email"
-                               class="input-group-text bg-transparent w-100 text-left" required autocomplete>
+                               class="form-control" required autocomplete>
                     </div>
 
                     <div class="mt-3">
@@ -40,14 +40,14 @@
                                for="password">Password</label><label
                             class="text-danger ml-2 font-weight-bolder">*</label>
                         <input type="password" name="password" id="password"
-                               class="input-group-text bg-transparent w-100 text-left" required autocomplete>
+                               class="form-control" required autocomplete>
                     </div>
 
                     <div class="mt-3">
                         <label class="font-weight-bolder text-dark" for="password_confirmation">Confirm
                             Password</label><label class="text-danger ml-2 font-weight-bolder">*</label>
                         <input type="password" name="password_confirmation" id="password_confirmation"
-                               class="input-group-text bg-transparent w-100 text-left" required autocomplete="false">
+                               class="form-control" required autocomplete="false">
                     </div>
 
                 </div>
@@ -58,7 +58,7 @@
                         <label class="font-weight-bolder text-dark" for="address">Address</label><label
                             class="text-danger ml-2 font-weight-bolder">*</label>
                         <input type="text" name="address"
-                               class="input-group-text bg-transparent w-100 text-left" id="address"
+                               class="form-control" id="address"
                                required>
                     </div>
 
@@ -77,7 +77,7 @@
                         <label class="font-weight-bolder text-dark" for="city">City</label><label
                             class="text-danger ml-2 font-weight-bolder">*</label>
                         <input type="text" name="city" id="city"
-                               class="input-group-text bg-transparent w-100 text-left" required>
+                               class="form-control" required>
                     </div>
 
                     <div class="mt-3">
@@ -87,7 +87,7 @@
                                maxlength="6"
                                pattern="[0-9]+"
                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                               class="input-group-text bg-transparent w-100 text-left" required>
+                               class="form-control" required>
                     </div>
 
                     <div class="mt-3">
@@ -118,7 +118,7 @@
                                     card self </label><label
                                     class="text-danger ml-2 font-weight-bolder">*</label>
                                 <input type="file" name="identity_proof_file" id="identity_proof_file"
-                                       class="input-group-text bg-transparent w-100 text-left" required>
+                                       class="form-control" required>
                                 <input type="hidden" name="identity_proof" id="identity_proof" value="">
                             </div>
                             <div class="col other-person-id-proof-div" style="display: none">
@@ -126,7 +126,7 @@
                                     card of other person </label><label
                                     class="text-danger ml-2 font-weight-bolder">*</label>
                                 <input type="file" name="identity_proof_other_file" id="identity_proof_other_file"
-                                       class="input-group-text bg-transparent w-100 text-left">
+                                       class="form-control">
                                 <input type="hidden" name="identity_proof_other_person" id="identity_proof_other_person"
                                        value="">
                             </div>

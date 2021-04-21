@@ -44,9 +44,11 @@ class User extends Authenticatable implements MustVerifyEmail,HasMedia
     ];
 
     protected $fillable = [
+        'account_type',
         'name',
         'mobile',
         'email',
+        'address',
         'state_id',
         'city',
          'pin_code',
@@ -58,7 +60,6 @@ class User extends Authenticatable implements MustVerifyEmail,HasMedia
         'verification_token',
         'remember_token',
         'mobile_verified_at',
-        'referral_code',
         'created_at',
         'updated_at',
         'deleted_at',
