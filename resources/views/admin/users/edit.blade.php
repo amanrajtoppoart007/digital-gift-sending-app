@@ -210,8 +210,8 @@
             $("#user_registration_form").on("submit", function (e) {
                 e.preventDefault();
                 $.ajax({
-                    url: "{{route('admin.users.store')}}",
-                    type: 'POST',
+                    url: "{{route('admin.users.update',$user->id)}}",
+                    type: 'PUT',
                     data: $('#user_registration_form').serialize(),
                     dataType: 'json',
                     beforeSend: function () {

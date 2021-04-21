@@ -20,8 +20,8 @@ class UpdateUserRequest extends FormRequest
         return [
             "account_type" => "required",
             "name" => "required",
-            "mobile" => "required|unique:users,mobile",
-            "email" => "required|email|unique:users,email",
+            "mobile" => "required",
+            "email" => "required",
              "address" => "required",
             "state_id" => "required",
             "city" => "required",

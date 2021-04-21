@@ -161,9 +161,41 @@ class UsersController extends Controller
 
     public function update(UpdateUserRequest $request, User $user)
     {
-        $user->update($request->validated());
+        try {
+            $user->update($request->validated());
+            if ($request->input('identity_proof', false)) {
+                if (!$user->identity_proof || $request->input('primary_image') !== $user->identity_proof->file_name) {
+                    if ($user->identity_proof) {
+                        $user->identity_proof->delete();
+                    }
 
-        return redirect()->route('admin.users.show', $user->id);
+                    $user->addMedia(storage_path('tmp/uploads/' . $request->input('identity_proof')))->toMediaCollection('primary_image');
+                }
+            } elseif ($user->identity_proof) {
+                $user->identity_proof->delete();
+            }
+
+            if ($request->input('identity_proof_other_person', false)) {
+                if (!$user->identity_proof_other_person || $request->input('identity_proof_other_person') !== $user->identity_proof_other_person->file_name) {
+                    if ($user->identity_proof_other_person) {
+                        $user->identity_proof_other_person->delete();
+                    }
+
+                    $user->addMedia(storage_path('tmp/uploads/' . $request->input('identity_proof_other_person')))->toMediaCollection('identity_proof_other_person');
+                }
+            } elseif ($user->identity_proof_other_person) {
+                $user->identity_proof_other_person->delete();
+            }
+            $url = route("admin.users.show",$user->id);
+            $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "User updated successful"];
+        }
+        catch (\Exception $exception)
+        {
+            $result = ["status" => 0, "response" => "error", "message" => $exception->getMessage()];
+        }
+
+        return response()->json($result);
+
     }
 
     public function show(User $user)
