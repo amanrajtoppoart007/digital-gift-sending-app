@@ -291,7 +291,6 @@
                         if (data.errors) {
                             let error = '';
                             $.each(data.errors, function (index, item) {
-                                console.log(index);
                                 $(`#${index}`).addClass("is-invalid").tooltip({title: item[0]});
                                error += item[0]+"\n";
                             });
