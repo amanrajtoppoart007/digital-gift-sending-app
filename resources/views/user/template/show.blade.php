@@ -7,10 +7,20 @@
              <h1 class="font-weight-bold text-white my-auto text-center">{{$template->banner_title}}</h1>
          </div>
       </div>
-     <div class="class">
+     <div>
          <h3 class="font-weight-bold">About Us</h3>
          <p class="lead">{!! $template->description !!}.</p>
          <a href="{{route('template.edit',['id'=>$template->id])}}" class="btn btn-success">Edit Template</a>
+     </div>
+     <div>
+         <div
+           class="sharethis-inline-share-buttons"
+           data-url="{{route('template',$template->username)}}"
+           data-image="{{$template->banner_image->thumb}}"
+           data-title="{{$template->title}}"
+           data-description="Hey there,here is my profile url , where you can send blessings to me very easy , safe and secure."
+       >
+         </div>
      </div>
  </div>
 @endsection

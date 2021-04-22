@@ -16,7 +16,15 @@
          <a class="btn btn-success" href="{{route('gift.init',$template->username)}}">Send Blessings</a>
      </div>
      <div>
-       <div class="sharethis-inline-share-buttons"></div>
+       <div
+           class="sharethis-inline-share-buttons"
+           data-url="{{route('template',$template->username)}}"
+           data-image="{{$template->banner_image->thumb}}"
+           data-title="{{$template->title}}"
+           data-description="Hey there,here is my profile url , where you can send blessings to me very easy , safe and secure."
+       >
+
+       </div>
      </div>
  </div>
 @endsection
