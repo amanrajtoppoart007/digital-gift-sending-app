@@ -63,6 +63,12 @@ Route::group(['prefix' => 'payments', 'as' => 'payments.',  'middleware' => ['au
 Route::get('init/{username}', 'User\PaymentController@init')->name('init');
 Route::get('create', 'User\PaymentController@create')->name('create');
 Route::post('store', 'User\PaymentController@store')->name('store');
+Route::get('history', 'User\PaymentController@history')->name('history');
+});
+
+Route::group(['prefix' => 'password', 'as' => 'password.',  'middleware' => ['auth']], function () {
+    Route::get('change', 'User\PasswordController@showChangePasswordForm')->name('change');
+    Route::post('change', 'User\PasswordController@changePassword')->name('change.submit');
 });
 
 //function for guest to init payments to the user

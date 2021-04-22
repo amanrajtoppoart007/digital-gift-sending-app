@@ -7,7 +7,11 @@
                 <ul class="navbar-nav ml-auto">
                     <hr>
                     <li class="nav-item mx-auto px-1">
-                        <a href="{{ route('index') }}" class="nav-link text-secondary">Home</a>
+                        <a href="{{ route('home') }}" class="nav-link text-secondary">Home</a>
+                    </li>
+                    <hr>
+                    <li class="nav-item mx-auto px-1">
+                        <a href="{{ route('password.change') }}" class="nav-link text-secondary">Change password</a>
                     </li>
                 </ul>
             </div>

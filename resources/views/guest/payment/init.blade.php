@@ -91,10 +91,11 @@
                             <td></td>
                         </tr>
                     @endif
-
                     </tbody>
                 </table>
-                <button type="submit" class="btn btn-success">Pay Now</button>
+                    <p>By clicking on this button, you provide your consent to share your name, company name and address with NAME.</p>
+
+                    <button type="submit" class="btn btn-success">Pay Now</button>
                 </form>
             </div>
         </div>
