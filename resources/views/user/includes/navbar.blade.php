@@ -2,7 +2,7 @@
 <header id="header">
     <nav class="navbar navbar-expand-md shadow-sm">
         <div class="container py-3">
-            <a href="#" class="navbar-brand logo font-weight-bold">Logo</a>
+            <a href="{{route('home')}}" class="navbar-brand logo font-weight-bold">{{ trans('panel.site_title') }}</a>
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="navbar-nav ml-auto">
                     <hr>
