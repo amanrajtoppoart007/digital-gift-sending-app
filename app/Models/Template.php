@@ -34,6 +34,11 @@ class Template extends Model implements HasMedia
         'deleted_at',
     ];
 
+     public function payment()
+     {
+         return $this->hasMany(Payment::class);
+     }
+
      public function user()
      {
         return $this->belongsTo(User::class);

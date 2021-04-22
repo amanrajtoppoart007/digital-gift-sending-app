@@ -67,9 +67,10 @@
                     </a>
                     @endif
                 </div>
-
+             @if(!empty($template))
                 <div class="col-lg-3 col-md-6 col-sm-12 p-3">
-                    <div class="card border-0 shadow" style="cursor: pointer">
+                    <a href="{{route('template.show',$template->username)}}">
+                        <div class="card border-0 shadow" style="cursor: pointer">
                         <div class="card-body">
                             <br>
                             <img src="{{asset('front-assets/images/link.svg')}}" alt="img-3" class="img-fluid how-work-img">
@@ -78,7 +79,9 @@
                             <p class="text-secondary">Share your profile with people to receive blessings.</p>
                         </div>
                     </div>
+                    </a>
                 </div>
+               @endif
 
                 <div class="col-lg-3 col-md-6 col-sm-12 p-3">
                     <div class="card border-0 shadow" style="cursor: pointer">

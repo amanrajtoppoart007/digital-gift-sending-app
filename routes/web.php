@@ -1,5 +1,7 @@
 <?php
-
+//function for guest to view user profile
+Route::get('view/{username}', 'Guest\TemplateController@show')->name('template');
+Route::post('pay-u-money-gate-way/response/{txn_number}','Guest\PaymentController@payUMoneyResponse')->name('payumoney.gateway.response');
 Route::post('submit/enquiry/form','Guest\EnquiryController@store')->name('store.guest.enquiry');
 Route::get('/home','User\HomeController@index')->name('home');
 
@@ -62,10 +64,7 @@ Route::get('init/{username}', 'User\PaymentController@init')->name('init');
 Route::get('create', 'User\PaymentController@create')->name('create');
 Route::post('store', 'User\PaymentController@store')->name('store');
 });
-//function for guest to view user profile
-Route::group(['prefix' => 'view', 'as' => 'view.'], function () {
-Route::get('show/{username}', 'User\TemplateController@show')->name('show');
-});
+
 //function for guest to init payment to the user
 Route::group(['prefix' => 'gift', 'as' => 'gift.'], function () {
 Route::any('init/{username}', 'Guest\PaymentController@init')->name('init');

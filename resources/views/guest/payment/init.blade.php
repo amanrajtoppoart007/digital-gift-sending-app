@@ -10,6 +10,9 @@
                         <div class="alert alert-danger" role="alert">
                             <p>Payment gateway returned failure response,You can retry again</p>
                             <p>If amount deducted from your account,write as at help@example.com and mention the UserId : {{$template->username}}</p>
+                            @if(request()->has('message'))
+                                {!! request()->input('message') !!}}
+                            @endif
                         </div>
                     @endif
                 <form id="store_payment_form" action="{{route('gift.store')}}">
