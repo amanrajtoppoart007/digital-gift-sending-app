@@ -7,6 +7,7 @@ use App\Http\Requests\GuestStorePaymentRequest;
 use App\Models\Payment;
 use App\Models\State;
 use App\Models\Template;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
@@ -36,9 +37,9 @@ class PaymentController extends Controller
                     'key' => 'o3AmnBtC',
                     'txnid' => $request->input('txn_number'),
                     'phone' => $request->input('phone') ?? '1234567890',
-                    'email' => $request->input('phone') ?? 'example@demo.com',
+                    'email' => $request->input('email') ?? 'example@demo.com',
                     'service_provider' => 'payu_paisa',
-                    'surl' => route('gift.message', ['txn_number' => $request->input('txn_number')]),
+                    'surl' => route('payumoney.gateway.response', ['txn_number' => $request->input('txn_number')]),
                     'furl' => route('gift.init', ['username' => $request->input('username'),'retry'=>1]),
                     'firstname' => $request->input('name'),
                     'productinfo' => 'Blessings for user',
@@ -80,6 +81,36 @@ class PaymentController extends Controller
            $result = ["status" => 0, "response" => "error", "message" => $exception->getMessage()];
         }
         return response()->json($result,200);
+    }
+
+    public function payUMoneyResponse(Request $request,$txn_number)
+    {
+        try {
+            $payment = Payment::where(['txn_number'=>$txn_number])->first();
+            $payment->update(['payment_status'=>$request->input('status')]);
+            $request->request->add(['payment_id'=>$payment->id]);
+
+            $params = [
+                'payment_id'=>$payment->id,
+                'txnid'=>$request->input('txnid'),
+                'firstname'=>$request->input('firstname'),
+                'productinfo'=>$request->input('productinfo'),
+                'status'=>$request->input('status'),
+                'mode'=>$request->input('mode'),
+                'amount'=>$request->input('amount'),
+                'net_amount_debit'=>$request->input('net_amount_debit'),
+                'email'=>$request->input('email'),
+                'phone'=>$request->input('phone'),
+                'data'=>json_encode($request->all()),
+            ];
+            Transaction::create($params);
+        }
+        catch (\Exception $exception)
+        {
+            return redirect()->route('gift.init',['username'=>$payment->template->username, 'retry'=>1,'message'=>$exception->getMessage()]);
+        }
+
+         return redirect()->route('gift.message',$txn_number);
     }
 
     public function message($txn_number)

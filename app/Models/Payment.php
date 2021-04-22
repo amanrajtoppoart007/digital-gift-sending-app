@@ -43,8 +43,18 @@ class Payment extends Model
         return 'ASD' . date('dmY') . '-' . str_pad($Id + 1, 8, "0", STR_PAD_LEFT);
     }
 
+    public function template()
+    {
+        return $this->belongsTo(Template::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function transaction()
+    {
+        return $this->hasOne(Transaction::class);
     }
 }
