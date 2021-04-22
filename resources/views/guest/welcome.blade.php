@@ -215,12 +215,10 @@
             <br>
             <div class="container">
 
-                <h1 class="text-white font-weight-bold display-4">Lorem ipsum dolor sit</h1>
-                <h3 class="text-light font-weight-bold">Iure, culpa? Quia eos dignissimos ipsa</h3>
-                <p class="text-light">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi, numquam
-                    exercitationem omnis illo veritatis, <br> libero nam maxime cupiditate ducimus totam delectus
-                    reiciendis, quam atque ea deleniti perspiciatis laboriosam eveniet natus?</p>
-                <a href="#" class="btn btn-theme-2 shadow">Learn more</a>
+                <h1 class="text-white font-weight-bold display-4">Let's make your life events more beautiful</h1>
+                <h3 class="text-light font-weight-bold">It's secure,simple,reliable and very easy.</h3>
+                <p class="text-light">In current pandemic situation we made sending or receiving gifts more convenient and easy.<br/>we designed Online Ashirvaad keeping all your needs in mind</p>
+                <a href="{{route('register')}}" class="btn btn-theme-2 shadow">Register Now</a>
 
             </div>
             <br>
