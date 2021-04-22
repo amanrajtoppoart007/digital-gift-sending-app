@@ -14,6 +14,7 @@
                </tr>
               </tbody>
           </table>
+           <p>By clicking on this button, you provide your consent to share your name, company name and address with NAME.</p>
        </div>
    </div>
  </div>
