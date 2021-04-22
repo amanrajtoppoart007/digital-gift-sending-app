@@ -248,9 +248,7 @@ return [
             'image_helper'             => ' ',
             'user'                     => 'उपयोगकर्ता',
             'user_helper'              => ' ',
-            'crops'                     => 'किसान किस फसल को उगाते हैं',
-            'crops_helper'              => ' ',
         ],
     ],
-    
+
 ];

@@ -261,8 +261,6 @@ return [
             'image_helper' => ' ',
             'user' => 'User',
             'user_helper' => ' ',
-            'crops' => 'What crops do farmers grows',
-            'crops_helper' => ' ',
         ],
     ],
 ];
