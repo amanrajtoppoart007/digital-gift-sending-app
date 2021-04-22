@@ -7,6 +7,7 @@ use App\Http\Requests\FranchiseeRegistrationRequest;
 use App\Http\Requests\HelpCenterRegistrationRequest;
 use App\Http\Requests\UserRegistrationRequest;
 use App\Library\TextLocal\TextLocal;
+use App\Mail\EmailVerificationMessage;
 use App\Mail\FranchiseeWelcomeMessage;
 use App\Mail\HelpCenterWelcomeMessage;
 use App\Mail\UserWelcomeMessage;
@@ -26,7 +27,9 @@ use App\Models\State;
 use App\Models\User;
 use App\Models\UserAddress;
 use App\Models\UserProfile;
+use App\Models\VerificationMessage;
 use http\Env\Request;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -58,26 +61,50 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $states = State::get();
-        return view("guest.auth.register",compact("states"));
+        return view("guest.auth.register", compact("states"));
     }
-
 
 
     public function store(UserRegistrationRequest $request)
     {
         try {
             $user = User::create($request->validated());
-             if ($request->input('identity_proof', false)) {
-            $user->addMedia(storage_path('tmp/uploads/' . $request->input('identity_proof')))->toMediaCollection('identity_proof');
-         }
+            if ($request->input('identity_proof', false)) {
+                $user->addMedia(storage_path('tmp/uploads/' . $request->input('identity_proof')))->toMediaCollection('identity_proof');
+            }
 
-             if($request->hasFile('identity_proof_other_person'))
-             {
-                 if ($request->input('identity_proof_other_person', false)) {
-                     $user->addMedia(storage_path('tmp/uploads/' . $request->input('identity_proof_other_person')))->toMediaCollection('identity_proof_other_person');
-                 }
-             }
+            if ($request->hasFile('identity_proof_other_person')) {
+                if ($request->input('identity_proof_other_person', false)) {
+                    $user->addMedia(storage_path('tmp/uploads/' . $request->input('identity_proof_other_person')))->toMediaCollection('identity_proof_other_person');
+                }
+            }
+            //FOR EMAIL VERIFICATION
+            $eToken = Str::random(64);
+            $emailUrl = url("verify/" . $eToken . "?email=" . $user->email);
+            $data = [
+                'name' => $user->name,
+                'url' => $emailUrl
+            ];
 
+            $vEmail = new VerificationMessage();
+            $vEmail->email = $user->email;
+            $vEmail->token = $eToken;
+            $vEmail->user_id = $user->id;
+            $vEmail->save();
+            Mail::to($user->email)->send(new EmailVerificationMessage($data));
+
+            //FOR MOBILE VERIFICATION
+            $mToken = Str::random(64);
+            $vMobile = new VerificationMessage();
+            $vMobile->mobile = $user->mobile;
+            $vMobile->token = $mToken;
+            $vMobile->user_id = $user->id;
+            $vMobile->save();
+
+            $mobileUrl = url("verify/" . $mToken . "?mobile=" . $user->mobile);
+
+//            $sms = new TextLocal();
+//            $sms->send("Click this link to verify ". $mobileUrl, $user->mobile,null);
 
             Mail::to($user)->send(new UserWelcomeMessage());
             /*$sms = new TextLocal();
@@ -97,7 +124,6 @@ class RegisterController extends Controller
 
         return response()->json($result);
     }
-
 
 
     public function message(User $user, $entity_id, $token)
