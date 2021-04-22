@@ -1,7 +1,7 @@
 @if(!empty($template))
 <div class="card">
     <div class="card-header">
-        Template
+        <h6>Template</h6>
     </div>
 
     <div class="card-body">
@@ -48,15 +48,15 @@
                                 {{ $template->payment_type ?? '' }}
                             </td>
                             <td>
-                                    <a class="btn btn-xs btn-primary" href="">
+                                    <a class="btn btn-xs btn-primary" href="{{route('admin.template.show',$template->username)}}">
                                         {{ trans('global.view') }}
                                     </a>
 
-                                    <a class="btn btn-xs btn-info" href="">
+                                    <a class="btn btn-xs btn-info" href="{{route('admin.template.edit',$template->id)}}">
                                         {{ trans('global.edit') }}
                                     </a>
 
-                                    <form action="" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                    <form action="{{route('admin.template.delete',$template->id)}}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
@@ -71,4 +71,15 @@
         </div>
     </div>
 </div>
+@else
+<div class="card-header">
+        <div class="row">
+            <div class="col">
+                <h6>Template</h6>
+            </div>
+            <div class="col">
+                <a class="btn btn-success" href="{{route('admin.template.create',$user->id)}}">Add Template</a>
+            </div>
+        </div>
+    </div>
 @endif

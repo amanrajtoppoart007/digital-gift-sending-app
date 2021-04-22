@@ -31,3 +31,12 @@
     Route::post('admins/parse-csv-import', 'Admin\AdminController@parseCsvImport')->name('admins.parseCsvImport');
     Route::post('admins/process-csv-import', 'Admin\AdminController@processCsvImport')->name('admins.processCsvImport');
     Route::resource('admins', 'Admin\AdminController');
+
+    Route::group(['prefix' => 'template', 'as' => 'template.'], function () {
+Route::get('create/{userId}', 'Admin\TemplateController@create')->name('create');
+Route::get('edit/{id}', 'Admin\TemplateController@edit')->name('edit');
+Route::post('store', 'Admin\TemplateController@store')->name('store');
+Route::post('update/{id}', 'Admin\TemplateController@update')->name('update');
+Route::get('show/{username}', 'Admin\TemplateController@show')->name('show');
+Route::any('destroy/{id}', 'Admin\TemplateController@destroy')->name('delete');
+});

@@ -1,50 +1,43 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreTemplateRequest;
-use App\Http\Requests\UpdateTemplateRequest;
+use App\Http\Requests\Admin\StoreUserTemplateRequest;
+use App\Http\Requests\Admin\UpdateUserTemplateRequest;
 use App\Models\Template;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class TemplateController extends Controller
 {
-
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:admin');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
     }
 
 
-    public function create()
+    public function create($userId)
     {
-        return view('user.template.create');
+        $user = User::find($userId);
+        return view('admin.template.create',compact('user'));
     }
 
-    /**
-     * @param StoreTemplateRequest $request
-     */
-    public function store(StoreTemplateRequest $request)
+
+    public function store(StoreUserTemplateRequest $request)
     {
         try {
-            $user = User::find(auth()->user()->id);
+            $user = User::find($request->input('user_id'));
             $template = $user->template()->create($request->all());
             if ($request->input('banner_image', false))
             {
                 $template->addMedia(storage_path('tmp/uploads/' . $request->input('banner_image')))->toMediaCollection('banner_image');
             }
-            $url = route('template.show',['username'=>$user->template->username]);
-            $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "Template created successful"];
+            $url = route('admin.template.show',['username'=>$user->template->username]);
+            $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "Template created successfully"];
         }
         catch (\Exception $exception)
         {
@@ -60,7 +53,7 @@ class TemplateController extends Controller
     {
         $template = Template::where(['username'=>$username])->first();
 
-        return view("user.template.show",compact('template'));
+        return view("admin.template.show",compact('template'));
     }
 
 
@@ -80,11 +73,11 @@ class TemplateController extends Controller
            ],
        ];
 
-        return view("user.template.edit",compact('template','payment_types'));
+        return view("admin.template.edit",compact('template','payment_types'));
     }
 
 
-    public function update(UpdateTemplateRequest $request,$id)
+    public function update(UpdateUserTemplateRequest $request,$id)
     {
         try {
              Template::where(['id' => $id])->update($request->only(['banner_title','description','payment_type']));
@@ -100,7 +93,7 @@ class TemplateController extends Controller
             } elseif ($template->banner_image) {
                 $template->banner_image->delete();
             }
-            $url = route('template.show',['username'=>$template->username]);
+            $url = route('admin.template.show',['username'=>$template->username]);
             $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "Template updated successful"];
         }
         catch (\Exception $exception)
@@ -110,14 +103,11 @@ class TemplateController extends Controller
         return response()->json($result,200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
+        $template = Template::find($id);
+        $template->delete();
+        return redirect()->back();
     }
 }

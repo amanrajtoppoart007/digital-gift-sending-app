@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateTemplateRequest extends FormRequest
+class UpdateUserTemplateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class UpdateTemplateRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->user()->id;
+        return auth('admin')->user()->id;
     }
 
     /**
@@ -24,7 +24,6 @@ class UpdateTemplateRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id'=>'required|numeric',
             'banner_title'=>'required',
             'description'=>'required',
             'payment_type'=>'required',

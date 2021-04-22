@@ -8,15 +8,10 @@ use App\Http\Requests\MassDestroyUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Mail\UserWelcomeMessage;
-use App\Models\Area;
-use App\Models\Block;
-use App\Models\Crop;
-use App\Models\District;
-use App\Models\Pincode;
+
 use App\Models\Role;
 use App\Models\State;
 use App\Models\User;
-use App\Models\UserAddress;
 use App\Models\UserProfile;
 use App\Notifications\RegistrationSuccessSms;
 use Gate;
