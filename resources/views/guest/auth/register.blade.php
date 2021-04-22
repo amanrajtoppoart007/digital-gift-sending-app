@@ -162,10 +162,13 @@
                         <div class="card-footer bg-white" align="center">
                             <div class="form-check-inline">
                                 <input type="checkbox" name="terms" class="custom-checkbox mt-n3 mr-2"
-                                       id="agree_checkbox" required>
-                                <p class="description-1">By Registering with us,you agree with our <a href="#"
-                                                                                                      class="card-link">terms
-                                        & conditions </a>and <a href="#" class="card-link">privacy policy</a></p>
+                                       id="agree_checkbox" value="accept" required>
+                                <p class="description-1">
+                                    <span>By clicking here,you agree with our</span>
+                                    <a target="_blank" href="{{route('terms')}}" class="card-link">terms & conditions </a>
+                                    <span>and</span>
+                                     <a target="_blank" href="{{route('privacy')}}" class="card-link">privacy policy</a>
+                                </p>
                             </div>
                             <br>
                             <button type="submit" class="btn btn-theme-2 shadow">Submit<img

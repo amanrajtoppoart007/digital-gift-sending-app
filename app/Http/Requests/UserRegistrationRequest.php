@@ -34,7 +34,9 @@ class UserRegistrationRequest extends FormRequest
             "pin_code" => "required|numeric|digits:6",
             "password" => "required|required_with:password_confirmation|confirmed|min:6|same:password_confirmation",
             "password_confirmation" => "required",
-            'identity_proof' => 'nullable'
+            'identity_proof' => 'nullable',
+             'identity_proof_other_person' => 'nullable',
+            'terms' => 'required'
         ];
     }
 }

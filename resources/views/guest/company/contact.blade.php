@@ -194,18 +194,16 @@
                     success: function (res) {
                         if (res.response === "success")
                         {
-
                             $.notify(res.message,'success','top-right');
                             $("#enquiry_form")[0].reset();
-                        } else
-                            {
-
+                        }
+                        else
+                        {
                              $.notify(res.message,'error','top-right');
                         }
                     },
                     error: function (jqXhr) {
                         let data = jqXhr.responseJSON;
-
                         if (data.errors) {
                             let error = '';
                             $.each(data.errors, function (index, item) {
