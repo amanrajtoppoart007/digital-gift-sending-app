@@ -1,9 +1,14 @@
 @extends('guest.layout.app')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center my-5">
+<main id="main">
+    <section id="second-section">
+        <div class="container">
+
+            <div class="row justify-content-center mb-5">
     <div class="col-md-8">
-        <div class="card mx-4">
+        <a href="{{URL::to('/')}}" class="btn btn-theme-2 shadow my-2">
+                    <img src="{{asset('assets/assets/icons/back.svg')}}" class="img-fluid btn-icon ml-0 mr-1">Back</a>
+        <div class="card">
             <div class="card-body p-4">
                 <h1 class="text-theme-1">{{ trans('panel.site_title') }}</h1>
 
@@ -59,8 +64,9 @@
 
                     <div class="row">
                         <div class="col-6">
-                            <button type="submit" class="btn btn-primary px-4">
+                            <button type="submit" class="btn btn-theme-2 shadow">
                                 {{ trans('global.login') }}
+                                <img src="{{asset('assets/assets/icons/circle-arrow.svg')}}" alt="submit" class="btn-icon ml-2">
                             </button>
                         </div>
                         <div class="col-6 text-right">
@@ -79,5 +85,8 @@
         </div>
     </div>
 </div>
-</div>
+        </div>
+    </section>
+
+</main>
 @endsection
