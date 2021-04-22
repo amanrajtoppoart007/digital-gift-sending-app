@@ -80,7 +80,7 @@
     <script>
         $(function () {
             let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-            
+
             let dtOverrideGlobals = {
                 buttons: dtButtons,
                 processing: true,

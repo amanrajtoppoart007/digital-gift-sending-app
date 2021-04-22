@@ -63,6 +63,7 @@ Route::group(['prefix' => 'payment', 'as' => 'payment.',  'middleware' => ['auth
 Route::get('init/{username}', 'User\PaymentController@init')->name('init');
 Route::get('create', 'User\PaymentController@create')->name('create');
 Route::post('store', 'User\PaymentController@store')->name('store');
+Route::get('history', 'User\PaymentController@history')->name('history');
 });
 
 Route::group(['prefix' => 'password', 'as' => 'password.',  'middleware' => ['auth']], function () {

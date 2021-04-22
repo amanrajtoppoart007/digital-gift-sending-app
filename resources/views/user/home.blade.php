@@ -90,18 +90,20 @@
                             @endif
 
                             <div class="col-lg-3 col-md-6 col-sm-12 p-3">
-                                <div class="card border-0 shadow" style="cursor: pointer">
-                                    <div class="card-body">
-                                        <br>
-                                        <img src="{{asset('front-assets/images/delivered.svg')}}" alt="img-4"
-                                             class="img-fluid how-work-img">
-                                        <h3 class="font-weight-bold mt-3 text-theme-1">Received Amount</h3>
-                                        <hr class="w-50">
-                                        <p class="text-secondary">Payment history of received blessings.</p>
-                                    </div>
-                                </div>
-                            </div>
+                                <a href="{{route('payment.history')}}">
 
+                                    <div class="card border-0 shadow" style="cursor: pointer">
+                                        <div class="card-body">
+                                            <br>
+                                            <img src="{{asset('front-assets/images/delivered.svg')}}" alt="img-4"
+                                                 class="img-fluid how-work-img">
+                                            <h3 class="font-weight-bold mt-3 text-theme-1">Received Amount</h3>
+                                            <hr class="w-50">
+                                            <p class="text-secondary">Payment history of received blessings.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
 
 
