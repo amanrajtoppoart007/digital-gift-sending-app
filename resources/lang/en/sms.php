@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'registration' => 'Welcome to KV Pro Your Reg.No. :reg_number Your services will be initiated shortly',
+    'registration' => 'Welcome to Ashirvaad Online Your Reg.No. :reg_number Your services will be initiated shortly',
 ];

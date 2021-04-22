@@ -145,6 +145,10 @@ return [
             'deleted_at_helper' => ' ',
         ],
     ],
+    'transactionManagement' => [
+        'title'          => 'Transaction Manager',
+        'title_singular' => 'Transaction Manager',
+    ],
     'transaction' => [
         'title' => 'Transactions',
         'title_singular' => 'Transaction',
