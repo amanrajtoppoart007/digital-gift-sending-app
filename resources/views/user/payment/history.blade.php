@@ -1,8 +1,9 @@
 @extends('user.layout.app')
 @section('content')
-    <div class="content" style="background-color: green">
+    <div class="content">
         <div class="row">
             <div class="col-lg-12">
+                @includeIf('user.includes.back-home')
                 <div class="card">
                     <div class="card-header">
                         Payment list

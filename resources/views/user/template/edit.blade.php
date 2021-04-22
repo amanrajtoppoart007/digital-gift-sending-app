@@ -3,9 +3,12 @@
 <div class="content">
     <div class="row">
         <div class="col-lg-12">
+            <div class="my-1">
+                @includeIf('user.includes.back-home')
+            </div>
             <div class="card">
                 <div class="card-header">
-                    Create Template
+                    Edit Template
                 </div>
                 <div class="card-body" style="min-height:450px">
                     <form  id="create_template_form" method="POST"  action="{{route('template.store')}}"  enctype="multipart/form-data">

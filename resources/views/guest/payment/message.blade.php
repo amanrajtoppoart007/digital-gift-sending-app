@@ -3,7 +3,9 @@
     <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=60800a553637330018507269&product=inline-share-buttons" async="async"></script>
 @endsection
 @section("content")
-    <div class="container">
+    <main id="main">
+        <section id="second-section" class="py-2">
+            <div class="container">
         <div class="card my-5">
             <div class="card-header bg-success">
                 <h6 class="font-weight-bold text-white">Payment Response</h6>
@@ -50,4 +52,6 @@
             </div>
         </div>
     </div>
+        </section>
+    </main>
 @endsection

@@ -1,6 +1,8 @@
 @extends("guest.layout.app")
 @section("content")
-    <div class="container">
+ <main id="main">
+     <section id="second-section" class="py-2">
+            <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                 <div class="card">
@@ -18,4 +20,6 @@
             </div>
         </div>
     </div>
+     </section>
+ </main>
 @endsection

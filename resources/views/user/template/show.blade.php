@@ -3,7 +3,7 @@
     <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6081b96b1c703400184e0d6d&product=sop' async='async'></script>
 @endsection
 @section('content')
- <div class="container">
+ <div class="py-3">
      <div style="background-image: url('{{$template->banner_image->url}}'); background-repeat: no-repeat;background-size: cover;-moz-background-size: cover;
   -o-background-size: cover;opacity: 0.8;" class="jumbotron jumbotron mt-3">
          <div style="min-height: 200px;" class="d-flex flex-column justify-content-center align-items-center">

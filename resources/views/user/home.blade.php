@@ -1,6 +1,6 @@
 @extends('user.layout.app')
 @section('content')
-    <div class="content" style="background-color: green">
+    <div>
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
@@ -15,7 +15,7 @@
                             <div class="col-lg-3 col-md-6 col-sm-12 p-3">
                                 @if(!empty($template->id))
                                     <a href="{{route('template.edit',$template->id)}}">
-                                        <div class="card border-0 shadow" style="cursor: pointer">
+                                        <div class="card border-0 shadow" style="cursor: pointer;text-decoration: none;">
                                             <div class="card-body">
                                                 <br>
                                                 <img src="http://127.0.0.1:8000/front-assets/images/account.svg"
@@ -28,7 +28,7 @@
                                     </a>
                                 @else
                                     <a href="{{route('template.create')}}">
-                                        <div class="card border-0 shadow" style="cursor: pointer">
+                                        <div class="card border-0 shadow" style="cursor: pointer;text-decoration: none;">
                                             <div class="card-body">
                                                 <br>
                                                 <img src="http://127.0.0.1:8000/front-assets/images/account.svg"
@@ -45,7 +45,7 @@
                             <div class="col-lg-3 col-md-6 col-sm-12 p-3">
                                 @if(!empty($profile))
                                     <a href="{{route('profile.edit',$profile->id)}}">
-                                        <div class="card border-0 shadow" style="cursor: pointer">
+                                        <div class="card border-0 shadow" style="cursor: pointer;text-decoration: none;">
                                             <div class="card-body">
                                                 <br>
                                                 <img src="{{asset('front-assets/images/create.svg')}}" alt="img-2"
@@ -58,7 +58,7 @@
                                     </a>
                                 @else
                                     <a href="{{route('profile.create')}}">
-                                        <div class="card border-0 shadow" style="cursor: pointer">
+                                        <div class="card border-0 shadow" style="cursor: pointer;text-decoration: none;">
                                             <div class="card-body">
                                                 <br>
                                                 <img src="{{asset('front-assets/images/create.svg')}}" alt="img-2"
@@ -74,7 +74,7 @@
                             @if(!empty($template))
                                 <div class="col-lg-3 col-md-6 col-sm-12 p-3">
                                     <a target="_blank" href="{{route('template',$template->username)}}">
-                                        <div class="card border-0 shadow" style="cursor: pointer">
+                                        <div class="card border-0 shadow" style="cursor: pointer;text-decoration: none;">
                                             <div class="card-body">
                                                 <br>
                                                 <img src="{{asset('front-assets/images/link.svg')}}" alt="img-3"
@@ -92,7 +92,7 @@
                             <div class="col-lg-3 col-md-6 col-sm-12 p-3">
                                 <a href="{{route('payments.history')}}">
 
-                                    <div class="card border-0 shadow" style="cursor: pointer">
+                                    <div class="card border-0 shadow" style="cursor: pointer;text-decoration: none;">
                                         <div class="card-body">
                                             <br>
                                             <img src="{{asset('front-assets/images/delivered.svg')}}" alt="img-4"
@@ -126,7 +126,7 @@
                             </tbody>
                         </table>
                         <h6><strong>Account Detail</strong></h6>
-                        <p>Please double check the bank details. We won’t be responsible for any transfer made to wrong
+                        <p class="text-danger">Please double check the bank details. We won’t be responsible for any transfer made to wrong
                             bank account shared by you.</p>
                         <table class="table">
                             <tbody>

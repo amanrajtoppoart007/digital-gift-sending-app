@@ -1,6 +1,7 @@
 @extends("user.layout.app")
 @section("content")
-    <div class="container">
+    <div class="my-3">
+        @includeIf('user.includes.back-home')
         <div class="card">
             <div class="card-header bg-info">
                 <h6 class="font-weight-bold text-white">Change Password</h6>

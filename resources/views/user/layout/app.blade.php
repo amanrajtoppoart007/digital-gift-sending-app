@@ -56,9 +56,13 @@
  <img class="spinner" src="{{asset('img/spinner.gif')}}" alt="spinner">
 </div>
 @include('user.includes.navbar')
-<div class="container py-3" style="min-height: 500px">
-   @yield('content')
-</div>
+<main id="main">
+    <section id="second-section" class="py-2">
+        <div class="container"  style="min-height:500px;">
+            @yield('content')
+        </div>
+    </section>
+</main>
 
 @include("user.includes.footer")
 

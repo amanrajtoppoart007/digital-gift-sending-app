@@ -2,7 +2,6 @@
 @section("content")
 
     <main id="main">
-
         <!-- First Section (Start) -->
         <section id="first-section">
             <br>
