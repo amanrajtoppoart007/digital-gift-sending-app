@@ -26,20 +26,20 @@
                         <!-- Contact From (Start) -->
                         <div class="card border-0 shadow" id="contact-from-card">
                             <div class="card-body">
-                                <form class="form-group" action="{{route('store.guest.enquiry')}}" method="post">
+                                <form id="enquiry_form" class="form-group" action="{{route('store.guest.enquiry')}}" method="post">
                                     @csrf
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
                                             <label class="font-weight-bolder" for="first_name">First Name</label>
                                             <label class="text-danger ml-2 font-weight-bolder">*</label>
                                             <input type="text" name="first_name" id="first_name"
-                                                   class="input-group-text bg-transparent w-100 text-left">
+                                                   class="input-group-text bg-transparent w-100 text-left" required>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
                                             <label class="font-weight-bolder" for="last_name">Last Name</label>
                                             <label class="text-danger ml-2 font-weight-bolder">*</label>
                                             <input type="text" name="last_name" id="last_name"
-                                                   class="input-group-text bg-transparent w-100 text-left">
+                                                   class="input-group-text bg-transparent w-100 text-left" required>
                                         </div>
 
                                     </div>
@@ -48,7 +48,7 @@
                                             <label class="font-weight-bolder" for="email">Email Address</label>
                                             <label class="text-danger ml-2 font-weight-bolder">*</label>
                                             <input type="email" name="email" id="email"
-                                                   class="input-group-text bg-transparent w-100 text-left">
+                                                   class="input-group-text bg-transparent w-100 text-left" required>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
                                             <label class="font-weight-bolder" for="category">Category</label>
@@ -69,7 +69,7 @@
                                             <label class="font-weight-bolder" for="subject">Subject</label>
                                             <label class="text-danger ml-2 font-weight-bolder">*</label>
                                             <input type="text" name="subject" id="subject"
-                                                   class="input-group-text w-100 bg-transparent text-left">
+                                                   class="input-group-text w-100 bg-transparent text-left" required>
                                         </div>
                                     </div>
                                     <div class="row mt-3">
@@ -77,7 +77,7 @@
                                             <label class="font-weight-bolder" for="description">Description</label>
                                             <label class="text-danger ml-2 font-weight-bolder">*</label>
                                             <textarea rows="5" name="description" id="description"
-                                                      class="input-group-text w-100 bg-transparent text-left"></textarea>
+                                                      class="input-group-text w-100 bg-transparent text-left" required></textarea>
                                         </div>
                                     </div>
                                     <button class="btn btn-lg btn-theme-1 w-100 rounded mt-3">Send Message<img
@@ -177,4 +177,50 @@
     </main>
     <!-- Main (End) -->
     <!-- End Contact Section -->
+@endsection
+@section("script")
+    <script>
+        $(document).ready(function(){
+            $("#enquiry_form").on("submit", function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: "{{route('store.guest.enquiry')}}",
+                    type: 'POST',
+                    data: $('#enquiry_form').serialize(),
+                    dataType: 'json',
+                    beforeSend: function () {
+                        $("#overlay").show();
+                    },
+                    success: function (res) {
+                        if (res.response === "success")
+                        {
+                            $.notify(res.message,'success','top-right');
+                            $("#enquiry_form")[0].reset();
+                        }
+                        else
+                        {
+                             $.notify(res.message,'error','top-right');
+                        }
+                    },
+                    error: function (jqXhr) {
+                        let data = jqXhr.responseJSON;
+                        if (data.errors) {
+                            let error = '';
+                            $.each(data.errors, function (index, item) {
+                                $(`#${index}`).addClass("is-invalid").tooltip({title: item[0]});
+                               error += item[0]+"\n";
+                            });
+
+                             $.notify(error,'error','top-right');
+                        }
+
+                    },
+
+                    complete: function () {
+                        $("#overlay").hide();
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

@@ -1,6 +1,6 @@
 @extends("guest.layout.app")
 @section("head")
-    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=60800a553637330018507269&product=inline-share-buttons" async="async"></script>
+    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6081b96b1c703400184e0d6d&product=sop' async='async'></script>
 @endsection
 @section('content')
  <div class="container">
@@ -16,7 +16,15 @@
          <a class="btn btn-success" href="{{route('gift.init',$template->username)}}">Send Blessings</a>
      </div>
      <div>
-       <div class="sharethis-inline-share-buttons"></div>
+       <div
+           class="sharethis-inline-share-buttons"
+           data-url="{{route('template',$template->username)}}"
+           data-image="{{$template->banner_image->thumb}}"
+           data-title="{{$template->title}}"
+           data-description="Hey there,here is my profile url , where you can send blessings to me very easy , safe and secure."
+       >
+
+       </div>
      </div>
  </div>
 @endsection

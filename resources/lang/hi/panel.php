@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'site_title' => 'DEMO WEBSITE',
+    'site_title' => 'ऑनलाइन  आशीर्वाद',
 ];

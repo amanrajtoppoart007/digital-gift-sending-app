@@ -13,8 +13,8 @@ class UserProfileTest extends DuskTestCase
         $admin = App\Models\User::find(1);
         $this->browse(function (Browser $browser) use ($admin) {
             $browser->loginAs($admin);
-            $browser->visit(route('admin.userprofile.index'));
-            $browser->assertRouteIs('admin.userprofile.index');
+            $browser->visit(route('admin.userProfile.index'));
+            $browser->assertRouteIs('admin.userProfile.index');
         });
     }
 }

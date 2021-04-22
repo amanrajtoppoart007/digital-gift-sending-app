@@ -1,10 +1,11 @@
-@extends('layouts.app')
+@extends('guest.layout.app')
 @section('content')
-<div class="row justify-content-center">
-    <div class="col-md-6">
+<div class="container">
+    <div class="row justify-content-center my-5">
+    <div class="col-md-8">
         <div class="card mx-4">
             <div class="card-body p-4">
-                <h1>{{ trans('panel.site_title') }}</h1>
+                <h1 class="text-theme-1">{{ trans('panel.site_title') }}</h1>
 
                 <p class="text-muted">{{ trans('global.login') }}</p>
 
@@ -77,5 +78,6 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

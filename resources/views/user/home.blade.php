@@ -73,7 +73,7 @@
                             </div>
                             @if(!empty($template))
                                 <div class="col-lg-3 col-md-6 col-sm-12 p-3">
-                                    <a href="{{route('template.show',$template->username)}}">
+                                    <a target="_blank" href="{{route('template',$template->username)}}">
                                         <div class="card border-0 shadow" style="cursor: pointer">
                                             <div class="card-body">
                                                 <br>
