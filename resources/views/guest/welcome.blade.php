@@ -143,7 +143,7 @@
                         <div class="card-body">
                             <div class="card feature-img-card">
                                 <div class="card-body">
-                                    <img src="{{ asset('front-assets/images/feature-3.svg') }}" alt="feature-3">
+                                    <img width="45" height="45" src="{{ asset('front-assets/images/full-control.svg') }}" alt="feature-3">
                                 </div>
                             </div>
                             <h4 class="text-theme-1 mt-4 font-weight-bold">Full control over page</h4>
@@ -158,7 +158,7 @@
                         <div class="card-body">
                             <div class="card feature-img-card">
                                 <div class="card-body">
-                                    <img src="{{ asset('front-assets/images/feature-3.svg') }}" alt="feature-3">
+                                    <img style="width: 45px;height: 45px" src="{{ asset('front-assets/images/in-time.svg') }}" alt="feature-3">
                                 </div>
                             </div>
                             <h4 class="text-theme-1 mt-4 font-weight-bold">Real time update</h4>
@@ -174,7 +174,7 @@
                         <div class="card-body">
                             <div class="card feature-img-card">
                                 <div class="card-body">
-                                    <img src="{{ asset('front-assets/images/feature-3.svg') }}" alt="feature-3">
+                                    <img width="45" height="45" src="{{ asset('front-assets/images/runer-running-fast.svg') }}" alt="feature-3">
                                 </div>
                             </div>
                             <h4 class="text-theme-1 mt-4 font-weight-bold">Fast customer support</h4>
@@ -190,7 +190,7 @@
                         <div class="card-body">
                             <div class="card feature-img-card">
                                 <div class="card-body">
-                                    <img src="{{ asset('front-assets/images/feature-3.svg') }}" alt="feature-3">
+                                    <img width="45" height="45" src="{{ asset('front-assets/images/transparency.svg') }}" alt="feature-3">
                                 </div>
                             </div>
                             <h4 class="text-theme-1 mt-4 font-weight-bold">Transparent</h4>
