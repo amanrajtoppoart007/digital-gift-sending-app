@@ -71,11 +71,11 @@
                         </div>
                         <div class="col-6 text-right">
                             @if(Route::has('password.request'))
-                                <a class="btn btn-link px-0" href="{{ route('password.request') }}">
+                                <a class="card-link px-0" href="{{ route('password.request') }}">
                                     {{ trans('global.forgot_password') }}
                                 </a><br>
                             @endif
-                            <a class="btn btn-link px-0" href="{{ route('register') }}">
+                            <a class="card-link px-0" href="{{ route('register') }}">
                                 {{ trans('global.register') }}
                             </a>
                         </div>

@@ -8,11 +8,11 @@
             <br>
             <div class="container" align="center">
 
-                <h1 class="display-4 text-white font-weight-bold">Lorem ipsum dolor</h1>
+                <h1 class="display-4 text-white font-weight-bold">Welcome to Online Ashirvaad</h1>
                 <hr class="w-25 bg-white">
-                <h3 class="text-light">Keeping the current pandemic situation in mind, our team of young enthusiasts,
+                <h4 class="text-light">Keeping the current pandemic situation in mind, our team of young enthusiasts,
                     came up with this idea to create a platform where physical presence in not required to send or
-                    receive the gifts. We want you to enjoy your special moment.</h3>
+                    receive the gifts. We want you to enjoy your special moment.</h4>
 
                 <a href="{{route('register')}}" class="btn btn-lg btn-theme-2 m-1 shadow">Get Started</a>
             </div>
@@ -28,25 +28,21 @@
                 <hr class="w-25">
                 <h1 class="text-theme-1 font-weight-bold">How it Works ?</h1>
                 <hr class="w-25">
-                <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod <br>
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud <br> exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat.</p>
+                <p class="text-secondary">It's very simple , signup,create your profile.Share your profile and start receiving blessings</p>
                 <br>
 
                 <div class="row mt-3">
 
                     <div class="col-lg-3 col-md-6 col-sm-12 p-3">
                         <div class="card border-0 shadow">
-                            <a href="{{ route('register') }}" class="card-body">
+                            <div  class="card-body">
                                 <br>
                                 <img src="{{ asset('front-assets/images/account.svg') }}" alt="img-1"
                                      class="img-fluid how-work-img">
                                 <h3 class="font-weight-bold mt-3 text-theme-1">Signup</h3>
                                 <hr class="w-50">
-                                <p class="text-secondary">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos
-                                    iste.</p>
-                            </a>
+                                <p class="text-secondary">Fill up our signup form and provide basic details ,It's very easy.</p>
+                            </div>
                         </div>
                     </div>
 
@@ -58,8 +54,7 @@
                                      class="img-fluid how-work-img">
                                 <h3 class="font-weight-bold mt-3 text-theme-1">Create</h3>
                                 <hr class="w-50">
-                                <p class="text-secondary">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos
-                                    iste.</p>
+                                <p class="text-secondary">Create your blessing profile to share with peoples.</p>
                             </div>
                         </div>
                     </div>
@@ -72,8 +67,7 @@
                                      class="img-fluid how-work-img">
                                 <h3 class="font-weight-bold mt-3 text-theme-1">Share</h3>
                                 <hr class="w-50">
-                                <p class="text-secondary">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos
-                                    iste.</p>
+                                <p class="text-secondary">Share your profile to your family,friends,relatives and more.</p>
                             </div>
                         </div>
                     </div>
@@ -84,10 +78,9 @@
                                 <br>
                                 <img src="{{ asset('front-assets/images/delivered.svg') }}" alt="img-4"
                                      class="img-fluid how-work-img">
-                                <h3 class="font-weight-bold mt-3 text-theme-1">Recive</h3>
+                                <h3 class="font-weight-bold mt-3 text-theme-1">Receive</h3>
                                 <hr class="w-50">
-                                <p class="text-secondary">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos
-                                    iste.</p>
+                                <p class="text-secondary">Start receiving blessings ,It's that simple.</p>
                             </div>
                         </div>
                     </div>
@@ -108,10 +101,7 @@
                 <hr class="w-25">
                 <h1 class="text-theme-1 font-weight-bold">Why should you use our platform?</h1>
                 <hr class="w-25">
-                <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod <br>
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud <br> exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat.</p>
+                <p class="text-secondary">We provide simple , secure and very affordable service to send , receive blessings to family ,friends and all the peoples you know ,It's very easy and convenient.</p>
                 <br>
 
                 <div class="row mt-3">
@@ -127,7 +117,7 @@
                             <hr class="w-50">
                             <p class="text-dark">Registration process is very simple. Just by filling some basic info,
                                 you are good to start.</p>
-                            <a href="#" class="card-link text-theme-1">Learn more <img
+                            <a href="{{route('register')}}" class="card-link text-theme-1">Learn more <img
                                     src="{{ asset('front-assets/images/arrow-right-circle.svg') }}" class="ml-1"
                                     alt="learn more"></a>
                         </div>
@@ -143,7 +133,7 @@
                             <h4 class="text-theme-1 mt-4 font-weight-bold">Easy to build page</h4>
                             <hr class="w-50">
                             <p class="text-dark">It’s very easy to build the page which you share with others.</p>
-                            <a href="#" class="card-link text-theme-1">Learn more <img
+                            <a href="{{route('register')}}" class="card-link text-theme-1">Learn more <img
                                     src="{{ asset('front-assets/images/arrow-right-circle.svg') }}" class="ml-1"
                                     alt="learn more"></a>
                         </div>
@@ -159,7 +149,7 @@
                             <h4 class="text-theme-1 mt-4 font-weight-bold">Full control over page</h4>
                             <hr class="w-50">
                             <p class="text-dark">You have to control to change almost everything on page.</p>
-                            <a href="#" class="card-link text-theme-1">Learn more <img
+                            <a href="{{route('register')}}" class="card-link text-theme-1">Learn more <img
                                     src="{{ asset('front-assets/images/arrow-right-circle.svg') }}" class="ml-1"
                                     alt="learn more"></a>
                         </div>
@@ -175,7 +165,7 @@
                             <hr class="w-50">
                             <p class="text-dark">Data in dashboard is real time. You can see the exact amount you
                                 received as blessing.</p>
-                            <a href="#" class="card-link text-theme-1">Learn more <img
+                            <a href="{{route('register')}}" class="card-link text-theme-1">Learn more <img
                                     src="{{ asset('front-assets/images/arrow-right-circle.svg') }}" class="ml-1"
                                     alt="learn more"></a>
                         </div>
@@ -191,7 +181,7 @@
                             <hr class="w-50">
                             <p class="text-dark">Our customer support is always willing to assist you in best possible
                                 way.</p>
-                            <a href="#" class="card-link text-theme-1">Learn more <img
+                            <a href="{{route('register')}}" class="card-link text-theme-1">Learn more <img
                                     src="{{ asset('front-assets/images/arrow-right-circle.svg') }}" class="ml-1"
                                     alt="learn more"></a>
                         </div>
@@ -207,7 +197,7 @@
                             <hr class="w-50">
                             <p class="text-dark">We are fully transparent. That’s why, we share all the data with
                                 you.</p>
-                            <a href="#" class="card-link text-theme-1">Learn more <img
+                            <a href="{{route('register')}}" class="card-link text-theme-1">Learn more <img
                                     src="{{ asset('front-assets/images/arrow-right-circle.svg') }}" class="ml-1"
                                     alt="learn more"></a>
                         </div>
