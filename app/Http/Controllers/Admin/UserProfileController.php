@@ -3,180 +3,78 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Traits\MediaUploadingTrait;
-use App\Http\Requests\MassDestroyUserProfileRequest;
-use App\Http\Requests\StoreUserProfileRequest;
-use App\Http\Requests\UpdateUserProfileRequest;
+use App\Http\Requests\Admin\StoreUserProfileRequest;
+use App\Http\Requests\Admin\UpdateUserProfileRequest;
 use App\Models\User;
 use App\Models\UserProfile;
-use Gate;
 use Illuminate\Http\Request;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Symfony\Component\HttpFoundation\Response;
-use Yajra\DataTables\Facades\DataTables;
 
 class UserProfileController extends Controller
 {
-    use MediaUploadingTrait;
-
-    public function index(Request $request)
+    public function __construct()
     {
-        abort_if(Gate::denies('user_profile_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        if ($request->ajax()) {
-            $query = UserProfile::with(['user'])->select(sprintf('%s.*', (new UserProfile)->table));
-            $table = Datatables::of($query);
-
-            $table->addColumn('placeholder', '&nbsp;');
-            $table->addColumn('actions', '&nbsp;');
-
-            $table->editColumn('actions', function ($row) {
-                $viewGate      = 'user_profile_show';
-                $editGate      = 'user_profile_edit';
-                $deleteGate    = 'user_profile_delete';
-                $crudRoutePart = 'user-profiles';
-
-                return view('partials.datatablesActions', compact(
-                    'viewGate',
-                    'editGate',
-                    'deleteGate',
-                    'crudRoutePart',
-                    'row'
-                ));
-            });
-
-            $table->editColumn('id', function ($row) {
-                return $row->id ? $row->id : "";
-            });
-            $table->addColumn('user_name', function ($row) {
-                return $row->user ? $row->user->name : '';
-            });
-
-            $table->editColumn('name', function ($row) {
-                return $row->name ? $row->name : "";
-            });
-            $table->editColumn('email', function ($row) {
-                return $row->email ? $row->email : "";
-            });
-            $table->editColumn('primary_contact', function ($row) {
-                return $row->primary_contact ? $row->primary_contact : "";
-            });
-            $table->editColumn('secondary_contact', function ($row) {
-                return $row->secondary_contact ? $row->secondary_contact : "";
-            });
-            $table->editColumn('farming_land_area', function ($row) {
-                return $row->farming_land_area ? $row->farming_land_area : "";
-            });
-            $table->editColumn('image', function ($row) {
-                if ($photo = $row->image) {
-                    return sprintf(
-                        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
-                        $photo->url,
-                        $photo->thumbnail
-                    );
-                }
-
-                return '';
-            });
-
-            $table->rawColumns(['actions', 'placeholder', 'user', 'image']);
-
-            return $table->make(true);
-        }
-
-        $users = User::get();
-
-        return view('admin.userProfiles.index', compact('users'));
+          $this->middleware('auth:admin');
     }
+
+    public function index()
+    {
+        //
+    }
+
 
     public function create()
     {
-        abort_if(Gate::denies('user_profile_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $users = User::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('admin.userProfiles.create', compact('users'));
+        return view('admin.userProfiles.create');
     }
+
 
     public function store(StoreUserProfileRequest $request)
     {
-        $userProfile = UserProfile::create($request->all());
-
-        if ($request->input('image', false)) {
-            $userProfile->addMedia(storage_path('tmp/uploads/' . $request->input('image')))->toMediaCollection('image');
+        try {
+            $userProfile = UserProfile::create($request->validated());
+            $url = route('admin.userProfile.show',$userProfile->id);
+            $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "User bank detail added successful"];
         }
-
-        if ($media = $request->input('ck-media', false)) {
-            Media::whereIn('id', $media)->update(['model_id' => $userProfile->id]);
+        catch (\Exception $exception)
+        {
+           $result = ["status" => 0, "response" => "error", "message" => $exception->getMessage()];
         }
-
-        return redirect()->route('admin.user-profiles.index');
+        return response()->json($result,200);
     }
 
-    public function edit(UserProfile $userProfile)
+
+    public function show($id)
     {
-        abort_if(Gate::denies('user_profile_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $users = User::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $userProfile->load('user');
-
-        return view('admin.userProfiles.edit', compact('users', 'userProfile'));
+         return view('admin.userProfiles.show');
     }
 
-    public function update(UpdateUserProfileRequest $request, UserProfile $userProfile)
+
+    public function edit($id)
     {
-        $userProfile->update($request->all());
+        $profile = UserProfile::find($id);
+        return view('user.userProfiles.edit',compact('profile'));
+    }
 
-        if ($request->input('image', false)) {
-            if (!$userProfile->image || $request->input('image') !== $userProfile->image->file_name) {
-                if ($userProfile->image) {
-                    $userProfile->image->delete();
-                }
 
-                $userProfile->addMedia(storage_path('tmp/uploads/' . $request->input('image')))->toMediaCollection('image');
-            }
-        } elseif ($userProfile->image) {
-            $userProfile->image->delete();
+    public function update(UpdateUserProfileRequest $request, $id)
+    {
+        try {
+            UserProfile::where(['user_id'=>$request->input('user_id')])->update($request->validated());
+            $url = route('admin.userProfile.show',$id);
+            $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "User bank detail added successful"];
         }
-
-        return redirect()->route('admin.user-profiles.index');
+        catch (\Exception $exception)
+        {
+           $result = ["status" => 0, "response" => "error", "message" => $exception->getMessage()];
+        }
+        return response()->json($result,200);
     }
 
-    public function show(UserProfile $userProfile)
+
+    public function destroy($id)
     {
-        abort_if(Gate::denies('user_profile_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $userProfile->load('user');
-
-        return view('admin.userProfiles.show', compact('userProfile'));
-    }
-
-    public function destroy(UserProfile $userProfile)
-    {
-        abort_if(Gate::denies('user_profile_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
+        $userProfile = UserProfile::find($id);
         $userProfile->delete();
-
-        return back();
-    }
-
-    public function massDestroy(MassDestroyUserProfileRequest $request)
-    {
-        UserProfile::whereIn('id', request('ids'))->delete();
-
-        return response(null, Response::HTTP_NO_CONTENT);
-    }
-
-    public function storeCKEditorImages(Request $request)
-    {
-        abort_if(Gate::denies('user_profile_create') && Gate::denies('user_profile_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $model         = new UserProfile();
-        $model->id     = $request->input('crud_id', 0);
-        $model->exists = true;
-        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
-
-        return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
+        return redirect()->back();
     }
 }
