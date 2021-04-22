@@ -6,7 +6,8 @@
                 <h6 class="font-weight-bold text-white">Bank Account Detail</h6>
             </div>
             <div class="card-body">
-                <form method="post" action="{{route('profile.store')}}">
+                <form id="create_bank_detail_form" method="post" action="{{route('profile.store')}}">
+                    @csrf
                     <div class="row">
                     <div class="col-md-8">
                         <div class="form-group">
@@ -37,9 +38,59 @@
                             </div>
 
                         </div>
+                    <button type="submit" class="btn btn-primary">Add Account</button>
                 </form>
 
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+     <script>
+        $(document).ready(function(){
+            $("#create_bank_detail_form").on('submit',function(e){
+                e.preventDefault();
+                 $.ajax({
+                    url: "{{route('profile.store')}}",
+                    type: 'POST',
+                    data: $('#create_bank_detail_form').serialize(),
+                    dataType: 'json',
+                    beforeSend: function () {
+                        $("#overlay").show();
+                    },
+                    success: function (res) {
+                        if (res.response === "success")
+                        {
+
+                            $.notify(res.message,'success','top-right');
+                            window.open(res.url, '_self');
+                        } else
+                            {
+
+                             $.notify(res.message,'error','top-right');
+                        }
+                    },
+                    error: function (jqXhr) {
+
+                        let data = jqXhr.responseJSON;
+                        if (data.errors) {
+                            let error = '';
+                            $.each(data.errors, function (index, item)
+                            {
+
+                               error += item[0]+"\n";
+                            });
+
+                             $.notify(error,'error','top-right');
+                        }
+
+                    },
+
+                    complete: function () {
+                        $("#overlay").hide();
+                    }
+                });
+            })
+        });
+    </script>
 @endsection

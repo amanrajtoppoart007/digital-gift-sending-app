@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Template;
+use App\Models\UserProfile;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,6 +16,7 @@ class HomeController extends Controller
     public function index()
     {
         $template = Template::where(['user_id'=>auth()->user()->id])->first();
-        return view('user.home',compact('template'));
+        $profile  = UserProfile::where(['user_id'=>auth()->user()->id])->first();
+        return view('user.home',compact('template','profile'));
     }
 }

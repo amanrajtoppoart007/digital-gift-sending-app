@@ -29,10 +29,10 @@ class UserProfile extends Model implements HasMedia
 
     protected $fillable = [
         'user_id',
-        'username',
-        'description',
-        'mobile',
-        'created_at',
+        'name',
+        'bank_name',
+        'ifsc_code',
+        'account_number',
         'updated_at',
         'deleted_at',
     ];
