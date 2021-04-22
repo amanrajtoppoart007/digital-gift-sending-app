@@ -41,7 +41,20 @@
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-sm-12 p-3">
-                    <a href="{{route('profile.create')}}">
+                    @if(!empty($profile))
+                    <a href="{{route('profile.edit',$profile->id)}}">
+                        <div class="card border-0 shadow" style="cursor: pointer">
+                        <div class="card-body">
+                            <br>
+                            <img src="{{asset('front-assets/images/create.svg')}}" alt="img-2" class="img-fluid how-work-img">
+                            <h3 class="font-weight-bold mt-3 text-theme-1">Edit Account</h3>
+                            <hr class="w-50">
+                            <p class="text-secondary">Add your bank account detail to get paid.</p>
+                        </div>
+                    </div>
+                    </a>
+                    @else
+                        <a href="{{route('profile.create')}}">
                         <div class="card border-0 shadow" style="cursor: pointer">
                         <div class="card-body">
                             <br>
@@ -52,6 +65,7 @@
                         </div>
                     </div>
                     </a>
+                    @endif
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-sm-12 p-3">

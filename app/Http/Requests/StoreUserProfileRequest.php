@@ -11,31 +11,16 @@ class StoreUserProfileRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('user_profile_create');
+        return auth()->user() ? (auth()->user()->id ??false):false;
     }
 
     public function rules()
     {
         return [
-            'user_id'           => [
-                'required',
-                'integer',
-            ],
-            'name'              => [
-                'string',
-                'nullable',
-            ],
-            'mobile'   => [
-                'string',
-                'nullable',
-            ],
-            'secondary_mobile' => [
-                'string',
-                'nullable',
-            ],
-            'agricultural_land' => [
-                'numeric',
-            ],
+            'name'=>'required',
+             'bank_name'=>'required',
+             'ifsc_code'=>'required',
+            'account_number'=>'required'
         ];
     }
 }
