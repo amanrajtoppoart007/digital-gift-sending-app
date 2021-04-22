@@ -26,8 +26,8 @@
 <div id="sidebar" class="c-sidebar c-sidebar-fixed c-sidebar-lg-show bg-white">
 
     <div class="c-sidebar-brand d-md-down-none bg-white">
-        <a class="c-sidebar-brand-full" href="{{ route("admin.home") }}">
-            DEMO WEB
+        <a class="c-sidebar-brand-full text-theme-1 font-weight-bold" href="{{ route("admin.home") }}">
+            {{trans('panel.site_title')}}
         </a>
     </div>
 
