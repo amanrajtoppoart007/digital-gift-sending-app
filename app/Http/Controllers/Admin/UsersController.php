@@ -217,24 +217,4 @@ class UsersController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
-
-    public function addProfile(Request $request, User $user)
-    {
-        $request->validate([
-            'username' => 'required',
-            'banner' => 'required',
-            'description' => 'nullable'
-        ]);
-
-        $profile = new UserProfile();
-        $profile->user_id = $user->id;
-        $profile->username = $request->username;
-        $profile->user_id = $request->description;
-        $profile->save();
-        if ($request->input('banner', false)) {
-            $profile->addMedia(storage_path('tmp/uploads/' . $request->input('banner')))->toMediaCollection('banner');
-        }
-
-        return redirect()->route('admin.users.show', $user->id);
-    }
 }

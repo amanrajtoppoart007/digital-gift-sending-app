@@ -194,8 +194,16 @@ class PermissionsTableSeeder extends Seeder
                 'title' => 'payments_show',
             ],
             [
-                'id'    => 45,
+                'id'    => 46,
                 'title' => 'transactions_show',
+            ],
+            [
+                'id'    => 47,
+                'title' => 'enquiries_show',
+            ],
+            [
+                'id'    => 48,
+                'title' => 'enquiry_delete',
             ],
         ];
 

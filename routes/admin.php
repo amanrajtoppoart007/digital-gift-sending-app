@@ -53,6 +53,10 @@ Route::group(['prefix' => 'userProfile', 'as' => 'userProfile.'], function () {
 Route::resource('payments', 'Admin\PaymentController');
 Route::resource('transactions', 'Admin\TransactionController');
 
+Route::delete('enquiries/destroy', 'Admin\EnquiryController@massDestroy')->name('enquiries.massDestroy');
+Route::resource('enquiries', 'Admin\EnquiryController');
+
+
 Route::get('messages', 'Admin\MessageController@index')->name('messages.index');
 Route::post('messages/store', 'Admin\MessageController@store')->name('messages.store');
 Route::get('messages/edit', 'Admin\MessageController@edit')->name('messages.edit');
