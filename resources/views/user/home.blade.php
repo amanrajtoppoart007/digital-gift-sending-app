@@ -90,7 +90,7 @@
                             @endif
 
                             <div class="col-lg-3 col-md-6 col-sm-12 p-3">
-                                <a href="{{route('payment.history')}}">
+                                <a href="{{route('payments.history')}}">
 
                                     <div class="card border-0 shadow" style="cursor: pointer">
                                         <div class="card-body">
