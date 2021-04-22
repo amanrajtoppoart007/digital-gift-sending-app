@@ -13,6 +13,12 @@
                     <li class="nav-item mx-auto px-1">
                         <a href="{{ route('password.change') }}" class="nav-link text-secondary">Change password</a>
                     </li>
+                    <li class="nav-item mx-auto px-1">
+                        <form id="logout-form" action="{{ url('logout') }}" method="POST">
+                            @csrf
+                            <button class=" btn btn-xs nav-link text-secondary" type="submit">Logout</button>
+                        </form>
+                    </li>
                 </ul>
             </div>
             <button class="navbar-toggler" id="navbar-toggler">
