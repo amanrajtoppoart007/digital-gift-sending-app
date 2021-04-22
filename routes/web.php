@@ -59,13 +59,13 @@ Route::post('store', 'User\TemplateController@store')->name('store');
 Route::post('update/{id}', 'User\TemplateController@update')->name('update');
 Route::get('show/{username}', 'User\TemplateController@show')->name('show');
 });
-Route::group(['prefix' => 'payment', 'as' => 'payment.',  'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'payments', 'as' => 'payments.',  'middleware' => ['auth']], function () {
 Route::get('init/{username}', 'User\PaymentController@init')->name('init');
 Route::get('create', 'User\PaymentController@create')->name('create');
 Route::post('store', 'User\PaymentController@store')->name('store');
 });
 
-//function for guest to init payment to the user
+//function for guest to init payments to the user
 Route::group(['prefix' => 'gift', 'as' => 'gift.'], function () {
 Route::any('init/{username}', 'Guest\PaymentController@init')->name('init');
 Route::get('create', 'Guest\PaymentController@create')->name('create');

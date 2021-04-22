@@ -7,7 +7,7 @@ use App\Models\Payment;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
-class TransactionController extends Controller
+class PaymentController extends Controller
 {
     public function __construct()
     {
@@ -24,9 +24,9 @@ class TransactionController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate = 'transactions_show';
-                $editGate = 'transactions_edit';
-                $deleteGate = 'transactions_delete';
+                $viewGate = 'payments_show';
+                $editGate = 'payments_edit';
+                $deleteGate = 'payments_delete';
                 $crudRoutePart = 'payments';
 
                 return view('partials.datatablesActions', compact(
@@ -74,12 +74,12 @@ class TransactionController extends Controller
             $table->rawColumns(['actions', 'placeholder']);
             return $table->make(true);
         }
-       return view("admin.transactions.index");
+       return view("admin.payments.index");
     }
 
     public function show($id)
     {
         $payment = Payment::with(['transaction'])->find($id);
-        return view("admin.transactions.show",compact("payment"));
+        return view("admin.payments.show",compact("payment"));
     }
 }

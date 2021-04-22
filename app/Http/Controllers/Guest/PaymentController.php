@@ -18,7 +18,7 @@ class PaymentController extends Controller
     {
         $states = State::get();
         $template = Template::where(['username'=>$username])->first();
-        return view("guest.payment.init",compact("template","states"));
+        return view("guest.payments.init",compact("template","states"));
     }
 
     public function create(Request $request)
@@ -116,6 +116,6 @@ class PaymentController extends Controller
     public function message($txn_number)
     {
         $payment = Payment::where(['txn_number'=>$txn_number])->firstOrFail();
-        return view("guest.payment.message", compact('payment', ));
+        return view("guest.payments.message", compact('payment', ));
     }
 }

@@ -1,13 +1,4 @@
-@can('user_profile_create')
-    <div style="margin-bottom: 10px;" class="row">
-        <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.user-profiles.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.userProfile.title_singular') }}
-            </a>
-        </div>
-    </div>
-@endcan
-
+@if(!empty($userProfile))
 <div class="card">
     <div class="card-header">
         {{ trans('cruds.userProfile.title_singular') }} {{ trans('global.list') }}
@@ -71,12 +62,12 @@
 
                             <td>
                                 @if(!empty($userProfile))
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.user-profiles.edit', $userProfile->id??0) }}">
+                                    <a class="btn btn-xs btn-info" href="{{ route('admin.userProfile.edit', $userProfile->id??0) }}">
                                         {{ trans('global.edit') }}
                                     </a>
                                 @endif
                                 @if(!empty($userProfile))
-                                    <form action="{{ route('admin.user-profiles.destroy', $userProfile->id??0) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                    <form action="{{ route('admin.userProfile.destroy', $userProfile->id??0) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
@@ -90,6 +81,15 @@
         </div>
     </div>
 </div>
+@else
+<div style="margin: 10px;" class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-success" href="{{ route('admin.userProfile.create',$user->id) }}">
+                {{ trans('global.add') }} {{ trans('cruds.userProfile.title_singular') }}
+            </a>
+        </div>
+    </div>
+@endif
 
 @section('scripts')
 @parent

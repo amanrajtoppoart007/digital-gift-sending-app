@@ -1,4 +1,4 @@
-@extends("user.layout.app")
+@extends("layouts.admin")
 @section("content")
     <div class="container">
         <div class="card">
@@ -6,8 +6,9 @@
                 <h6 class="font-weight-bold text-white">Edit Bank Account Detail</h6>
             </div>
             <div class="card-body">
-                <form id="edit_bank_detail_form" method="post" action="{{route('profile.update',$profile->id)}}">
+                <form id="edit_bank_detail_form" method="post" action="{{route('admin.userProfile.update',$profile->id)}}">
                     @csrf
+                    <input type="hidden" name="user_id" value="{{$profile->user_id}}">
                     <div class="row">
                     <div class="col-md-8">
                         <div class="form-group">
@@ -45,14 +46,14 @@
         </div>
     </div>
 @endsection
-@section('script')
+@section('scripts')
      <script>
         $(document).ready(function(){
             $("#edit_bank_detail_form").on('submit',function(e){
                 e.preventDefault();
                  $.ajax({
-                    url: "{{route('profile.update',$profile->id)}}",
-                    type: 'PUT',
+                    url: "{{route('admin.userProfile.update',$profile->id)}}",
+                    type: 'POST',
                     data: $('#edit_bank_detail_form').serialize(),
                     dataType: 'json',
                     beforeSend: function () {
@@ -73,8 +74,7 @@
                         let data = jqXhr.responseJSON;
                         if (data.errors) {
                             let error = '';
-                            $.each(data.errors, function (index, item)
-                            {
+                            $.each(data.errors, function (index, item) {
                                error += item[0]+"\n";
                             });
 
