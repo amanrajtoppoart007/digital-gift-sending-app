@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-toast/jquery.toast.min.css') }}">
     <!-- Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/index.css') }}">
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/fontawesome/css/all.css') }}">
     <!-- Website Title -->
     <title>Website Title</title>
     @yield("head")
