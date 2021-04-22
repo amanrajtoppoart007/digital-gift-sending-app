@@ -78,3 +78,5 @@ Route::get('create', 'Guest\PaymentController@create')->name('create');
 Route::post('store', 'Guest\PaymentController@store')->name('store');
 Route::get('message/{txn_number}', 'Guest\PaymentController@message')->name('message');
 });
+
+Route::get('verify/{token}', [\App\Http\Controllers\VerificationController::class, 'verify']);
