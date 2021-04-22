@@ -65,6 +65,11 @@ Route::get('create', 'User\PaymentController@create')->name('create');
 Route::post('store', 'User\PaymentController@store')->name('store');
 });
 
+Route::group(['prefix' => 'password', 'as' => 'password.',  'middleware' => ['auth']], function () {
+    Route::get('change', 'User\PasswordController@showChangePasswordForm')->name('change');
+    Route::post('change', 'User\PasswordController@changePassword')->name('change.submit');
+});
+
 //function for guest to init payment to the user
 Route::group(['prefix' => 'gift', 'as' => 'gift.'], function () {
 Route::any('init/{username}', 'Guest\PaymentController@init')->name('init');
