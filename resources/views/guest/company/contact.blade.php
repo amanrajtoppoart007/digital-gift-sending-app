@@ -30,27 +30,53 @@
                                     @csrf
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
-                                            <label class="font-weight-bolder" for="name">Your Name</label>
-                                            <input type="text" name="name"
+                                            <label class="font-weight-bolder" for="first_name">First Name</label>
+                                            <label class="text-danger ml-2 font-weight-bolder">*</label>
+                                            <input type="text" name="first_name" id="first_name"
                                                    class="input-group-text bg-transparent w-100 text-left">
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
-                                            <label class="font-weight-bolder" for="email">Your Email</label>
-                                            <input type="email" name="email"
+                                            <label class="font-weight-bolder" for="last_name">Last Name</label>
+                                            <label class="text-danger ml-2 font-weight-bolder">*</label>
+                                            <input type="text" name="last_name" id="last_name"
                                                    class="input-group-text bg-transparent w-100 text-left">
                                         </div>
+
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
+                                            <label class="font-weight-bolder" for="email">Email Address</label>
+                                            <label class="text-danger ml-2 font-weight-bolder">*</label>
+                                            <input type="email" name="email" id="email"
+                                                   class="input-group-text bg-transparent w-100 text-left">
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
+                                            <label class="font-weight-bolder" for="category">Category</label>
+                                            <label class="text-danger ml-2 font-weight-bolder">*</label>
+                                            <select class="custom-select select2 w-100" name="category" id="category"
+                                                    required>
+                                                <option value="" disabled selected>Select Category</option>
+                                                <option value="user">User (who wants to register or website)</option>
+                                                <option value="sender">Sender (who wants to send the gift)</option>
+                                                <option value="other">Other</option>
+
+                                            </select>
+                                        </div>
+
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <label class="font-weight-bolder" for="subject">Subject</label>
-                                            <input type="text" name="subject"
+                                            <label class="text-danger ml-2 font-weight-bolder">*</label>
+                                            <input type="text" name="subject" id="subject"
                                                    class="input-group-text w-100 bg-transparent text-left">
                                         </div>
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <label class="font-weight-bolder" for="message">Message</label>
-                                            <textarea rows="5" name="message"
+                                            <label class="font-weight-bolder" for="description">Description</label>
+                                            <label class="text-danger ml-2 font-weight-bolder">*</label>
+                                            <textarea rows="5" name="description" id="description"
                                                       class="input-group-text w-100 bg-transparent text-left"></textarea>
                                         </div>
                                     </div>

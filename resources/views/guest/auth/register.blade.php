@@ -21,6 +21,7 @@
                     <!-- Card Header -->
                         <div class="card-header bg-white" align="center">
                             <h4 class="font-weight-bolder text-theme-1 mt-2">Fill the Registration Details</h4>
+                            <span class="description-1 ml-3 text-secondary">We don’t use your data other than the verification of your identity to make sure that appropriate use of this platform.</span>
                         </div>
 
                         <!-- Card Body (Start) -->
