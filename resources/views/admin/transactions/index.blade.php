@@ -2,7 +2,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            Payment List
+            Transaction List
         </div>
 
         <div class="card-body">
@@ -20,19 +20,28 @@
                         Amount
                     </th>
                     <th>
+                        Net Amount Debit
+                    </th>
+                    <th>
                         Payee name
+                    </th>
+                    <th>
+                        Product Info
                     </th>
                     <th>
                         Mobile
                     </th>
                     <th>
-                        Address
+                        Email
                     </th>
-                    <th>
-                        Payment Type
+                     <th>
+                        Mode
                     </th>
                     <th>
                         Status
+                    </th>
+                    <th>
+                        Created At
                     </th>
                     <th>
                         Action
@@ -68,6 +77,15 @@
                     <td>
 
                     </td>
+                    <td>
+
+                    </td>
+                    <td>
+
+                    </td>
+                    <td>
+
+                    </td>
                 </tr>
                 </thead>
                 <tbody></tbody>
@@ -90,17 +108,20 @@
                 serverSide: true,
                 retrieve: true,
                 aaSorting: [],
-                ajax: "{{ route('admin.payments.index') }}",
+                ajax: "{{ route('admin.transactions.index') }}",
                 columns: [
                     {data: 'placeholder', name: 'placeholder'},
                     {data: 'id', name: 'id'},
-                    {data: 'txn_number', name: 'txn_number'},
+                    {data: 'txnid', name: 'txnid'},
                     {data: 'amount', name: 'amount'},
-                    {data: 'name', name: 'name'},
-                    {data: 'mobile', name: 'mobile'},
-                    {data: 'address', name: 'address'},
-                    {data: 'payment_type', name: 'payment_type'},
-                    {data: 'payment_status', name: 'payment_status'},
+                    {data: 'net_amount_debit', name: 'net_amount_debit'},
+                    {data: 'firstname', name: 'firstname'},
+                    {data: 'productinfo', name: 'productinfo'},
+                    {data: 'phone', name: 'phone'},
+                    {data: 'email', name: 'email'},
+                    {data: 'mode', name: 'mode'},
+                    {data: 'status', name: 'status'},
+                    {data: 'created_at', name: 'created_at'},
                     {data: 'actions', name: '{{ trans('global.actions') }}'}
                 ],
                 orderCellsTop: true,

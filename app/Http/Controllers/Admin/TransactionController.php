@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Payment;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -17,7 +17,7 @@ class TransactionController extends Controller
     public function index(Request $request)
     {
        if ($request->ajax()) {
-            $query = Payment::with(['user'])->select(sprintf('%s.*', (new Payment)->table));
+            $query = Transaction::with(['payment'])->select(sprintf('%s.*', (new Transaction)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -27,7 +27,7 @@ class TransactionController extends Controller
                 $viewGate = 'transactions_show';
                 $editGate = 'transactions_edit';
                 $deleteGate = 'transactions_delete';
-                $crudRoutePart = 'payments';
+                $crudRoutePart = 'transactions';
 
                 return view('partials.datatablesActions', compact(
                     'viewGate',
@@ -41,35 +41,32 @@ class TransactionController extends Controller
             $table->editColumn('id', function ($row) {
                 return $row->id ? $row->id : "";
             });
-            $table->editColumn('txn_number', function ($row) {
-                return $row->txn_number ? $row->txn_number : "";
+            $table->editColumn('txnid', function ($row) {
+                return $row->txnid ? $row->txnid : "";
+            });
+             $table->editColumn('net_amount_debit', function ($row) {
+                return $row->net_amount_debit ? $row->net_amount_debit : "";
             });
             $table->editColumn('amount', function ($row) {
                 return $row->amount ? $row->amount : "";
             });
-            $table->editColumn('name', function ($row) {
-                return $row->name ? $row->name : "";
+            $table->editColumn('firstname', function ($row) {
+                return $row->firstname ? $row->firstname : "";
             });
-            $table->editColumn('mobile', function ($row) {
-                return $row->mobile ? $row->mobile : "";
+            $table->editColumn('productinfo', function ($row) {
+                return $row->productinfo ? $row->productinfo : "";
             });
-            $table->editColumn('email', function ($row) {
-                return $row->email ? $row->email : "";
+            $table->editColumn('phone', function ($row) {
+                return $row->phone ? $row->phone : "";
             });
-            $table->editColumn('address', function ($row) {
-               return $row->address ? $row->address : "";
-           });
-            $table->editColumn('city', function ($row) {
-                return $row->city ? $row->city : "";
+            $table->editColumn('mode', function ($row) {
+                return $row->mode ? $row->mode : "";
             });
-            $table->editColumn('pin_code', function ($row) {
-                return $row->pin_code ? $row->pin_code : "";
+            $table->editColumn('status', function ($row) {
+                return $row->status ? $row->status : "";
             });
-            $table->editColumn('payment_type', function ($row) {
-                return $row->payment_type ? $row->payment_type : "";
-            });
-            $table->editColumn('payment_status', function ($row) {
-                return $row->payment_status ? $row->payment_status : "";
+            $table->editColumn('created_at', function ($row) {
+                return $row->created_at ? $row->created_at : "";
             });
             $table->rawColumns(['actions', 'placeholder']);
             return $table->make(true);
@@ -79,7 +76,7 @@ class TransactionController extends Controller
 
     public function show($id)
     {
-        $payment = Payment::with(['transaction'])->find($id);
-        return view("admin.transactions.show",compact("payment"));
+        $transaction = Transaction::with(['payment'])->find($id);
+        return view("admin.transactions.show",compact("transaction"));
     }
 }

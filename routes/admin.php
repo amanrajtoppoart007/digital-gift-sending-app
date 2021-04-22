@@ -40,6 +40,10 @@ Route::group(['prefix' => 'template', 'as' => 'template.'], function () {
     Route::get('show/{username}', 'Admin\TemplateController@show')->name('show');
     Route::any('destroy/{id}', 'Admin\TemplateController@destroy')->name('delete');
 });
+
+Route::resource('payments', 'Admin\PaymentController');
+Route::resource('transactions', 'Admin\TransactionController');
+
 Route::get('messages', 'Admin\MessageController@index')->name('messages.index');
 Route::post('messages/store', 'Admin\MessageController@store')->name('messages.store');
 Route::get('messages/edit', 'Admin\MessageController@edit')->name('messages.edit');
