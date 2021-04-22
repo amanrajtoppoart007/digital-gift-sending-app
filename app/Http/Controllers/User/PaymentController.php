@@ -12,7 +12,7 @@ class PaymentController extends Controller
     public function init($username)
     {
         $user = (Template::where(['username'=>$username])->first())->user->id;
-        return view("user.payments.init");
+        return view("user.payment.init");
     }
 
     public function history()
