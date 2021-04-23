@@ -8,9 +8,6 @@
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <h5 class="font-weight-bold text-theme-1">{{ trans('panel.site_title') }}</h5>
                 <p class="text-secondary">Keeping the current pandemic situation in mind, our team of young enthusiasts, came up with this idea to create a platform where physical presence in not required to send or receive the gifts. We want you to enjoy your special moment.</p>
-                <a href="#" class="card-link text-theme-1">Learn more <img
-                        src="{{ asset('front-assets/images/arrow-right-circle.svg') }}" class="ml-1"
-                        alt="learn more"></a>
                 <br>
                 <br>
             </div>

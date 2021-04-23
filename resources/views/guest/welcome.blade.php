@@ -116,9 +116,7 @@
                             <hr class="w-50">
                             <p class="text-dark">Registration process is very simple. Just by filling some basic info,
                                 you are good to start.</p>
-                            <a href="{{route('register')}}" class="card-link text-theme-1">Learn more <img
-                                    src="{{ asset('front-assets/images/arrow-right-circle.svg') }}" class="ml-1"
-                                    alt="learn more"></a>
+
                         </div>
                     </div>
 
@@ -132,9 +130,7 @@
                             <h4 class="text-theme-1 mt-4 font-weight-bold">Easy to build page</h4>
                             <hr class="w-50">
                             <p class="text-dark">It’s very easy to build the page which you share with others.</p>
-                            <a href="{{route('register')}}" class="card-link text-theme-1">Learn more <img
-                                    src="{{ asset('front-assets/images/arrow-right-circle.svg') }}" class="ml-1"
-                                    alt="learn more"></a>
+
                         </div>
                     </div>
 
@@ -148,9 +144,7 @@
                             <h4 class="text-theme-1 mt-4 font-weight-bold">Full control over page</h4>
                             <hr class="w-50">
                             <p class="text-dark">You have to control to change almost everything on page.</p>
-                            <a href="{{route('register')}}" class="card-link text-theme-1">Learn more <img
-                                    src="{{ asset('front-assets/images/arrow-right-circle.svg') }}" class="ml-1"
-                                    alt="learn more"></a>
+
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12">
@@ -164,9 +158,7 @@
                             <hr class="w-50">
                             <p class="text-dark">Data in dashboard is real time. You can see the exact amount you
                                 received as blessing.</p>
-                            <a href="{{route('register')}}" class="card-link text-theme-1">Learn more <img
-                                    src="{{ asset('front-assets/images/arrow-right-circle.svg') }}" class="ml-1"
-                                    alt="learn more"></a>
+
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12">
@@ -180,9 +172,7 @@
                             <hr class="w-50">
                             <p class="text-dark">Our customer support is always willing to assist you in best possible
                                 way.</p>
-                            <a href="{{route('register')}}" class="card-link text-theme-1">Learn more <img
-                                    src="{{ asset('front-assets/images/arrow-right-circle.svg') }}" class="ml-1"
-                                    alt="learn more"></a>
+
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12">
@@ -196,9 +186,7 @@
                             <hr class="w-50">
                             <p class="text-dark">We are fully transparent. That’s why, we share all the data with
                                 you.</p>
-                            <a href="{{route('register')}}" class="card-link text-theme-1">Learn more <img
-                                    src="{{ asset('front-assets/images/arrow-right-circle.svg') }}" class="ml-1"
-                                    alt="learn more"></a>
+
                         </div>
                     </div>
 
