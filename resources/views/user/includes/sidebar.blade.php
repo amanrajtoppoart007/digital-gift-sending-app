@@ -9,12 +9,12 @@
             <li class="c-sidebar-nav-item">
                 <img class="c-sidebar-nav-icon" src="{{ asset('front-assets/images/account.svg') }}" alt="">
                 <a href="{{route('template.edit', auth()->user()->template->id)}}" class="c-sidebar-nav-link">Edit
-                    Template</a>
+                    Page</a>
             </li>
         @else
             <li class="c-sidebar-nav-item">
                 <img class="c-sidebar-nav-icon" src="{{ asset('front-assets/images/account.svg') }}" alt="">
-                <a href="{{route('template.create')}}" class="c-sidebar-nav-link">Add Template</a>
+                <a href="{{route('template.create')}}" class="c-sidebar-nav-link">Add Page</a>
             </li>
         @endif
 
@@ -33,8 +33,8 @@
         @if(auth()->user()->template)
             <li class="c-sidebar-nav-item">
                 <img class="c-sidebar-nav-icon" src="{{asset('front-assets/images/link.svg')}}" alt="">
-                <a href="{{route('template', auth()->user()->template->username)}}" class="c-sidebar-nav-link">Share
-                    Profile</a>
+                <a target="_blank" href="{{route('template', auth()->user()->template->username)}}" class="c-sidebar-nav-link">Share
+                    Page</a>
             </li>
         @endif
         <li class="c-sidebar-nav-item">
@@ -51,7 +51,7 @@
         </li>
         <li class="c-sidebar-nav-item align-items-center">
             <img class="c-sidebar-nav-icon" src="{{asset('front-assets/images/contact.svg')}}" alt="">
-            <a href="{{ route('contact') }}" class="c-sidebar-nav-link">Contact Us</a>
+            <a target="_blank" href="{{ route('contact') }}" class="c-sidebar-nav-link">Contact Us</a>
         </li>
 
         <li class="c-sidebar-nav-item">
