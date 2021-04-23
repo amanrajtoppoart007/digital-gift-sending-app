@@ -13,14 +13,6 @@
                     </li>
                     <hr>
                     <li class="nav-item mx-auto px-1">
-                        <a href="{{ route('privacy') }}" class="nav-link text-secondary">Privacy Policy</a>
-                    </li>
-                    <hr>
-                    <li class="nav-item mx-auto px-1">
-                        <a href="{{ route('terms') }}" class="nav-link text-secondary">Terms of Use</a>
-                    </li>
-                    <hr>
-                    <li class="nav-item mx-auto px-1">
                         <a href="{{ route('contact') }}" class="nav-link text-secondary">Contact us</a></li>
                     <hr>
                 </ul>
