@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function index()
     {
         $template = Template::where(['user_id'=>auth()->user()->id])->first();
-        $profile  = UserProfile::where(['user_id'=>auth()->user()->id])->first();
-        return view('user.home',compact('template','profile'));
+        $account  = UserProfile::where(['user_id'=>auth()->user()->id])->first();
+        return view('user.home',compact('template','account'));
     }
 }

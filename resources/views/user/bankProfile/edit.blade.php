@@ -7,19 +7,19 @@
                 <h6 class="font-weight-bold text-white">Edit Bank Account Detail</h6>
             </div>
             <div class="card-body">
-                <form id="edit_bank_detail_form" method="post" action="{{route('profile.update',$profile->id)}}">
+                <form id="edit_bank_detail_form" method="post" action="{{route('account.update',$account->id)}}">
                     @csrf
                     <div class="row">
                     <div class="col-md-8">
                         <div class="form-group">
                             <label for="name"><strong>Name </strong> <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{$profile->name}}" required>
+                            <input type="text" class="form-control" id="name" name="name" value="{{$account->name}}" required>
                         </div>
                     </div>
                         <div class="col-md-8">
                           <div class="form-group">
                             <label for="bank_name"><strong>Name Of Bank </strong> <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="bank_name" name="bank_name" value="{{$profile->bank_name}}" required>
+                            <input type="text" class="form-control" id="bank_name" name="bank_name" value="{{$account->bank_name}}" required>
                         </div>
                         </div>
 
@@ -28,13 +28,13 @@
                             <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="account_number"><strong>A/C -No. </strong> <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="account_number" name="account_number" value="{{$profile->account_number}}" required>
+                                    <input type="text" class="form-control" id="account_number" name="account_number" value="{{$account->account_number}}" required>
                                 </div>
                             </div>
                           <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="ifsc_code"><strong>IFSC Code </strong> <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="ifsc_code" name="ifsc_code" value="{{$profile->ifsc_code}}" required>
+                                    <input type="text" class="form-control" id="ifsc_code" name="ifsc_code" value="{{$account->ifsc_code}}" required>
                                 </div>
                             </div>
 
@@ -52,7 +52,7 @@
             $("#edit_bank_detail_form").on('submit',function(e){
                 e.preventDefault();
                  $.ajax({
-                    url: "{{route('profile.update',$profile->id)}}",
+                    url: "{{route('account.update',$account->id)}}",
                     type: 'PUT',
                     data: $('#edit_bank_detail_form').serialize(),
                     dataType: 'json',

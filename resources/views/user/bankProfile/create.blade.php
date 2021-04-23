@@ -7,7 +7,7 @@
                 <h6 class="font-weight-bold text-white">Bank Account Detail</h6>
             </div>
             <div class="card-body">
-                <form id="create_bank_detail_form" method="post" action="{{route('profile.store')}}">
+                <form id="create_bank_detail_form" method="post" action="{{route('account.store')}}">
                     @csrf
                     <div class="row">
                     <div class="col-md-8">
@@ -52,7 +52,7 @@
             $("#create_bank_detail_form").on('submit',function(e){
                 e.preventDefault();
                  $.ajax({
-                    url: "{{route('profile.store')}}",
+                    url: "{{route('account.store')}}",
                     type: 'POST',
                     data: $('#create_bank_detail_form').serialize(),
                     dataType: 'json',
