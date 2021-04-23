@@ -26,7 +26,7 @@ class PaymentController extends Controller
                 'username'=>$request->input('username'),
                 'txn_number'=>$request->input('txn_number'),
                 'amount'=>$request->input('amount'),
-                 'name'=>$request->input('name')??null,
+                 'name'=>$request->input('name')??'guest',
                 'email'=>$request->input('email')??($payment->user->email??'user@example.com'),
                 'phone'=>$request->input('mobile')??($payment->user->mobile??'1234567890'),
            ]);
@@ -68,12 +68,13 @@ class PaymentController extends Controller
             }
             catch (\Exception $exception)
             {
+                dd($exception->getMessage());
                return redirect()->back();
             }
         }
         else
         {
-            return redirect()->back();
+            dd($validator->errors()->all());
         }
     }
 
