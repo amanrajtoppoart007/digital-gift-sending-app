@@ -17,10 +17,7 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::prefix('ajax')->group(function(){
-   Route::post('get/states', 'Ajax\RegionController@getDistricts')->name('ajax.district.list');
-   Route::post('get/blocks', 'Ajax\RegionController@getBlockList')->name('ajax.block.list');
-   Route::post('get/pin-codes', 'Ajax\RegionController@getPincodeList')->name('ajax.pincode.list');
-   Route::post('get/areas', 'Ajax\RegionController@getAreaList')->name('ajax.area.list');
+
 });
 
 Route::get('/', 'Guest\HomeController@index')->name('index');
@@ -41,7 +38,7 @@ Route::prefix('registration')->group(function () {
      Route::get('/message/{entity_id}/{token}', 'Auth\RegisterController@message')->name("registration.message");
 
 });
-Route::resource('profile', 'User\UserProfileController');
+Route::resource('account', 'User\AccountController');
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
 // Change password
     if (file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php'))) {

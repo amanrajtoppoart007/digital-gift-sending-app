@@ -9,7 +9,7 @@ use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
 
-class UserProfileController extends Controller
+class AccountController extends Controller
 {
     public function __construct()
     {
@@ -24,7 +24,7 @@ class UserProfileController extends Controller
 
     public function create()
     {
-        return view('user.profile.create');
+        return view('user.bankProfile.create');
     }
 
 
@@ -44,16 +44,12 @@ class UserProfileController extends Controller
     }
 
 
-    public function show($id)
-    {
-         return view('user.profile.show');
-    }
 
 
     public function edit($id)
     {
-        $profile = UserProfile::where(['user_id'=>auth()->user()->id])->first();
-        return view('user.profile.edit',compact('profile'));
+        $account = UserProfile::where(['user_id'=>auth()->user()->id])->first();
+        return view('user.bankProfile.edit',compact('account'));
     }
 
 

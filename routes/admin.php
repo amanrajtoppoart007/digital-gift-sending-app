@@ -42,12 +42,12 @@ Route::group(['prefix' => 'template', 'as' => 'template.'], function () {
 });
 
 Route::group(['prefix' => 'userProfile', 'as' => 'userProfile.'], function () {
-    Route::get('create/{userId}', 'Admin\UserProfileController@create')->name('create');
-    Route::get('edit/{id}', 'Admin\UserProfileController@edit')->name('edit');
-    Route::post('store', 'Admin\UserProfileController@store')->name('store');
-    Route::post('update/{id}', 'Admin\UserProfileController@update')->name('update');
-    Route::get('show/{username}', 'Admin\UserProfileController@show')->name('show');
-    Route::any('destroy/{id}', 'Admin\UserProfileController@destroy')->name('destroy');
+    Route::get('create/{userId}', 'Admin\UserAccountController@create')->name('create');
+    Route::get('edit/{id}', 'Admin\UserAccountController@edit')->name('edit');
+    Route::post('store', 'Admin\UserAccountController@store')->name('store');
+    Route::post('update/{id}', 'Admin\UserAccountController@update')->name('update');
+    Route::get('show/{username}', 'Admin\UserAccountController@show')->name('show');
+    Route::any('destroy/{id}', 'Admin\UserAccountController@destroy')->name('destroy');
 });
 
 Route::resource('payments', 'Admin\PaymentController');

@@ -43,8 +43,8 @@
                             </div>
 
                             <div class="col-lg-3 col-md-6 col-sm-12 p-3">
-                                @if(!empty($profile))
-                                    <a href="{{route('profile.edit',$profile->id)}}">
+                                @if(!empty($account))
+                                    <a href="{{route('account.edit',$account->id)}}">
                                         <div class="card border-0 shadow" style="cursor: pointer;text-decoration: none;">
                                             <div class="card-body">
                                                 <br>
@@ -57,7 +57,7 @@
                                         </div>
                                     </a>
                                 @else
-                                    <a href="{{route('profile.create')}}">
+                                    <a href="{{route('account.create')}}">
                                         <div class="card border-0 shadow" style="cursor: pointer;text-decoration: none;">
                                             <div class="card-body">
                                                 <br>
@@ -132,19 +132,19 @@
                             <tbody>
                             <tr>
                                 <th class="w-25">Name</th>
-                                <td>{{ $profile->name ?? '' }}</td>
+                                <td>{{ $account->name ?? '' }}</td>
                             </tr>
                             <tr>
                                 <th>Bank Name</th>
-                                <td>{{ $profile->bank_name ?? '' }}</td>
+                                <td>{{ $account->bank_name ?? '' }}</td>
                             </tr>
                             <tr>
                                 <th>Account Number</th>
-                                <td>{{ $profile->account_number ?? '' }}</td>
+                                <td>{{ $account->account_number ?? '' }}</td>
                             </tr>
                             <tr>
                                 <th>IFSC Code</th>
-                                <td>{{ $profile->ifsc_code ?? '' }}</td>
+                                <td>{{ $account->ifsc_code ?? '' }}</td>
                             </tr>
                             </tbody>
                         </table>
