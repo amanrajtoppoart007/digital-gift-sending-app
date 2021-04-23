@@ -91,7 +91,7 @@ class RegisterController extends Controller
             $vEmail->token = $eToken;
             $vEmail->user_id = $user->id;
             $vEmail->save();
-            Mail::to($user->email)->send(new EmailVerificationMessage($data));
+            //Mail::to($user->email)->send(new EmailVerificationMessage($data));
 
             //FOR MOBILE VERIFICATION
             $mToken = Str::random(64);
@@ -106,7 +106,7 @@ class RegisterController extends Controller
 //            $sms = new TextLocal();
 //            $sms->send("Click this link to verify ". $mobileUrl, $user->mobile,null);
 
-            Mail::to($user)->send(new UserWelcomeMessage());
+           // Mail::to($user)->send(new UserWelcomeMessage());
             /*$sms = new TextLocal();
             $sms->send(trans('sms.registration',['reg_number'=>$user->mobile]),$user->mobile,null);
             $sms->send('this is test', $user->mobile, null);*/
