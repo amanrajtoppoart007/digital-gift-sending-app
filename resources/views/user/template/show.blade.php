@@ -24,6 +24,17 @@
                  </div>
                     <div class="card-body">
                       <div class="row">
+                          <div class="col-md-3">
+                                        <div class="form-group">
+                                            <input type="text" name="amount" id="amount" class="form-control"
+                                                   minlength="3"
+                                                   maxlength="10"
+                                                   placeholder="Enter Amount"
+                                                   pattern="[0-9]+"
+                                                   onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
+                                                   value="" required>
+                                        </div>
+                                    </div>
                         @foreach($template->inputs as $input)
                           <div class="col-md-3">
                               <div class="form-group">
@@ -47,9 +58,7 @@
                    </div>
                 </div>
              @endif
-             <div class="text-center">
-                 <a href="{{route('template.edit',['id'=>$template->id])}}" class="btn btn-info">Edit Template</a>
-             </div>
+
      <div>
          <div
            class="sharethis-inline-share-buttons"
@@ -61,6 +70,11 @@
          </div>
      </div>
  </div>
+     </div>
+     <div class="card-footer">
+         <div class="text-center">
+                 <a href="{{route('template.edit',['id'=>$template->id])}}" class="btn btn-info">Edit Template</a>
+             </div>
      </div>
  </div>
 @endsection
