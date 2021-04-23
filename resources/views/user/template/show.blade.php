@@ -10,7 +10,7 @@
              <h1 class="font-weight-bold text-white my-auto text-center">{{$template->banner_title}}</h1>
          </div>
       </div>
-     <div>
+     <div class="text-center">
          <h3 class="font-weight-bold">About Us</h3>
          <p class="lead">{!! $template->description !!}.</p>
          <a href="{{route('template.edit',['id'=>$template->id])}}" class="btn btn-success">Edit Template</a>

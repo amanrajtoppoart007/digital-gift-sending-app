@@ -15,9 +15,15 @@
                         @csrf
 
                          <div class="form-group">
-                            <label for="username"><strong>User Name </strong> <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="username" name="username"
-                                   aria-describedby="username_help">
+                            <label for="username"><strong>Payment URL </strong> <span class="text-danger">*</span></label>
+
+                             <div class="input-group">
+                                 <div class="input-group-prepend">
+                                     <span class="input-group-text">http://payme.webtutorial.in/view/</span>
+                                 </div>
+                                 <input type="text" class="form-control" id="username" name="username"
+                                        aria-describedby="username_help">
+                             </div>
                             <small id="username_help" class="form-text text-muted">Create your custom username for viewing your profile.</small>
                         </div>
                         <div class="form-group">

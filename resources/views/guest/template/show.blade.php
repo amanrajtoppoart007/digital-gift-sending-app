@@ -15,7 +15,7 @@
                         <h1 class="font-weight-bold text-white my-auto text-center">{{$template->banner_title}}</h1>
                     </div>
                 </div>
-                <div>
+                <div class="text-center mb-3">
                     <h3 class="font-weight-bold">About Us</h3>
                     <p class="lead">{!! $template->description !!}.</p>
                     <a class="btn btn-success" href="{{route('gift.init',$template->username)}}">Send Blessings</a>
