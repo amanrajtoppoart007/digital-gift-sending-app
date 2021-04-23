@@ -14,11 +14,29 @@ use Illuminate\Support\Facades\Validator;
 use Softon\Indipay\Facades\Indipay;
 class PaymentController extends Controller
 {
-    public function init($username)
+
+     public function store(GuestStorePaymentRequest $request,Payment $payment)
     {
-        $states = State::get();
-        $template = Template::where(['username'=>$username])->first();
-        return view("guest.payment.init",compact("template","states"));
+
+        try {
+           $request->request->add(['txn_number' => $payment->getNextOrderNumber(),'payment_status'=>'initiated']);
+           $payment->create($request->all());
+
+           $url = route('gift.create',[
+                'username'=>$request->input('username'),
+                'txn_number'=>$request->input('txn_number'),
+                'amount'=>$request->input('amount'),
+                 'name'=>$request->input('name')??null,
+                'email'=>$request->input('email')??($payment->user->email??'user@example.com'),
+                'phone'=>$request->input('mobile')??($payment->user->mobile??'1234567890'),
+           ]);
+           $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "User registration successful"];
+        }
+        catch (\Exception $exception)
+        {
+           $result = ["status" => 0, "response" => "error", "message" => $exception->getMessage()];
+        }
+        return response()->json($result,200);
     }
 
     public function create(Request $request)
@@ -40,7 +58,7 @@ class PaymentController extends Controller
                     'email' => $request->input('email') ?? 'example@demo.com',
                     'service_provider' => 'payu_paisa',
                     'surl' => route('payumoney.gateway.response', ['txn_number' => $request->input('txn_number')]),
-                    'furl' => route('gift.init', ['username' => $request->input('username'),'retry'=>1]),
+                    'furl' => route('template', ['username' => $request->input('username'),'retry'=>1]),
                     'firstname' => $request->input('name'),
                     'productinfo' => 'Blessings for user',
                     'amount' => $request->input('amount'),
@@ -59,29 +77,7 @@ class PaymentController extends Controller
         }
     }
 
-    public function store(GuestStorePaymentRequest $request,Payment $payment)
-    {
 
-        try {
-           $request->request->add(['txn_number' => $payment->getNextOrderNumber(),'payment_status'=>'init']);
-           $payment->create($request->all());
-
-           $url = route('gift.create',[
-                'username'=>$request->input('username'),
-                'txn_number'=>$request->input('txn_number'),
-                'amount'=>$request->input('amount'),
-                 'name'=>$request->input('name')??null,
-                'email'=>$request->input('email')??'no-reply@example.com',
-                'phone'=>$request->input('mobile')??'8839421623',
-           ]);
-           $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "User registration successful"];
-        }
-        catch (\Exception $exception)
-        {
-           $result = ["status" => 0, "response" => "error", "message" => $exception->getMessage()];
-        }
-        return response()->json($result,200);
-    }
 
     public function payUMoneyResponse(Request $request,$txn_number)
     {
@@ -107,7 +103,7 @@ class PaymentController extends Controller
         }
         catch (\Exception $exception)
         {
-            return redirect()->route('gift.init',['username'=>$payment->template->username, 'retry'=>1,'message'=>$exception->getMessage()]);
+            return redirect()->route('template',['username'=>$payment->template->username, 'retry'=>1,'message'=>$exception->getMessage()]);
         }
 
          return redirect()->route('gift.message',$txn_number);

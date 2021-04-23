@@ -72,7 +72,6 @@ Route::group(['prefix' => 'password', 'as' => 'password.',  'middleware' => ['au
 
 //function for guest to init payments to the user
 Route::group(['prefix' => 'gift', 'as' => 'gift.'], function () {
-Route::any('init/{username}', 'Guest\PaymentController@init')->name('init');
 Route::get('create', 'Guest\PaymentController@create')->name('create');
 Route::post('store', 'Guest\PaymentController@store')->name('store');
 Route::get('message/{txn_number}', 'Guest\PaymentController@message')->name('message');

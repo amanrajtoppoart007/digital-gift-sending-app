@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/dropzone/min/dropzone.min.css') }}">
     <!-- Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/index.css') }}">
+    @yield('head')
 
     <!-- Website Title -->
     <title>Website Title</title>
