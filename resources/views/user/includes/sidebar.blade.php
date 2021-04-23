@@ -45,6 +45,10 @@
             <img class="c-sidebar-nav-icon" src="{{asset('front-assets/images/padlock.svg')}}" alt="">
             <a href="{{ route('password.change') }}" class="c-sidebar-nav-link">Change Password</a>
         </li>
+        <li class="c-sidebar-nav-item">
+            <img class="c-sidebar-nav-icon" src="{{asset('front-assets/images/profile.svg')}}" alt="">
+            <a href="#" class="c-sidebar-nav-link">Profile</a>
+        </li>
         <li class="c-sidebar-nav-item align-items-center">
             <img class="c-sidebar-nav-icon" src="{{asset('front-assets/images/contact.svg')}}" alt="">
             <a href="{{ route('contact') }}" class="c-sidebar-nav-link">Contact Us</a>
