@@ -24,7 +24,6 @@ class UpdateTemplateRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id'=>'required|numeric',
             'banner_title'=>'required',
             'description'=>'required',
             'payment_type'=>'required',
