@@ -47,7 +47,7 @@
         </li>
         <li class="c-sidebar-nav-item">
             <img class="c-sidebar-nav-icon" src="{{asset('front-assets/images/profile.svg')}}" alt="">
-            <a href="#" class="c-sidebar-nav-link">Profile</a>
+            <a href="{{ route('profile.edit') }}" class="c-sidebar-nav-link">Profile</a>
         </li>
         <li class="c-sidebar-nav-item align-items-center">
             <img class="c-sidebar-nav-icon" src="{{asset('front-assets/images/contact.svg')}}" alt="">

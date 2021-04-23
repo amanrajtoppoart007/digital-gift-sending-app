@@ -40,7 +40,9 @@ Route::prefix('registration')->group(function () {
 });
 Route::resource('account', 'User\AccountController');
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
-// Change password
+    Route::get('/', [\App\Http\Controllers\User\ProfileController::class, 'edit'])->name('edit');
+    Route::post('/', [\App\Http\Controllers\User\ProfileController::class, 'update'])->name('update');
+    // Change password
     if (file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php'))) {
         Route::get('password', 'ChangePasswordController@edit')->name('password.edit');
         Route::post('password', 'ChangePasswordController@update')->name('password.update');
