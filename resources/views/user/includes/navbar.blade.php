@@ -11,9 +11,6 @@
                     </li>
                     <hr>
                     <li class="nav-item mx-auto px-1">
-                        <a href="{{ route('password.change') }}" class="nav-link text-secondary">Change password</a>
-                    </li>
-                    <li class="nav-item mx-auto px-1">
                         <a class="nav-link text-secondary" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">

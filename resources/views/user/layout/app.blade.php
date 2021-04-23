@@ -40,7 +40,8 @@
             align-content: center;
             text-align: center;
         }
-        .spinner  {
+
+        .spinner {
             position: absolute;
             width: 80px;
             height: 80px;
@@ -48,21 +49,97 @@
             -ms-transform: translateY(-50%);
             transform: translateY(-50%);
         }
+
+        .c-sidebar-nav-link {
+            color: #0070ba !important;
+        }
+
+        .c-sidebar .c-sidebar-nav-dropdown-toggle {
+            color: #0070ba !important;
+        }
+
+        .c-sidebar .c-sidebar-nav-dropdown-toggle:hover {
+            color: white !important;
+            background-color: #0070ba !important;
+        }
+
+        .c-sidebar .c-sidebar-nav-dropdown-toggle:hover .c-sidebar-nav-icon {
+            color: white !important;
+        }
+
+        .c-sidebar-nav-item {
+            cursor: pointer;
+            padding: 10px 0px 10px 10px;
+        }
+
+        .c-sidebar-nav-item:hover {
+            background-color: #0070ba !important;
+        }
+
+        .c-sidebar-nav-dropdown {
+            cursor: pointer;
+            padding: 10px;
+        }
+        .c-sidebar-nav-dropdown:hover {
+            background-color: #0070ba !important;
+        }
+
+
+
+        .c-sidebar-nav-link {
+            width: 100%;
+        }
+
+        .c-sidebar-nav-link:hover {
+            color: white !important;
+            background-color: #0070ba !important;
+        }
+
+        .c-sidebar-nav-dropdown-toggle {
+            color: #0070ba !important;
+            width: 100%;
+        }
+        .c-sidebar-nav-dropdown-items {
+            cursor: pointer;
+            list-style: none;
+        }
+        .c-sidebar-nav-dropdown-items:hover {
+            color: white !important;
+            background-color: #0070ba !important;
+        }
+        .c-sidebar-nav-icon {
+            -ms-flex: 0 0 56px;
+            flex: 0 0 56px;
+            height: 1.09375rem;
+            font-size: 1.09375rem;
+            text-align: center;
+            transition: .3s;
+            fill: currentColor;
+        }
     </style>
 </head>
 
 <body>
 <div id="overlay">
- <img class="spinner" src="{{asset('img/spinner.gif')}}" alt="spinner">
+    <img class="spinner" src="{{asset('img/spinner.gif')}}" alt="spinner">
 </div>
 @include('user.includes.navbar')
-<main id="main">
-    <section id="second-section" class="py-2">
-        <div class="container"  style="min-height:500px;">
-            @yield('content')
-        </div>
-    </section>
-</main>
+<div class="row no-gutters">
+    <div class="col-2">
+        @include('user.includes.sidebar')
+    </div>
+    <div class="col">
+
+        <main id="main">
+            <section id="second-section" class="py-2 h-100">
+                <div class="container" style="min-height:100vh;">
+                    @yield('content')
+                </div>
+            </section>
+        </main>
+    </div>
+</div>
+
 
 @include("user.includes.footer")
 
@@ -74,12 +151,12 @@
 <script src="{{asset('plugins/jquery-toast/jquery.toast.min.js')}}"></script>
 <script src="{{asset('js/function.js')}}"></script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
 
-        $("#navbar-toggler").click(function(){
+        $("#navbar-toggler").click(function () {
             $("#navbar-menu").toggle(0);
         })
-        $("#navbar-toggler").blur(function(){
+        $("#navbar-toggler").blur(function () {
             $("#navbar-collapse").hide(0);
         })
 
