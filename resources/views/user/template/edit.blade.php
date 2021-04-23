@@ -75,7 +75,7 @@
                                     @endforeach
                                 </div>
 
-                                <div class="form-group m-3" id="checkbox-group-container">
+                                <div class="form-group m-3" id="checkbox-group-container" {!! ($template->payment_type=='without_sender_detail')?'style="display:none;"':'' !!}>
                                     @foreach($inputs as $input)
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input c-input-group-checkbox" type="checkbox"
@@ -88,7 +88,7 @@
                                 </div>
 
                             </div>
-                            <button type="submit" class="btn btn-primary">Update Template</button>
+                            <button type="submit" class="btn btn-primary">Update Page</button>
                         </form>
                     </div>
                 </div>
