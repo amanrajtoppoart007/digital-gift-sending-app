@@ -129,7 +129,6 @@
         @include('user.includes.sidebar')
     </div>
     <div class="col">
-
         <main id="main">
             <section id="second-section" class="py-2 h-100">
                 <div class="container" style="min-height:100vh;">

@@ -58,10 +58,10 @@
             <img class="c-sidebar-nav-icon" src="{{asset('front-assets/images/logout.svg')}}" alt="">
             <a class="c-sidebar-nav-link" href="{{ route('logout') }}"
                onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
+                                             document.getElementById('sidebar-logout-form').submit();">
                 {{ __('Logout') }}
             </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            <form id="sidebar-logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
         </li>

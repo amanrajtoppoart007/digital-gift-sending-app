@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTemplateRequest;
 use App\Http\Requests\UpdateTemplateRequest;
+use App\Models\State;
 use App\Models\Template;
 use App\Models\User;
 
@@ -27,7 +28,45 @@ class TemplateController extends Controller
 
     public function create()
     {
-        return view('user.template.create');
+        $inputs = [
+            [
+                'id'=>'name',
+                 'value'=>'name',
+                'title'=>'Name'
+            ],
+            [
+                'id'=>'email',
+                 'value'=>'email',
+                'title'=>'Email'
+            ],
+            [
+                'id'=>'mobile',
+                 'value'=>'mobile',
+                'title'=>'Mobile'
+            ],
+            [
+                'id'=>'state',
+                 'value'=>'state',
+                'title'=>'State'
+            ],
+            [
+                'id'=>'city',
+                 'value'=>'city',
+                'title'=>'City'
+            ],
+            [
+                'id'=>'address',
+                 'value'=>'address',
+                'title'=>'Address'
+            ],
+            [
+                'id'=>'pin_code',
+                 'value'=>'pincode',
+                'title'=>'Pin Code'
+            ],
+        ];
+
+        return view('user.template.create',compact('inputs'));
     }
 
     /**
@@ -37,13 +76,13 @@ class TemplateController extends Controller
     {
         try {
             $user = User::find(auth()->user()->id);
-            $template = $user->template()->create($request->all());
+            $template = $user->template()->create($request->validated());
             if ($request->input('banner_image', false))
             {
                 $template->addMedia(storage_path('tmp/uploads/' . $request->input('banner_image')))->toMediaCollection('banner_image');
             }
             $url = route('template.show',['username'=>$user->template->username]);
-            $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "Template created successful"];
+            $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "Template created successfully"];
         }
         catch (\Exception $exception)
         {
@@ -58,8 +97,8 @@ class TemplateController extends Controller
     public function show($username)
     {
         $template = Template::where(['username'=>$username])->first();
-
-        return view("user.template.show",compact('template'));
+        $states = State::get();
+        return view("user.template.show",compact('template','states'));
     }
 
 
@@ -70,23 +109,61 @@ class TemplateController extends Controller
            [
                'id'=>'payment_type_sender_detail',
                'value'=>'with_sender_detail',
-               'title'=>'Sender detail required'
+               'title'=>'With Sender Detail'
            ],
            [
                'id'=>'payment_type_anonymous',
                'value'=>'without_sender_detail',
-               'title'=>'Anonymous sender detail not required'
+               'title'=>'Without Sender Detail'
            ],
        ];
 
-        return view("user.template.edit",compact('template','payment_types'));
+       $inputs = [
+            [
+                'id'=>'name',
+                 'value'=>'name',
+                'title'=>'Name'
+            ],
+            [
+                'id'=>'email',
+                 'value'=>'email',
+                'title'=>'Email'
+            ],
+            [
+                'id'=>'mobile',
+                 'value'=>'mobile',
+                'title'=>'Mobile'
+            ],
+            [
+                'id'=>'state',
+                 'value'=>'state',
+                'title'=>'State'
+            ],
+            [
+                'id'=>'city',
+                 'value'=>'city',
+                'title'=>'City'
+            ],
+            [
+                'id'=>'address',
+                 'value'=>'address',
+                'title'=>'Address'
+            ],
+            [
+                'id'=>'pin_code',
+                 'value'=>'pincode',
+                'title'=>'Pin Code'
+            ],
+        ];
+
+        return view("user.template.edit",compact('template','payment_types','inputs'));
     }
 
 
     public function update(UpdateTemplateRequest $request,$id)
     {
         try {
-             Template::where(['id' => $id])->update($request->only(['banner_title','description','payment_type']));
+             Template::where(['id' => $id])->update($request->validated());
              $template = Template::find($id);
             if ($request->input('banner_image', false)) {
                 if (!$template->banner_image || $request->input('banner_image') !== $template->banner_image->file_name) {

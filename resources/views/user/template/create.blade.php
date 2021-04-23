@@ -15,11 +15,11 @@
                         @csrf
 
                          <div class="form-group">
-                            <label for="username"><strong>Payment URL </strong> <span class="text-danger">*</span></label>
+                            <label for="username"><strong>Page Url </strong> <span class="text-danger">*</span></label>
 
                              <div class="input-group">
                                  <div class="input-group-prepend">
-                                     <span class="input-group-text">http://payme.webtutorial.in/view/</span>
+                                     <span class="input-group-text">{!! route('template',['username'=>'&nbsp;']) !!}</span>
                                  </div>
                                  <input type="text" class="form-control" id="username" name="username"
                                         aria-describedby="username_help">
@@ -60,7 +60,7 @@
                                               id="payment_type_sender_detail"
                                               value="with_sender_detail" checked>
                                        <label class="form-check-label" for="payment_type_sender_detail">
-                                           Sender detail required
+                                           With Sender Detail
                                        </label>
                                    </div>
                                </div>
@@ -70,12 +70,20 @@
                                                id="payment_type_anonymous"
                                                value="without_sender_detail">
                                         <label class="form-check-label" for="payment_type_anonymous">
-                                            Anonymous sender detail not required
+                                            Without Sender Detail
                                         </label>
                                     </div>
                                 </div>
                             </div>
 
+                        </div>
+                        <div class="form-group m-3" id="checkbox-group-container" {{$template->payment_type=='without_sender_detail'?'style="display:none"':''}} >
+                            @foreach($inputs as $input)
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input c-input-group-checkbox" type="checkbox" name="inputs[]" id="checkbox-input-{{$input['id']}}" value="{{$input['value']}}">
+                                    <label class="form-check-label" for="checkbox-input-{{$input['id']}}">{{$input['title']}}</label>
+                                </div>
+                            @endforeach
                         </div>
                          <button type="submit" class="btn btn-primary">Create Template</button>
                     </form>
@@ -86,6 +94,25 @@
 </div>
 @endsection
 @section('script')
+    <script>
+        $(document).ready(function(){
+            $("input[name='payment_type']").on("change",function(){
+                if($(this).val()==='without_sender_detail')
+                {
+                    $(".c-input-group-checkbox").each(function(){
+                        $(this).prop({'checked':false});
+                    });
+
+                    $("#checkbox-group-container").hide();
+
+                }
+                else
+                {
+                    $("#checkbox-group-container").show();
+                }
+            });
+        });
+    </script>
     <script>
     Dropzone.options.bannerImageDropzone = {
     url: '{{ route('upload.media') }}',

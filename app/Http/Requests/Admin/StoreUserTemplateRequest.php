@@ -30,6 +30,7 @@ class StoreUserTemplateRequest extends FormRequest
             'banner_title'=>'required',
             'description'=>'required',
             'payment_type'=>'required',
+            'inputs'=>'nullable|array'
         ];
     }
 }

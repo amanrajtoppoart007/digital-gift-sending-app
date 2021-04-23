@@ -19,6 +19,7 @@ class CreateTemplatesTable extends Migration
             $table->text('banner_title');
             $table->text('description')->nullable();
             $table->string('payment_type');
+            $table->json('inputs')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

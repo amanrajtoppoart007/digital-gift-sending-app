@@ -29,10 +29,14 @@ class Template extends Model implements HasMedia
         'banner_title',
         'description',
          'payment_type',
+         'inputs',
          'created_at',
         'updated_at',
         'deleted_at',
     ];
+     protected $casts = [
+    'inputs' => 'array',
+];
 
      public function payment()
      {
