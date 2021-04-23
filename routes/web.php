@@ -1,6 +1,6 @@
 <?php
 //function for guest to view user profile
-Route::get('view/{username}', 'Guest\TemplateController@show')->name('template');
+Route::any('view/{username}', 'Guest\TemplateController@show')->name('template');
 Route::post('pay-u-money-gate-way/response/{txn_number}','Guest\PaymentController@payUMoneyResponse')->name('payumoney.gateway.response');
 Route::post('submit/enquiry/form','Guest\EnquiryController@store')->name('store.guest.enquiry');
 Route::get('/home','User\HomeController@index')->name('home');

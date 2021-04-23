@@ -30,7 +30,7 @@ class PaymentController extends Controller
                 'email'=>$request->input('email')??($payment->user->email??'user@example.com'),
                 'phone'=>$request->input('mobile')??($payment->user->mobile??'1234567890'),
            ]);
-           $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "User registration successful"];
+           $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "Payment detail added successfully"];
         }
         catch (\Exception $exception)
         {
