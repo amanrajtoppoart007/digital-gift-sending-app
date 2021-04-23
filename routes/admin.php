@@ -13,12 +13,15 @@ Route::post('users/parse-csv-import', 'Admin\UsersController@parseCsvImport')->n
 Route::post('users/process-csv-import', 'Admin\UsersController@processCsvImport')->name('users.processCsvImport');
 Route::resource('users', 'Admin\UsersController');
 Route::post('users/add-profile/{$user}', [\App\Http\Controllers\Admin\UsersController::class, 'addProfile'])->name('users.add-profile');
+
+Route::post('users/change/approval/status','Admin\UsersController@changeApprovalStatus')->name('users.changeApprovalStatus');
 // User Alerts
 Route::delete('user-alerts/destroy', 'Admin\UserAlertsController@massDestroy')->name('user-alerts.massDestroy');
 Route::resource('user-alerts', 'Admin\UserAlertsController', ['except' => ['edit', 'update']]);
 Route::get('get-user-alert', [\App\Http\Controllers\Admin\UserAlertsController::class, 'getUserAlert'])->name('get.user-alert');
 Route::post('add-user-alert', [\App\Http\Controllers\Admin\UserAlertsController::class, 'addUserAlert'])->name('user-alert.add');
 Route::post('update-user-alert', [\App\Http\Controllers\Admin\UserAlertsController::class, 'updateUserAlert'])->name('user-alert.update');
+
 // Audit Logs
 Route::resource('audit-logs', 'Admin\AuditLogsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
 // Settings

@@ -79,6 +79,53 @@
 @endsection
 @section('scripts')
 @parent
+ <script>
+        $(document).ready(function(){
+            $(document).on('change','.user-approval-status',function(e){
+                 $.ajax({
+                     headers: {'x-csrf-token': _token},
+                    url: "{{route('admin.users.changeApprovalStatus')}}",
+                    type: 'POST',
+                    data: {
+                         id : $(this).attr('data-id')
+                          },
+                    dataType: 'json',
+                    beforeSend: function () {
+                        $("#overlay").show();
+                    },
+                    success: function (res) {
+                        if (res.response === "success")
+                        {
+                            $.notify(res.message,'success','top-right');
+
+                        } else
+                        {
+
+                             $.notify(res.message,'error','top-right');
+                        }
+                    },
+                    error: function (jqXhr) {
+
+                        let data = jqXhr.responseJSON;
+                        if (data.errors)
+                        {
+                            let error = '';
+                            $.each(data.errors, function (index, item) {
+                               error += item[0]+"\n";
+                            });
+
+                             $.notify(error,'error','top-right');
+                        }
+
+                    },
+
+                    complete: function () {
+                        $("#overlay").hide();
+                    }
+                });
+            })
+        });
+    </script>
 <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)

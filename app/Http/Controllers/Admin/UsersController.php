@@ -7,6 +7,7 @@ use App\Http\Controllers\Traits\CsvImportTrait;
 use App\Http\Requests\MassDestroyUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\UserApprovalStatusRequest;
 use App\Mail\UserWelcomeMessage;
 
 use App\Models\Role;
@@ -65,10 +66,11 @@ class UsersController extends Controller
             });
 
             $table->editColumn('approved', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->approved ? 'checked' : null) . '>';
+
+                return '<input type="checkbox" class="user-approval-status" data-id="'.$row->id.'"  ' . ($row->approved ? 'checked' : null) . '>';
             });
             $table->editColumn('verified', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->verified ? 'checked' : null) . '>';
+                return '<input  type="checkbox"  disabled ' . ($row->verified ? 'checked' : null) . '>';
             });
             $table->editColumn('roles', function ($row) {
                 $labels = [];
@@ -200,6 +202,21 @@ class UsersController extends Controller
         $user->load('roles');
 
         return view('admin.users.show', compact('user'));
+    }
+
+      public function changeApprovalStatus(UserApprovalStatusRequest $request)
+    {
+        try {
+           $user = User::find($request->input('id'));
+           $user->approved = 1;
+           $user->save();
+           $result = ["status" => 1, "response" => "success",  "message" => "User approval status changed successful"];
+        }
+        catch (\Exception $exception)
+        {
+           $result = ["status" => 0, "response" => "error", "message" => $exception->getMessage()];
+        }
+        return response()->json($result,200);
     }
 
     public function destroy(User $user)
