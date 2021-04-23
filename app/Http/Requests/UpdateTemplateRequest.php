@@ -28,7 +28,7 @@ class UpdateTemplateRequest extends FormRequest
             'description'=>'required',
             'payment_type'=>'required',
         ];
-        if(request()->payment_type==='with_sender_detail')
+        if(request()->input('payment_type')==='with_sender_detail')
         {
             $rules['inputs'] = 'required|array|min:1';
         }

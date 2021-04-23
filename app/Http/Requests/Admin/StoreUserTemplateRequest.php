@@ -21,16 +21,31 @@ class StoreUserTemplateRequest extends FormRequest
      *
      * @return array
      */
+
     public function rules()
     {
-          return [
-            'user_id'=>'required|numeric',
+        $rules = [
+             'user_id'=>'required|numeric',
             'username'=>'required|unique:templates,username',
             'banner_image'=>'required',
             'banner_title'=>'required',
             'description'=>'required',
             'payment_type'=>'required',
-            'inputs'=>'nullable|array'
         ];
+
+        if(request()->input('payment_type')==='with_sender_detail')
+        {
+            $rules['inputs'] = 'required|array|min:1';
+        }
+        else
+        {
+            $rules['inputs'] = 'array|empty';
+        }
+        return $rules;
+    }
+
+    public function messages()
+    {
+        return ['inputs.required' =>'Input fields detail for the sender is required'];
     }
 }

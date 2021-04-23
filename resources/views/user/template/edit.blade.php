@@ -8,7 +8,7 @@
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        Edit Template
+                        Edit Page
                     </div>
                     <div class="card-body" style="min-height:450px">
                         <form id="create_template_form" method="POST" action="{{route('template.store')}}"

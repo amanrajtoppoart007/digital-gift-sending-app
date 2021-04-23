@@ -23,11 +23,29 @@ class UpdateUserTemplateRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'banner_title'=>'required',
             'description'=>'required',
             'payment_type'=>'required',
-            'inputs'=>'nullable|array'
         ];
+        if(request()->input('payment_type')==='with_sender_detail')
+        {
+            $rules['inputs'] = 'required|array|min:1';
+        }
+        else
+        {
+            $rules['inputs'] = 'array|nullable';
+        }
+
+        return $rules;
+    }
+
+    /**
+     * @return array
+     */
+
+     public function messages()
+    {
+        return ['inputs.required' =>'Input fields detail for the sender is required'];
     }
 }

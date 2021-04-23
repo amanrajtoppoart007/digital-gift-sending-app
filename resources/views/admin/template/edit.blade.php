@@ -5,17 +5,24 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    Create Template
+                    Edit Page
                 </div>
                 <div class="card-body">
                     <form  id="edit_template_form" method="POST"  action="{{route('admin.template.update',$template->id)}}"  enctype="multipart/form-data">
                         @csrf
 
                          <div class="form-group">
-                            <label for="username"><strong>User Name </strong> <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="username" name="username" value="{{$template->username}}"
-                                   aria-describedby="username_help">
-                        </div>
+                                <label for="username"><strong>Page Url </strong> <span
+                                        class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">{!! route('template',['username'=>'&nbsp;']) !!}</span>
+                                    </div>
+                                    <input type="text" class="form-control" id="username" name="username"
+                                           value="{{$template->username}}"
+                                           aria-describedby="username_help" disabled>
+                                </div>
+                            </div>
                         <div class="form-group">
                             <label for="banner_image"> <strong>Banner Image</strong> <span class="text-danger">*</span></label>
                             <div class="needsclick  dropzone {{ $errors->has('banner_image') ? 'is-invalid' : '' }}"
@@ -57,9 +64,20 @@
                                </div>
                                 @endforeach
                             </div>
-
                         </div>
-                         <button type="submit" class="btn btn-primary">Update Template</button>
+                        <div class="form-group m-3"
+                             id="checkbox-group-container" {!! ($template->payment_type=='without_sender_detail')?'style="display:none;"':'' !!}>
+                            @foreach($inputs as $input)
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input c-input-group-checkbox" type="checkbox"
+                                           name="inputs[]" id="checkbox-input-{{$input['id']}}"
+                                           value="{{$input['value']}}" {{(in_array($input['value'],($template->inputs??[]))&&($template->payment_type=='with_sender_detail'))?'checked':''}}>
+                                    <label class="form-check-label"
+                                           for="checkbox-input-{{$input['id']}}">{{$input['title']}}</label>
+                                </div>
+                            @endforeach
+                        </div>
+                         <button type="submit" class="btn btn-primary">Update Page</button>
                     </form>
                 </div>
             </div>
@@ -68,6 +86,25 @@
 </div>
 @endsection
 @section('scripts')
+        <script>
+        $(document).ready(function(){
+            $("input[name='payment_type']").on("change",function(){
+                if($(this).val()==='without_sender_detail')
+                {
+                    $(".c-input-group-checkbox").each(function(){
+                        $(this).prop({'checked':false});
+                    });
+
+                    $("#checkbox-group-container").hide();
+
+                }
+                else
+                {
+                    $("#checkbox-group-container").show();
+                }
+            });
+        });
+    </script>
     <script>
     Dropzone.options.bannerImageDropzone = {
     url: '{{ route('upload.media') }}',

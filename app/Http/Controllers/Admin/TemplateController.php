@@ -23,7 +23,44 @@ class TemplateController extends Controller
     public function create($userId)
     {
         $user = User::find($userId);
-        return view('admin.template.create',compact('user'));
+        $inputs = [
+            [
+                'id'=>'name',
+                 'value'=>'name',
+                'title'=>'Name'
+            ],
+            [
+                'id'=>'email',
+                 'value'=>'email',
+                'title'=>'Email'
+            ],
+            [
+                'id'=>'mobile',
+                 'value'=>'mobile',
+                'title'=>'Mobile'
+            ],
+            [
+                'id'=>'state',
+                 'value'=>'state',
+                'title'=>'State'
+            ],
+            [
+                'id'=>'city',
+                 'value'=>'city',
+                'title'=>'City'
+            ],
+            [
+                'id'=>'address',
+                 'value'=>'address',
+                'title'=>'Address'
+            ],
+            [
+                'id'=>'pin_code',
+                 'value'=>'pincode',
+                'title'=>'Pin Code'
+            ],
+        ];
+        return view('admin.template.create',compact('user','inputs'));
     }
 
 
@@ -31,7 +68,7 @@ class TemplateController extends Controller
     {
         try {
             $user = User::find($request->input('user_id'));
-            $template = $user->template()->create($request->all());
+            $template = $user->template()->create($request->validated());
             if ($request->input('banner_image', false))
             {
                 $template->addMedia(storage_path('tmp/uploads/' . $request->input('banner_image')))->toMediaCollection('banner_image');
@@ -73,14 +110,52 @@ class TemplateController extends Controller
            ],
        ];
 
-        return view("admin.template.edit",compact('template','payment_types'));
+       $inputs = [
+            [
+                'id'=>'name',
+                 'value'=>'name',
+                'title'=>'Name'
+            ],
+            [
+                'id'=>'email',
+                 'value'=>'email',
+                'title'=>'Email'
+            ],
+            [
+                'id'=>'mobile',
+                 'value'=>'mobile',
+                'title'=>'Mobile'
+            ],
+            [
+                'id'=>'state',
+                 'value'=>'state',
+                'title'=>'State'
+            ],
+            [
+                'id'=>'city',
+                 'value'=>'city',
+                'title'=>'City'
+            ],
+            [
+                'id'=>'address',
+                 'value'=>'address',
+                'title'=>'Address'
+            ],
+            [
+                'id'=>'pin_code',
+                 'value'=>'pincode',
+                'title'=>'Pin Code'
+            ],
+        ];
+
+        return view("admin.template.edit",compact('template','payment_types','inputs'));
     }
 
 
     public function update(UpdateUserTemplateRequest $request,$id)
     {
         try {
-             Template::where(['id' => $id])->update($request->only(['banner_title','description','payment_type']));
+             Template::where(['id' => $id])->update($request->validated());
              $template = Template::find($id);
             if ($request->input('banner_image', false)) {
                 if (!$template->banner_image || $request->input('banner_image') !== $template->banner_image->file_name) {
