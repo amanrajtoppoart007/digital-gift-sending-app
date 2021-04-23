@@ -15,7 +15,7 @@
                 <br>
             </div>
 
-            <div class="col-lg-3 col-md-6 col-sm-12 card-body">
+            <div class="col-lg-3 col-md-6 col-sm-12">
                 <h5 class="font-weight-bold text-theme-1 mb-2">Quick Links</h5>
                 <ul class="ml-4">
                     <li class="my-2"><a href="{{ route('index') }}" class="card-link text-theme-1">Home</a></li>
@@ -26,7 +26,8 @@
                 </ul>
             </div>
 
-            <div class="col-lg-3 col-md-6 col-sm-12 card-body text-center">
+            <div class="col-lg-3 col-md-6 col-sm-12text-center">
+                <h5 class="font-weight-bold text-theme-1 mb-2">Payment Partner</h5>
                 <img src="{{ asset('img/payumoney.png') }}" alt="">
                     <div class="mt-4">
                         <img height="20px" src="{{ asset('img/american-express.svg') }}" alt="">
@@ -37,17 +38,18 @@
                     </div>
             </div>
 
-            <div class="col-lg-3 col-md-6 col-sm-12 card-body">
+            <div class="col-lg-3 col-md-6 col-sm-12">
                 <h5 class="font-weight-bold text-theme-1">Company</h5>
                 <p class="text-secondary">Company address</p>
-                <ul class="mt-3">
+                <ul class="mt-4">
                     <li class="d-inline-block mr-1"><a href="#"><img
                                 src="{{ asset('front-assets/images/facebook.svg') }}" alt="facebook"></a></li>
                     <li class="d-inline-block mx-1"><a href="#"><img
                                 src="{{ asset('front-assets/images/linkedin.svg') }}" alt="linkedin"></a></li>
                     <li class="d-inline-block mx-1"><a href="#"><img
                                 src="{{ asset('front-assets/images/twitter.svg') }}" alt="twitter"></a></li>
-                </ul>
+                    </ul>
+
             </div>
 
         </div>
