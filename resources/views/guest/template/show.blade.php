@@ -1,4 +1,4 @@
-@extends("guest.layout.app")
+@extends("guest.layout.view")
 @section("head")
     <script type='text/javascript'
             src='https://platform-api.sharethis.com/js/sharethis.js#property=6081b96b1c703400184e0d6d&product=sop'
@@ -74,15 +74,17 @@
                                     @endif
 
                       </div>
+                                @if(($template->payment_type==='with_sender_detail')&&(!empty($template->inputs)))
                             <p class="text-danger mx-3">By clicking on this button, you provide your consent to share your name,mobile  and
                                 address with {{trans('panel.site_title')}}.</p>
+                                @endif
                              <div class="form-group mx-3 d-block text-center">
-                                 <button type="submit" class="btn btn-success">Pay Now</button>
+                                 <button type="submit" class="btn btn-success">Send Gift</button>
                              </div>
                             </form>
                         </div>
                     </div>
-                <div>
+                <div class="py-2">
                     <div
                         class="sharethis-inline-share-buttons"
                         data-url="{{route('template',$template->username)}}"
