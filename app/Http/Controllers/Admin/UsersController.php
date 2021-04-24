@@ -211,7 +211,7 @@ class UsersController extends Controller
            $user = User::find($request->input('id'));
            $user->approved = !($request->input('status'));
            $user->save();
-           $result = ["status" => 1, "response" => "success",  "message" => "User approval status changed successful"];
+           $result = ["status" => 1, "response" => "success",  "message" => "User approval status changed successfully"];
         }
         catch (\Exception $exception)
         {
@@ -226,7 +226,7 @@ class UsersController extends Controller
            $user = User::find($request->input('id'));
            $user->verified = !($request->input('status'));
            $user->save();
-           $result = ["status" => 1, "response" => "success",  "message" => "User verification status changed successful"];
+           $result = ["status" => 1, "response" => "success",  "message" => "User verification status changed successfully"];
         }
         catch (\Exception $exception)
         {

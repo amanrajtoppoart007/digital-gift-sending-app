@@ -27,13 +27,13 @@ class GuestStorePaymentRequest extends FormRequest
            {
                return [
                    'amount'=>'required|numeric',
-                   'name'=>'required',
-                   'email'=>'required|email',
-                   'mobile'=>'required|numeric|digits:10',
-                   'address'=>'required',
-                   'state_id'=>'required|numeric',
-                   'city'=>'required',
-                   'pin_code'=>'required|numeric|digits:6',
+                   'name'=>'nullable',
+                   'email'=>'nullable|email',
+                   'mobile'=>'nullable|numeric|digits:10',
+                   'address'=>'nullable',
+                   'state_id'=>'nullable|numeric',
+                   'city'=>'nullable',
+                   'pin_code'=>'nullable|numeric|digits:6',
 
                ];
            }

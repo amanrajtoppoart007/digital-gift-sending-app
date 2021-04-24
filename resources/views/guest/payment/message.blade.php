@@ -1,6 +1,8 @@
 @extends("guest.layout.app")
 @section("head")
-    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=60800a553637330018507269&product=inline-share-buttons" async="async"></script>
+    <script type='text/javascript'
+            src='https://platform-api.sharethis.com/js/sharethis.js#property=6081b96b1c703400184e0d6d&product=sop'
+            async='async'></script>
 @endsection
 @section("content")
     <main id="main">
