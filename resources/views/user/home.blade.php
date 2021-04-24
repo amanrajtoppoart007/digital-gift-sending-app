@@ -5,11 +5,24 @@
             background-color: #0070ba !important;
             color: white !important;
         }
+        .alert-blue {
+            color: #c0e0ff;
+            background-color: rgba(0, 112, 186, 0.8);
+            border-color: #71a5cd;
+        }
     </style>
     <div>
         <div class="row">
-            <div class="col-12 p-4">
-                <h5>Welcome, {{ auth()->user()->name }}</h5>
+            <div class="col-12">
+                <div class="alert alert-blue alert-dismissible fade show" role="alert">
+                    <span>
+                        Welcome <strong> {{ auth()->user()->name }}</strong> thank you for joining online ashirwaad, create your page, share it and start receiving gifts.
+                    </span>
+
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             </div>
             <div class="col-lg-12">
                 <div class="row my-2 gap-4">
