@@ -19,105 +19,12 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/dropzone/min/dropzone.min.css') }}">
     <!-- Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/index.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/user-panel.css') }}">
     @yield('head')
 
     <!-- Website Title -->
     <title>Website Title</title>
     @yield("styles")
-    <style>
-        #overlay {
-            position: fixed; /* Sit on top of the page content */
-            display: none; /* Hidden by default */
-            width: 100%; /* Full width (cover the whole page) */
-            height: 100%; /* Full height (cover the whole page) */
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
-            z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-            cursor: pointer; /* Add a pointer on hover */
-            justify-content: center;
-            align-content: center;
-            text-align: center;
-        }
-
-        .spinner {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            top: 50%;
-            -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
-        }
-
-        .c-sidebar-nav-link {
-            color: #0070ba !important;
-        }
-
-        .c-sidebar .c-sidebar-nav-dropdown-toggle {
-            color: #0070ba !important;
-        }
-
-        .c-sidebar .c-sidebar-nav-dropdown-toggle:hover {
-            color: white !important;
-            background-color: #0070ba !important;
-        }
-
-        .c-sidebar .c-sidebar-nav-dropdown-toggle:hover .c-sidebar-nav-icon {
-            color: white !important;
-        }
-
-        .c-sidebar-nav-item {
-            cursor: pointer;
-            padding: 10px 0px 10px 10px;
-        }
-
-        .c-sidebar-nav-item:hover {
-            background-color: #0070ba !important;
-        }
-
-        .c-sidebar-nav-dropdown {
-            cursor: pointer;
-            padding: 10px;
-        }
-        .c-sidebar-nav-dropdown:hover {
-            background-color: #0070ba !important;
-        }
-
-
-
-        .c-sidebar-nav-link {
-            width: 100%;
-        }
-
-        .c-sidebar-nav-link:hover {
-            color: white !important;
-            background-color: #0070ba !important;
-        }
-
-        .c-sidebar-nav-dropdown-toggle {
-            color: #0070ba !important;
-            width: 100%;
-        }
-        .c-sidebar-nav-dropdown-items {
-            cursor: pointer;
-            list-style: none;
-        }
-        .c-sidebar-nav-dropdown-items:hover {
-            color: white !important;
-            background-color: #0070ba !important;
-        }
-        .c-sidebar-nav-icon {
-            -ms-flex: 0 0 56px;
-            flex: 0 0 56px;
-            height: 1.09375rem;
-            font-size: 1.09375rem;
-            text-align: center;
-            transition: .3s;
-            fill: currentColor;
-        }
-    </style>
 </head>
 
 <body>

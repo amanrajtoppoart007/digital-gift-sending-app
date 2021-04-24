@@ -23,13 +23,7 @@ button.btn-theme-1 {
 	padding-left: 25px;
 	padding-right: 25px;
 }
-.c-sidebar-nav-link:hover {
-    color: #ffffff !important;
-    text-decoration: none;
-}
-.c-sidebar-nav-item:hover>.c-sidebar-nav-link {
-    color: #ffffff !important;
-}
+
 a.btn-theme-1:hover,
 button.btn-theme-1:hover {
 	background-color: var(--color-1);
