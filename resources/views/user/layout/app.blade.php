@@ -24,7 +24,7 @@
     @yield('head')
 
     <!-- Website Title -->
-    <title>Website Title</title>
+    <title>{{trans('panel.site_title')}}</title>
     @yield("styles")
 </head>
 

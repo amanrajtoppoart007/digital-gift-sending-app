@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Payment;
 use App\Models\Template;
-use App\Models\UserProfile;
-use Illuminate\Http\Request;
- use Softon\Indipay\Facades\Indipay;
+use PDF;
 class PaymentController extends Controller
 {
     public function init($username)
@@ -19,5 +18,13 @@ class PaymentController extends Controller
     {
         $payments = auth()->user()->payments()->paginate(10);
         return view('user.payment.history',compact('payments'));
+    }
+    public function createPDF($id)
+    {
+      $payment = Payment::find($id);
+      view()->share('payment',$payment);
+      $pdf = PDF::loadView('user.payment.pdf', $payment);
+      $invoiceName = date('YmdhiA').'-invoice.pdf';
+      return $pdf->download("$invoiceName");
     }
 }

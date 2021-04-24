@@ -23,6 +23,7 @@
                                 <th>Date</th>
                                 <th>Amount</th>
                                 <th>Status</th>
+                                <th>Download</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -37,6 +38,11 @@
                                 <td>{{ $payment->created_at }}</td>
                                 <td>{{ $payment->amount }}</td>
                                 <td>{{ $payment->payment_status }}</td>
+                                <td>
+                                    <a href="{{route('payments.create.pdf',$payment->id)}}">
+                                        <img style="width:30px;height:30px" src="{{asset('img/pdf.png')}}" alt="">
+                                    </a>
+                                </td>
                             </tr>
                             @endforeach
                             </tbody>
