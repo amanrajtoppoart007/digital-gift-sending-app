@@ -1,3 +1,10 @@
+
+nav  ul.navbar-nav  li  a {
+        color: rgb(255, 255, 255) !important;
+}
+nav  ul.navbar-nav  li  a:hover {
+        color: rgb(26, 175, 85) !important;
+}
 .c-sidebar-nav-link:hover {
     color: #ffffff !important;
     text-decoration: none;
