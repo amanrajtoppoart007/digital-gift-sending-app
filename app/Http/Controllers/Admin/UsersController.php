@@ -8,6 +8,7 @@ use App\Http\Requests\MassDestroyUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\UserApprovalStatusRequest;
+use App\Http\Requests\UserVerificationStatusRequest;
 use App\Mail\UserWelcomeMessage;
 
 use App\Models\Role;
@@ -67,10 +68,10 @@ class UsersController extends Controller
 
             $table->editColumn('approved', function ($row) {
 
-                return '<input type="checkbox" class="user-approval-status" data-id="'.$row->id.'"  ' . ($row->approved ? 'checked' : null) . '>';
+                return '<input type="checkbox" class="user-approval-status" data-status="'.$row->approved.'" data-id="'.$row->id.'"  ' . ($row->approved ? 'checked' : null) . '>';
             });
             $table->editColumn('verified', function ($row) {
-                return '<input  type="checkbox"  disabled ' . ($row->verified ? 'checked' : null) . '>';
+                return '<input  type="checkbox" class="user-verification-status" data-status="'.$row->verified.'" data-id="'.$row->id.'"   ' . ($row->verified ? 'checked' : null) . '>';
             });
             $table->editColumn('roles', function ($row) {
                 $labels = [];
@@ -208,9 +209,24 @@ class UsersController extends Controller
     {
         try {
            $user = User::find($request->input('id'));
-           $user->approved = 1;
+           $user->approved = !($request->input('status'));
            $user->save();
            $result = ["status" => 1, "response" => "success",  "message" => "User approval status changed successful"];
+        }
+        catch (\Exception $exception)
+        {
+           $result = ["status" => 0, "response" => "error", "message" => $exception->getMessage()];
+        }
+        return response()->json($result,200);
+    }
+
+    public function changeVerificationStatus(UserVerificationStatusRequest $request)
+    {
+        try {
+           $user = User::find($request->input('id'));
+           $user->verified = !($request->input('status'));
+           $user->save();
+           $result = ["status" => 1, "response" => "success",  "message" => "User verification status changed successful"];
         }
         catch (\Exception $exception)
         {

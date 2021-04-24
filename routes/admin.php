@@ -15,6 +15,7 @@ Route::resource('users', 'Admin\UsersController');
 Route::post('users/add-profile/{$user}', [\App\Http\Controllers\Admin\UsersController::class, 'addProfile'])->name('users.add-profile');
 
 Route::post('users/change/approval/status','Admin\UsersController@changeApprovalStatus')->name('users.changeApprovalStatus');
+Route::post('users/change/verification/status','Admin\UsersController@changeVerificationStatus')->name('users.changeVerificationStatus');
 // User Alerts
 Route::delete('user-alerts/destroy', 'Admin\UserAlertsController@massDestroy')->name('user-alerts.massDestroy');
 Route::resource('user-alerts', 'Admin\UserAlertsController', ['except' => ['edit', 'update']]);
