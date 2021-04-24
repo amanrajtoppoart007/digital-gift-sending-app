@@ -63,13 +63,13 @@
                             {{ trans('cruds.user.fields.approved') }}
                         </th>
                         <td>
-                            <input type="checkbox"  {{ $user->approved ? 'checked' : '' }}>
+                            <input class="user-approval-status" data-id="{{$user->id}}" data-status="{{$user->approved}}" type="checkbox"  {{ $user->approved ? 'checked' : '' }}>
                         </td>
                         <th>
                             {{ trans('cruds.user.fields.verified') }}
                         </th>
                         <td>
-                            <input type="checkbox"  {{ $user->verified ? 'checked' : '' }}>
+                            <input class="user-verification-status" type="checkbox" data-id="{{$user->id}}" data-status="{{$user->verified}}"  {{ $user->verified ? 'checked' : '' }}>
                         </td>
                     </tr>
 
@@ -133,4 +133,9 @@
     </div>
 </div>
 
+@endsection
+
+@section("scripts")
+    @parent
+    @includeIf('admin.users.status')
 @endsection
