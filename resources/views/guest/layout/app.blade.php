@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/index.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/fontawesome/css/all.css') }}">
     <!-- Website Title -->
-    <title>Website Title</title>
+     <title>{{ trans('panel.site_title') }}</title>
     @yield("head")
     @yield("styles")
     <style>

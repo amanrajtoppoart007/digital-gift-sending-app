@@ -20,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/fontawesome/css/all.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/guest.css') }}">
     <!-- Website Title -->
-    <title>Website Title</title>
+     <title>{{ trans('panel.site_title') }}</title>
     @yield("head")
     @yield("styles")
 
