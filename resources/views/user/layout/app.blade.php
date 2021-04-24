@@ -17,6 +17,7 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-toast/jquery.toast.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/dropzone/min/dropzone.min.css') }}">
+
     <!-- Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/index.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/user-panel.css') }}">
@@ -55,6 +56,7 @@
 <script src="{{asset('plugins/popper/popper.min.js')}}"></script>
 <script src="{{asset('plugins/bootstrap/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('plugins/dropzone/min/dropzone.min.js')}}"></script>
+<script src="{{asset('plugins/ckeditor5-build/ckeditor.js')}}"></script>
 <script src="{{asset('plugins/jquery-toast/jquery.toast.min.js')}}"></script>
 <script src="{{asset('js/function.js')}}"></script>
 <script>

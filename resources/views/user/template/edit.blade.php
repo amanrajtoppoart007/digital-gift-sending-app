@@ -98,6 +98,12 @@
 @endsection
 @section('script')
     <script>
+        ClassicEditor
+        .create( document.querySelector( '#description' ) )
+        .catch( error => {
+        } );
+</script>
+    <script>
         $(document).ready(function(){
             $("input[name='payment_type']").on("change",function(){
                 if($(this).val()==='without_sender_detail')
