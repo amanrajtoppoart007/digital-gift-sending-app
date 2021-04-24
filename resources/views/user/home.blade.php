@@ -95,7 +95,7 @@
                                             @if(auth()->user()->template)
                                                 <div class="col-4 align-items-center">
                                                     <a href="{{route('template', auth()->user()->template->username)}}"
-                                                       class="text-info">
+                                                       target="_blank" class="text-info">
                                                         <img height="35" class=""
                                                              src="{{asset('front-assets/images/link.svg')}}" alt="">
                                                         <span class="ml-2">Share Profile</span>

@@ -43,7 +43,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Add/Edit User Alert</h4>
+                    <h4 class="modal-title">Add/Edit Message</h4>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
@@ -58,7 +58,7 @@
                         </div>
                         <div class="form-group">
                             <label class="required"
-                                   for="message">type</label>
+                                   for="message">Message</label>
                             <input class="form-control" type="text"
                                    name="message" id="message" required>
                         </div>

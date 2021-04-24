@@ -130,7 +130,7 @@
                         <!-- Location Card (End) -->
 
                         <!-- Mail Card (Start) -->
-                        <a href="mailto: info@krishakvikas.com" class="card-link">
+                        <a href="mailto: demo@exmpale.com" class="card-link">
                             <div class="card border-0 shadow contact-card" align="center">
                                 <div class="card-body">
                                     <div class="contact-img-div">
@@ -147,7 +147,7 @@
                         <!-- Mail Card (End) -->
 
                         <!-- Phone Card (Start) -->
-                        <a href="tel: +918815752022" class="card-link">
+                        <a href="tel: +1234567890" class="card-link">
                             <div class="card border-0 shadow contact-card" align="center">
                                 <div class="card-body">
                                     <div class="contact-img-div">
