@@ -23,7 +23,7 @@ class TemplateController extends Controller
     public function create($userId)
     {
         $user = User::find($userId);
-        $inputs = [
+         $inputs = [
             [
                 'id'=>'name',
                  'value'=>'name',
@@ -39,31 +39,17 @@ class TemplateController extends Controller
                  'value'=>'mobile',
                 'title'=>'Mobile'
             ],
-            [
+           [
                 'id'=>'company_name',
                  'value'=>'company_name',
                 'title'=>'Company Name'
-            ],
-            [
-                'id'=>'state',
-                 'value'=>'state',
-                'title'=>'State'
-            ],
-            [
-                'id'=>'city',
-                 'value'=>'city',
-                'title'=>'City'
             ],
             [
                 'id'=>'address',
                  'value'=>'address',
                 'title'=>'Address'
             ],
-            [
-                'id'=>'pin_code',
-                 'value'=>'pincode',
-                'title'=>'Pin Code'
-            ],
+
         ];
         return view('admin.template.create',compact('user','inputs'));
     }
@@ -137,25 +123,11 @@ class TemplateController extends Controller
                 'title'=>'Company Name'
             ],
             [
-                'id'=>'state',
-                 'value'=>'state',
-                'title'=>'State'
-            ],
-            [
-                'id'=>'city',
-                 'value'=>'city',
-                'title'=>'City'
-            ],
-            [
                 'id'=>'address',
                  'value'=>'address',
                 'title'=>'Address'
             ],
-            [
-                'id'=>'pin_code',
-                 'value'=>'pincode',
-                'title'=>'Pin Code'
-            ],
+
         ];
 
         return view("admin.template.edit",compact('template','payment_types','inputs'));
