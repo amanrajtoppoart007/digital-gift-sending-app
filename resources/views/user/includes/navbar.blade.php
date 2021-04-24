@@ -21,7 +21,7 @@
                     </li>
                 </ul>
             </div>
-            <button class="navbar-toggler" id="navbar-toggler">
+            <button class="navbar-toggler text-white text-center" id="navbar-toggler">
                 <img src="{{ asset('front-assets/images/menu.svg') }}" alt="navbar-menu">
             </button>
     </nav>
