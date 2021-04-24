@@ -97,7 +97,7 @@
     </div>
 @endsection
 @section('script')
-    <script>
+<script>
         ClassicEditor
         .create( document.querySelector( '#description' ) )
         .catch( error => {

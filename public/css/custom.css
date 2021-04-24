@@ -1,6 +1,16 @@
-.ck-editor__editable,
-textarea {
-    min-height: 150px;
+div#banner_image-dropzone.dropzone .dz-preview .dz-image {
+    overflow: hidden;
+    width:  auto;
+    height: 300px;
+    position: relative;
+    display: block;
+    z-index: 10;
+}
+div#banner_image-dropzone.dropzone .dz-preview:hover .dz-image img {
+    filter: blur(0px);
+}
+.ck-editor__editable {
+    min-height: 500px;
 }
 
 .datatable {

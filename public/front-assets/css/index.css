@@ -129,6 +129,9 @@ div#banner_image-dropzone.dropzone .dz-preview .dz-image {
 div#banner_image-dropzone.dropzone .dz-preview:hover .dz-image img {
     filter: blur(0px);
 }
+.ck-editor__editable {
+    min-height: 500px;
+}
 
 @media (max-width: 767px) {
 	body {
