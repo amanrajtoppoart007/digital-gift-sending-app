@@ -32,7 +32,6 @@
                     </div>
                 </div>
                 <div class="text-center mb-3">
-                    <h3 class="font-weight-bold">About Us</h3>
                     <p class="lead">{!! $template->description !!}.</p>
                 </div>
                     <div class="card">
