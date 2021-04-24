@@ -56,8 +56,20 @@ class TemplateController extends Controller
             ],
 
         ];
+         $payment_types = [
+           [
+               'id'=>'payment_type_sender_detail',
+               'value'=>'with_sender_detail',
+               'title'=>'With Sender Detail'
+           ],
+           [
+               'id'=>'payment_type_anonymous',
+               'value'=>'without_sender_detail',
+               'title'=>'Without Sender Detail'
+           ],
+       ];
 
-        return view('user.template.create',compact('inputs'));
+        return view('user.template.create',compact('inputs','payment_types'));
     }
 
     /**

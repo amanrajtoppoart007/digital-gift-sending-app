@@ -52,31 +52,22 @@
                             <small id="description_help" class="form-text text-muted">Enter the detail of the event for you want to collect the blessings.</small>
                         </div>
                         <div class="form-group">
-                            <h6> <strong>Receive payment with</strong></h6>
-                            <div class="row col-md-6">
-                               <div class="col">
-                                   <div class="form-check">
-                                       <input class="form-check-input" type="radio" name="payment_type"
-                                              id="payment_type_sender_detail"
-                                              value="with_sender_detail" checked>
-                                       <label class="form-check-label" for="payment_type_sender_detail">
-                                           With Sender Detail
-                                       </label>
-                                   </div>
-                               </div>
-                                <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="payment_type"
-                                               id="payment_type_anonymous"
-                                               value="without_sender_detail">
-                                        <label class="form-check-label" for="payment_type_anonymous">
-                                            Without Sender Detail
-                                        </label>
-                                    </div>
+                                <h6><strong>Receive payment with</strong></h6>
+                                <div class="row col-md-6">
+                                    @foreach($payment_types as $type)
+                                        <div class="col" {!! $type['value']==='without_sender_detail'?'style="display:none"':'' !!}>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="payment_type"
+                                                       id="{{$type['id']}}"
+                                                       value="{{$type['value']}}" {{$type['value']==='with_sender_detail'?'checked':null}}>
+                                                <label class="form-check-label" for="{{$type['id']}}">
+                                                    {{$type['title']}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
-
-                        </div>
                         <div class="form-group m-3" id="checkbox-group-container">
                             @foreach($inputs as $input)
                                 <div class="form-check form-check-inline">
@@ -102,6 +93,12 @@
     </script>
     <script>
         $(document).ready(function(){
+            $(".c-input-group-checkbox").each(function () {
+                $(this).prop({'checked': true,'readonly':true});
+            });
+            $(document).on('click','.c-input-group-checkbox',function (e){
+                 e.preventDefault();
+            });
             $("input[name='payment_type']").on("change",function(){
                 if($(this).val()==='without_sender_detail')
                 {

@@ -62,7 +62,7 @@
                                 <h6><strong>Receive payment with</strong></h6>
                                 <div class="row col-md-6">
                                     @foreach($payment_types as $type)
-                                        <div class="col">
+                                        <div class="col" {!! $type['value']==='without_sender_detail'?'style="display:none"':'' !!}>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="payment_type"
                                                        id="{{$type['id']}}"
@@ -74,8 +74,8 @@
                                         </div>
                                     @endforeach
                                 </div>
-
-                                <div class="form-group m-3" id="checkbox-group-container" {!! ($template->payment_type=='without_sender_detail')?'style="display:none;"':'' !!}>
+                            </div>
+                            <div class="form-group m-3" id="checkbox-group-container" {!! ($template->payment_type=='without_sender_detail')?'style="display:none;"':'' !!}>
                                     @foreach($inputs as $input)
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input c-input-group-checkbox" type="checkbox"
@@ -86,8 +86,6 @@
                                         </div>
                                     @endforeach
                                 </div>
-
-                            </div>
                             <button type="submit" class="btn btn-primary">Update Page</button>
                         </form>
                     </div>
@@ -105,6 +103,12 @@
 </script>
     <script>
         $(document).ready(function(){
+            $(".c-input-group-checkbox").each(function () {
+                $(this).prop({'checked': true,'readonly':true});
+            });
+            $(document).on('click','.c-input-group-checkbox',function (e){
+                 e.preventDefault();
+            });
             $("input[name='payment_type']").on("change",function(){
                 if($(this).val()==='without_sender_detail')
                 {
