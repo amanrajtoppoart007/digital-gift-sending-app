@@ -44,7 +44,7 @@
                             <small id="banner_title_help" class="form-text text-muted">Enter title for the banner.</small>
                         </div>
                         <div class="form-group">
-                            <label for="description"><strong>About Your Page (Description) </strong> <span class="text-danger">*</span></label>
+                            <label for="description"><strong>Short note for your page visitors </strong> <span class="text-danger">*</span></label>
                             <textarea  class="form-control" id="description" name="description"
                                        aria-describedby="description_help"></textarea>
                             <small id="description_help" class="form-text text-muted">Enter the detail of the event for you want to collect the blessings.</small>

@@ -51,7 +51,7 @@
                                     banner.</small>
                             </div>
                             <div class="form-group">
-                                <label for="description"><strong>About Your Page (Description) </strong> <span
+                                <label for="description"><strong>Short note for your page visitors </strong> <span
                                         class="text-danger">*</span></label>
                                 <textarea class="form-control" id="description" name="description"
                                           aria-describedby="description_help">{!! $template->description !!}</textarea>
