@@ -14,8 +14,8 @@ Route::post('users/process-csv-import', 'Admin\UsersController@processCsvImport'
 Route::resource('users', 'Admin\UsersController');
 Route::post('users/add-profile/{$user}', [\App\Http\Controllers\Admin\UsersController::class, 'addProfile'])->name('users.add-profile');
 
-Route::post('users/change/approval/status','Admin\UsersController@changeApprovalStatus')->name('users.changeApprovalStatus');
-Route::post('users/change/verification/status','Admin\UsersController@changeVerificationStatus')->name('users.changeVerificationStatus');
+Route::post('users/change/approval/status', 'Admin\UsersController@changeApprovalStatus')->name('users.changeApprovalStatus');
+Route::post('users/change/verification/status', 'Admin\UsersController@changeVerificationStatus')->name('users.changeVerificationStatus');
 // User Alerts
 Route::delete('user-alerts/destroy', 'Admin\UserAlertsController@massDestroy')->name('user-alerts.massDestroy');
 Route::resource('user-alerts', 'Admin\UserAlertsController', ['except' => ['edit', 'update']]);
@@ -65,3 +65,6 @@ Route::get('messages', 'Admin\MessageController@index')->name('messages.index');
 Route::post('messages/store', 'Admin\MessageController@store')->name('messages.store');
 Route::get('messages/edit', 'Admin\MessageController@edit')->name('messages.edit');
 Route::post('messages/update', 'Admin\MessageController@update')->name('messages.update');
+Route::get('password/change', [\App\Http\Controllers\Admin\PasswordController::class, 'showChangePasswordForm'])->name('password.change');
+Route::post('password/change', [\App\Http\Controllers\Admin\PasswordController::class, 'changePassword'])->name('password.change.submit');
+

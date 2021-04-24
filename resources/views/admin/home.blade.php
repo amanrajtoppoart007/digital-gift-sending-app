@@ -149,7 +149,7 @@
 
                             @can('profile_password_edit')
                                 <div class="col-4">
-                                    <a href="{{ route('profile.password.edit') }}" class="text-dark underline-none">
+                                    <a href="{{ route('admin.password.change') }}" class="text-dark underline-none">
                                         <img class="align-middle" width="30" height="30"
                                              src="{{ asset('img/menu/black/password.svg') }}" alt="">
                                         <span class="ml-2">{{ trans('global.change_password') }}</span>
