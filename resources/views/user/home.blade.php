@@ -12,9 +12,6 @@
                 <h5>Welcome, {{ auth()->user()->name }}</h5>
             </div>
             <div class="col-lg-12">
-<<<<<<< Updated upstream
-
-=======
                 <div class="row my-2 gap-4">
                     <div class="col-7">
                         <div class="row">
@@ -173,8 +170,6 @@
                         </div>
                     </div>
                 </div>
-
->>>>>>> Stashed changes
             </div>
         </div>
     </div>
