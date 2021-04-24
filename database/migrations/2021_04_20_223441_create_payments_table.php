@@ -21,6 +21,7 @@ class CreatePaymentsTable extends Migration
             $table->string('mobile')->nullable();
             $table->string('email')->nullable();
             $table->string('address')->nullable();
+            $table->string('company_name')->nullable();
              $table->string('city')->nullable();
              $table->string('pin_code')->nullable();
              $table->string('payment_type');

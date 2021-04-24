@@ -28,6 +28,7 @@ class Payment extends Model
         'pin_code',
         'payment_type',
         'payment_status',
+         'company_name',
         'user_id',
         'state_id',
         'template_id',

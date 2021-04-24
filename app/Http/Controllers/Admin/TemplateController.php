@@ -40,6 +40,11 @@ class TemplateController extends Controller
                 'title'=>'Mobile'
             ],
             [
+                'id'=>'company_name',
+                 'value'=>'company_name',
+                'title'=>'Company Name'
+            ],
+            [
                 'id'=>'state',
                  'value'=>'state',
                 'title'=>'State'
@@ -125,6 +130,11 @@ class TemplateController extends Controller
                 'id'=>'mobile',
                  'value'=>'mobile',
                 'title'=>'Mobile'
+            ],
+           [
+                'id'=>'company_name',
+                 'value'=>'company_name',
+                'title'=>'Company Name'
             ],
             [
                 'id'=>'state',
