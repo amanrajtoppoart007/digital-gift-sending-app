@@ -12,8 +12,8 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('account_type')->nullable();
             $table->string('name')->nullable();
-            $table->string('email')->nullable()->unique();
-            $table->string('mobile')->nullable()->unique();
+            $table->string('email')->nullable();
+            $table->string('mobile')->nullable();
             $table->string('password')->nullable();
             $table->text("address")->nullable();
             $table->string("city")->nullable();
@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->datetime('mobile_verified_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->unique(['mobile','deleted_at']);
         });
     }
 }

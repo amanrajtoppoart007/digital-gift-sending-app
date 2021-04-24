@@ -26,7 +26,7 @@ class UserRegistrationRequest extends FormRequest
         return [
              "account_type" => "required",
             "name" => "required",
-            "mobile" => "required|unique:users,mobile",
+            "mobile" => "required|numeric|digits:10|unique:users,mobile,NULL,id,deleted_at,NULL",
             "email" => "required|email|unique:users,email",
              "address" => "required",
             "state_id" => "required",
