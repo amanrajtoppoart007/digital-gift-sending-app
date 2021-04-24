@@ -43,17 +43,7 @@
                             <input type="hidden" name="user_id" value="{{$template->user_id}}">
                             <input type="hidden" name="template_id" value="{{$template->id}}">
                                 <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <input type="text" name="amount" id="amount" class="form-control"
-                                                   minlength="3"
-                                                   maxlength="10"
-                                                   placeholder="Enter Amount"
-                                                   pattern="[0-9]+"
-                                                   onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
-                                                   value="" required>
-                                        </div>
-                                    </div>
+
                                     @if($template->payment_type==='with_sender_detail')
                                         @foreach($template->inputs as $input)
                                             <div class="col-md-3">
@@ -71,6 +61,17 @@
                                             </div>
                                         @endforeach
                                     @endif
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <input type="text" name="amount" id="amount" class="form-control"
+                                                   minlength="3"
+                                                   maxlength="10"
+                                                   placeholder="Enter Amount"
+                                                   pattern="[0-9]+"
+                                                   onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
+                                                   value="" required>
+                                        </div>
+                                    </div>
 
                       </div>
                                 @if(($template->payment_type==='with_sender_detail')&&(!empty($template->inputs)))
