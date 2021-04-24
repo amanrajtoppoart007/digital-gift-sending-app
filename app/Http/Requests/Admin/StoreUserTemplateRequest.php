@@ -36,6 +36,9 @@ class StoreUserTemplateRequest extends FormRequest
         if(request()->input('payment_type')==='with_sender_detail')
         {
             $rules['inputs'] = 'required|array|min:1';
+            $rules['inputs.name'] = 'required';
+            $rules['inputs.email'] = 'required|email';
+            $rules['inputs.mobile'] = 'required|numeric|digits:10';
         }
         else
         {
