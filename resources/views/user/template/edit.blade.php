@@ -126,6 +126,8 @@
             headers: {
                 'X-CSRF-TOKEN': "{{ csrf_token() }}"
             },
+            thumbnailWidth: 800,
+            thumbnailHeight: 300,
             params: {
                 size: 2,
                 width: 4096,
