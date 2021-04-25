@@ -18,7 +18,7 @@
                                 <th>Mobile</th>
                                 <th>Email</th>
                                 <th>Address</th>
-                                <th>Short Not</th>
+                                <th>Senders Note</th>
                                 <th>Date</th>
                                 <th>Amount</th>
                                 <th>Status</th>
