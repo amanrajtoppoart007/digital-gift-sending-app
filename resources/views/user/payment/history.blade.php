@@ -18,8 +18,7 @@
                                 <th>Mobile</th>
                                 <th>Email</th>
                                 <th>Address</th>
-                                <th>City</th>
-                                <th>Pincode</th>
+                                <th>Short Not</th>
                                 <th>Date</th>
                                 <th>Amount</th>
                                 <th>Status</th>
@@ -33,8 +32,7 @@
                                 <td>{{ $payment->mobile }}</td>
                                 <td>{{ $payment->email }}</td>
                                 <td>{{ $payment->address }}</td>
-                                <td>{{ $payment->city }}</td>
-                                <td>{{ $payment->pin_code }}</td>
+                                <td>{{ $payment->short_note }}</td>
                                 <td>{{ $payment->created_at }}</td>
                                 <td>{{ $payment->amount }}</td>
                                 <td>{{ $payment->payment_status }}</td>
