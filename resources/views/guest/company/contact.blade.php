@@ -147,7 +147,7 @@
                         <!-- Mail Card (End) -->
 
                         <!-- Phone Card (Start) -->
-                        <a href="tel: +1234567890" class="card-link">
+<!--                        <a href="tel: +1234567890" class="card-link">
                             <div class="card border-0 shadow contact-card" align="center">
                                 <div class="card-body">
                                     <div class="contact-img-div">
@@ -160,7 +160,7 @@
                                     </p>
                                 </div>
                             </div>
-                        </a>
+                        </a>-->
                         <!-- Phone Card (End) -->
 
                     </div>
