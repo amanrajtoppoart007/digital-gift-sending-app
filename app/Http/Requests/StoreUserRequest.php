@@ -20,8 +20,8 @@ class StoreUserRequest extends FormRequest
         return [
             "account_type" => "required",
             "name" => "required",
-            "mobile" => "required|numeric|digits:10|unique:users,mobile",
-            "email" => "required|email|unique:users,email",
+            "mobile" => "required|numeric|digits:10|unique:users,mobile,NULL,id,deleted_at,NULL",
+            "email" => "required|email|unique:users,email,NULL,id,deleted_at,NULL",
              "address" => "required",
             "state_id" => "required",
             "city" => "required",
