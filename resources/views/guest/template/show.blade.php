@@ -9,6 +9,9 @@
     <meta property="og:image" content="{{$template->banner_image->thumb}}"/>
 @endsection
 @section("head")
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6081b96b1c703400184e0d6d&product=sop' async='async'></script>
+@endsection
+@section("styles")
     <style>
         div.background-image-section {
             background-image: url("{{$template->banner_image->url}}");
@@ -21,7 +24,6 @@
             min-height: 300px;
         }
     </style>
-<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6081b96b1c703400184e0d6d&product=sop' async='async'></script>
 @endsection
 @section('content')
     <main id="main">
@@ -92,6 +94,11 @@
                                                    value="" required>
                                         </div>
                                     </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <textarea type="text" name="short_note" id="short_note" class="form-control" placeholder="Add Note"></textarea>
+                                            </div>
+                                        </div>
 
                                 </div>
                                         @if(($template->payment_type==='with_sender_detail')&&(!empty($template->inputs)))

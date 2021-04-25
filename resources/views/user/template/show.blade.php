@@ -48,6 +48,12 @@
                                          value="" required>
                               </div>
                           </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <textarea type="text" name="short_note" id="short_note" class="form-control"
+                                              placeholder="Add Note"></textarea>
+                                </div>
+                            </div>
 
                       </div>
                           </div>
