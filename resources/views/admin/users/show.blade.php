@@ -101,6 +101,7 @@
                         </th>
                         <td colspan="3">
                             <img  style="width:100px;height:100px" class="img-thumbnail" src="{{$user->identity_proof->url}}" alt="">
+                            <a target="_blank" href="{{$user->identity_proof->url}}">View</a>
                         </td>
                     </tr>
                     @if(!empty($user->identity_proof_other_person))

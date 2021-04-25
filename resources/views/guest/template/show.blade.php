@@ -80,7 +80,7 @@
 
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="1"
-                                                       id="consent">
+                                                       id="consent" required>
                                                 <label class="form-check-label" for="consent">
                                                     By clicking on this button, you provide your
                                                 consent to share your name,mobile and

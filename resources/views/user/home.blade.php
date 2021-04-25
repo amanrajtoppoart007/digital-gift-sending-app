@@ -41,7 +41,7 @@
                                                         <img height="35"
                                                              src="{{ asset('front-assets/images/account.svg') }}"
                                                              alt="">
-                                                        <span class="ml-2">Edit Template</span>
+                                                        <span class="ml-2">Edit Page</span>
                                                     </a>
                                                 </div>
                                                 <div class="col-4 align-items-center">
@@ -50,7 +50,7 @@
                                                         <img height="35"
                                                              src="{{ asset('front-assets/images/account.svg') }}"
                                                              alt="">
-                                                        <span class="ml-2">Show Template</span>
+                                                        <span class="ml-2">Show Page</span>
                                                     </a>
                                                 </div>
                                                 @else
@@ -59,7 +59,7 @@
                                                         <img height="35"
                                                              src="{{ asset('front-assets/images/account.svg') }}"
                                                              alt="">
-                                                        <span class="ml-2">Add Template</span>
+                                                        <span class="ml-2">Add Page</span>
                                                     </a>
                                                     </div>
                                                 @endif
