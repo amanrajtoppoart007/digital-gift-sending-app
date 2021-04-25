@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'site_title' => 'Online Ashirvaad',
+    'site_title' => 'Online Aashirvaad',
 ];
