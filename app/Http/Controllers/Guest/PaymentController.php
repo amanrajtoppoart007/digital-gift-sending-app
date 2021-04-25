@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GuestStorePaymentRequest;
+use App\Models\Message;
 use App\Models\Payment;
 use App\Models\State;
 use App\Models\Template;
@@ -68,13 +69,12 @@ class PaymentController extends Controller
             }
             catch (\Exception $exception)
             {
-                dd($exception->getMessage());
                return redirect()->back();
             }
         }
         else
         {
-            dd($validator->errors()->all());
+            return redirect()->back()->with(['retry'=>1,'message'=>$validator->errors()->all()]);
         }
     }
 
@@ -113,6 +113,7 @@ class PaymentController extends Controller
     public function message($txn_number)
     {
         $payment = Payment::where(['txn_number'=>$txn_number])->firstOrFail();
-        return view("guest.payment.message", compact('payment', ));
+        $message = Message::where(['type'=>'payment_success_message'])->first();
+        return view("guest.payment.message", compact('payment','message' ));
     }
 }

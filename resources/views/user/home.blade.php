@@ -33,8 +33,9 @@
                                     <div class="card-header bg-blue">Page Management</div>
                                     <div class="card-body align-items-center">
                                         <div class="row">
-                                            <div class="col-12 align-items-center">
+
                                                 @if(auth()->user()->template)
+                                                <div class="col-4 align-items-center">
                                                     <a href="{{route('template.edit', auth()->user()->template->id)}}"
                                                        class="text-info">
                                                         <img height="35"
@@ -42,45 +43,69 @@
                                                              alt="">
                                                         <span class="ml-2">Edit Template</span>
                                                     </a>
+                                                </div>
+                                                <div class="col-4 align-items-center">
+                                                    <a href="{{route('template.show', auth()->user()->template->username)}}"
+                                                       class="text-info">
+                                                        <img height="35"
+                                                             src="{{ asset('front-assets/images/account.svg') }}"
+                                                             alt="">
+                                                        <span class="ml-2">Show Template</span>
+                                                    </a>
+                                                </div>
                                                 @else
+                                                    <div class="col-4 align-items-center">
                                                     <a href="{{route('template.create')}}" class="text-info">
                                                         <img height="35"
                                                              src="{{ asset('front-assets/images/account.svg') }}"
                                                              alt="">
                                                         <span class="ml-2">Add Template</span>
                                                     </a>
+                                                    </div>
                                                 @endif
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12 my-2">
                                 <div class="card">
-                                    <div class="card-header bg-blue">Account</div>
+                                    <div class="card-header bg-blue">Bank Detail</div>
                                     <div class="card-body align-items-center">
                                         <div class="row">
-                                            <div class="col-4 align-items-center">
-                                                @if(auth()->user()->userUserProfile)
+                                            @if(auth()->user()->userUserProfile)
+                                                <div class="col-4 align-items-center">
+
                                                     <a href="{{route('account.edit',auth()->user()->userUserProfile)}}"
                                                        class="text-info">
                                                         <img height="35" class=""
                                                              src="{{asset('front-assets/images/create.svg')}}" alt="">
-                                                        <span class="ml-2">Edit Account</span>
+                                                        <span class="ml-2">Edit Bank Detail</span>
                                                     </a>
-                                                @else
+                                                </div>
+                                                <div class="col-4 align-items-center">
+                                                    <a href="{{route('account.show',auth()->user()->userUserProfile)}}"
+                                                       class="text-info">
+                                                        <img height="35" class=""
+                                                             src="{{asset('front-assets/images/create.svg')}}" alt="">
+                                                        <span class="ml-2">Show Bank Detail</span>
+                                                    </a>
+                                                </div>
+                                            @else
+                                                <div class="col-4 align-items-center">
                                                     <a href="{{route('account.create')}}" class="text-info">
                                                         <img height="35" class=""
                                                              src="{{asset('front-assets/images/create.svg')}}" alt="">
-                                                        <span class="ml-2">Add Account</span>
+                                                        <span class="ml-2">Add Bank Detail</span>
                                                     </a>
+                                                </div>
                                                 @endif
-                                            </div>
+
                                             <div class="col align-items-center">
                                                 <a href="{{route('payments.history')}}" class="text-info">
                                                     <img height="35" class=""
                                                          src="{{asset('front-assets/images/delivered.svg')}}" alt="">
-                                                    <span class="ml-2">Received Amount</span>
+                                                    <span class="ml-2">Received Payments</span>
                                                 </a>
                                             </div>
                                         </div>

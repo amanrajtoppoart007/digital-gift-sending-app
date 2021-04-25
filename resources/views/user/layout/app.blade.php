@@ -27,13 +27,16 @@
 
 <body>
     <div class="wrapper">
+        <div id="overlay">
+            <img class="spinner" src="{{asset('img/spinner.gif')}}" alt="spinner">
+        </div>
         <!-- Sidebar  -->
         @includeIf('user.includes.sidebar')
 
         <!-- Page Content  -->
         <div id="content">
             @includeIf('user.includes.navbar')
-            <div class="px-2">
+            <div class="px-2" style="min-height: 80vh">
                  @yield("content")
             </div>
            @includeIf('user.includes.footer')

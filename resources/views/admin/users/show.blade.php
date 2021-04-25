@@ -87,6 +87,33 @@
                             {{ $user->mobile_verified_at }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            Account Type
+                        </th>
+                        <td colspan="3">
+                           {{ $user->account_type }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Identity Proof
+                        </th>
+                        <td colspan="3">
+                            <img  style="width:100px;height:100px" class="img-thumbnail" src="{{$user->identity_proof->url}}" alt="">
+                        </td>
+                    </tr>
+                    @if(!empty($user->identity_proof_other_person))
+                        <tr>
+                            <th>
+                                Identity Proof Other Person
+                            </th>
+                            <td colspan="3">
+                                <img style="width:100px;height:100px" class="img-thumbnail"
+                                     src="{{$user->identity_proof_other_person->url}}" alt="">
+                            </td>
+                        </tr>
+                    @endif
 
                 </tbody>
             </table>

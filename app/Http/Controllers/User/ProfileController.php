@@ -20,7 +20,7 @@ class ProfileController extends Controller
 
         return view("user.profile.edit", compact('user', 'states'));
     }
-    
+
 
 
     public function update(Request $request)

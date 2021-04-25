@@ -128,15 +128,6 @@
                                 </div>
                             @endcan
 
-                            @can('user_alert_access')
-                                <div class="col-4">
-                                    <a href="{{ route("admin.user-alerts.index") }}" class="text-dark underline-none">
-                                        <img class="align-middle" width="30" height="30"
-                                             src="{{ asset('img/menu/black/notification.svg') }}" alt="">
-                                        <span class="ml-2">{{ trans('cruds.userAlert.title') }}</span>
-                                    </a>
-                                </div>
-                            @endcan
                             <div class="col-4">
                                 <a href="{{ route("admin.messages.index") }}" class="text-dark underline-none">
                                     <img class="align-middle" width="30" height="30"

@@ -45,7 +45,7 @@
                         <a href="{{route('account.show',auth()->user()->userUserProfile)}}">View Bank Detail</a>
                     </li>
                     <li>
-                        <a href="{{route('payments.history')}}">View Payments</a>
+                        <a href="{{route('payments.history')}}">Received Payments</a>
                     </li>
                 @else
                     <li>

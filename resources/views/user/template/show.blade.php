@@ -13,20 +13,17 @@
          </div>
       </div>
      <div class="text-center">
-         <h3 class="font-weight-bold">About Us</h3>
          <p class="lead">{!! $template->description !!}.</p>
-
      </div>
              @if(($template->payment_type==='with_sender_detail')&&(!empty($template->inputs)))
              <div class="card my-2">
-                 <div class="card-header">
-                     <h6>Enter Your Detail</h6>
-                 </div>
                     <div class="card-body">
-                      <div class="row">
+                      <div class="row justify-content-center">
+                          <div class="col-md-6">
+                              <div class="row">
 
                         @foreach($template->inputs as $input)
-                          <div class="col-md-3">
+                          <div class="col-md-6">
                               <div class="form-group">
                                   @php
                                     $inputFile = "partials.input.$input";
@@ -40,7 +37,7 @@
                               </div>
                           </div>
                        @endforeach
-                          <div class="col-md-3">
+                          <div class="col-md-6">
                               <div class="form-group">
                                   <input type="text" name="amount" id="amount" class="form-control"
                                          minlength="3"
@@ -53,9 +50,11 @@
                           </div>
 
                       </div>
+                          </div>
+                      </div>
                     </div>
                    <div class="card-body text-center">
-                       <a class="btn btn-success" href="javascript:void(0)">Pay Now</a>
+                       <a class="btn btn-success" href="javascript:void(0)">Send Gift</a>
                    </div>
                 </div>
              @endif

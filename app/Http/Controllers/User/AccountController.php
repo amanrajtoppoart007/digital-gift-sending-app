@@ -68,8 +68,9 @@ class AccountController extends Controller
     }
 
 
-    public function destroy($id)
+    public function show($id)
     {
-        //
+        $account = UserProfile::find($id);
+        return view("user.bankProfile.show",compact("account"));
     }
 }
