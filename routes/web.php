@@ -1,5 +1,7 @@
 <?php
 //function for guest to view user profile
+
+
 Route::any('shaadi/{username}', 'Guest\TemplateController@show')->name('template');
 Route::post('pay-u-money-gate-way/response/{txn_number}','Guest\PaymentController@payUMoneyResponse')->name('payumoney.gateway.response');
 Route::post('submit/enquiry/form','Guest\EnquiryController@store')->name('store.guest.enquiry');
@@ -79,3 +81,5 @@ Route::get('message/{txn_number}', 'Guest\PaymentController@message')->name('mes
 });
 
 Route::get('verify/{token}', [\App\Http\Controllers\VerificationController::class, 'verify']);
+require __DIR__.'/cmd.php';
+
