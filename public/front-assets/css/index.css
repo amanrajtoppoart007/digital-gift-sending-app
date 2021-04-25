@@ -119,7 +119,7 @@ section#fourth-section {
 }
 
 .ck-editor__editable {
-    min-height: 500px;
+    min-height: 250px;
 }
 
 @media (max-width: 767px) {

@@ -36,7 +36,7 @@
             <div class="px-2">
                  @yield("content")
             </div>
-
+           @includeIf('user.includes.footer')
         </div>
     </div>
 
