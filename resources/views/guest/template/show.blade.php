@@ -46,8 +46,8 @@
                 <div class="card">
                     <div class="card-header background-image-section">
                         <div class="d-flex flex-column justify-content-center align-items-center card-header-content">
-                        <h1 class="font-weight-bold text-white my-auto text-center">{{$template->banner_title}}</h1>
-                    </div>
+                            <h1 class="font-weight-bold text-white my-auto text-center">{{$template->banner_title}}</h1>
+                        </div>
                     </div>
                     <div class="card-body">
 

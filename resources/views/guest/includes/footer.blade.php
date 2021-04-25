@@ -43,9 +43,17 @@
                                 src="{{ asset('front-assets/images/facebook.svg') }}" alt="facebook"></a></li>
                     <li class="d-inline-block mx-1"><a href="#"><img
                                 src="{{ asset('front-assets/images/linkedin.svg') }}" alt="linkedin"></a></li>
-                    <li class="d-inline-block mx-1"><a href="#"><img
-                                src="{{ asset('front-assets/images/twitter.svg') }}" alt="twitter"></a></li>
-                    </ul>
+                    <li class="d-inline-block mx-1">
+                        <a href="#">
+                            <img src="{{ asset('front-assets/images/twitter.svg') }}" alt="twitter">
+                        </a>
+                    </li>
+                    <li class="d-inline-block mx-1">
+                        <a href="#">
+                            <img src="{{ asset('front-assets/images/instagram.svg') }}" alt="instagram">
+                        </a>
+                    </li>
+                </ul>
 
             </div>
 

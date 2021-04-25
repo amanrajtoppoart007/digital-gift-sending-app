@@ -1,8 +1,16 @@
 @extends("guest.layout.app")
 @section("content")
+
+
     <!-- ======= Contact Section ======= -->
     <!-- Main (Start) -->
     <main data-aos="fade-in">
+
+        <section id="contact-us-section" class="text-center">
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <h1 class="font-weight-bold text-white my-auto text-center">Contact Us</h1>
+            </div>
+        </section>
 
         <!-- Section First (Start) -->
         <section class="bg-light" id="contact-section">
