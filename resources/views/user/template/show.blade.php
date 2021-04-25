@@ -30,7 +30,7 @@
                 </div>
                     <div class="card">
                         <div class="card-body">
-                            <form id="store_payment_form" method="post" action="{{route('gift.store')}}">
+                            <form>
                                 @csrf
                             <input type="hidden" name="payment_type" value="{{$template->payment_type}}">
                             <input type="hidden" name="username" value="{{$template->username}}">
@@ -91,7 +91,7 @@
                                 </div>
 
                              <div class="form-group mx-3 d-block text-center">
-                                 <button type="submit" class="btn btn-success">Send Gift</button>
+                                 <button type="button" class="btn btn-success">Send Gift</button>
                              </div>
                             </form>
                         </div>
