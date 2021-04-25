@@ -1,8 +1,6 @@
 @extends("guest.layout.app")
 @section("head")
-    <script type='text/javascript'
-            src='https://platform-api.sharethis.com/js/sharethis.js#property=6081b96b1c703400184e0d6d&product=sop'
-            async='async'></script>
+    @includeIf('layouts.share')
 @endsection
 @section("content")
     <main id="main">
@@ -47,7 +45,8 @@
 
                 </div>
             </div>
-            <div class="card-footer">
+            <div class="card-footer text-right">
+                <h6>Share On</h6>
               <div class="sharethis-inline-share-buttons"></div>
             </div>
         </div>

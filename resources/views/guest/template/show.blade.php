@@ -9,7 +9,7 @@
     <meta property="og:image" content="{{$template->banner_image->thumb}}"/>
 @endsection
 @section("head")
-<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6081b96b1c703400184e0d6d&product=sop' async='async'></script>
+@includeIf('layouts.share')
 @endsection
 @section("styles")
     <style>
@@ -122,8 +122,8 @@
                             </form>
                         </div>
                     </div>
-                <div class="py-2 justify-content-center">
-                    <h6>Share this page</h6>
+                <div class="py-2 justify-content-center text-right">
+                    <h6>Share On</h6>
                     <div
                         class="sharethis-inline-share-buttons"
                         data-url="{{route('template',$template->username)}}"

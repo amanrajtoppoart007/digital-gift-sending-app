@@ -39,7 +39,13 @@
                                 {{ $template->username ?? '' }}
                             </td>
                             <td>
-                                {{ $template->banner_image->url ?? '' }}
+                                @if(!empty($template->banner_image->url))
+                                    <a target="_blank" href="{{$template->banner_image->url}}">
+                                        <img style="width:50px;height:50px;border-radius:10px" src="{{ $template->banner_image->url}}" alt="">
+                                    </a>
+
+                                @endif
+
                             </td>
                             <td>
                                 {{ $template->banner_title ?? '' }}

@@ -23,6 +23,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/css/perfect-scrollbar.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-toast/jquery.toast.min.css') }}">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
+    @yield("head")
     @yield('styles')
     <style>
         #overlay {

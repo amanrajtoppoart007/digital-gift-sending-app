@@ -17,9 +17,9 @@ class AddRelationshipFieldsToPaymentsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('state_id')->nullable();
             $table->unsignedBigInteger('template_id');
-            $table->foreign('user_id', 'user_fk_3068082')->references('id')->on('users');
-             $table->foreign('state_id', 'state_fk_3068082')->references('id')->on('states');
-             $table->foreign('template_id', 'template_fk_3068082')->references('id')->on('templates');
+            $table->foreign('user_id', 'user_fk_3068082')->references('id')->on('users')->onDelete('cascade');
+             $table->foreign('state_id', 'state_fk_3068082')->references('id')->on('states')->onDelete('cascade');
+             $table->foreign('template_id', 'template_fk_3068082')->references('id')->on('templates')->onDelete('cascade');
         });
     }
 

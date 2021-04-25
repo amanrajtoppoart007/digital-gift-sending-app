@@ -16,8 +16,8 @@ class CreateRoleAdminsTable extends Migration
         Schema::create('role_admin', function (Blueprint $table) {
             $table->unsignedBigInteger('admin_id');
             $table->unsignedBigInteger('role_id');
-            $table->foreign("admin_id","admin_id_fk_custom_01")->references("id")->on("admins");
-            $table->foreign("role_id","role_id_fk_custom_02")->references("id")->on("roles");
+            $table->foreign("admin_id","admin_id_fk_custom_01")->references("id")->on("admins")->onDelete('cascade');
+            $table->foreign("role_id","role_id_fk_custom_02")->references("id")->on("roles")->onDelete('cascade');
 
         });
     }

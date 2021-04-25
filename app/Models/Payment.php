@@ -29,6 +29,7 @@ class Payment extends Model
         'payment_type',
         'payment_status',
          'company_name',
+        'short_note',
         'user_id',
         'state_id',
         'template_id',

@@ -27,7 +27,7 @@ class CreateTransactionsTable extends Migration
             $table->string('phone')->nullable();
             $table->json('data')->nullable();
             $table->timestamps();
-             $table->foreign('payment_id', 'payment_fk_3068082')->references('id')->on('payments');
+             $table->foreign('payment_id', 'payment_fk_3068082')->references('id')->on('payments')->onDelete('cascade');
         });
     }
 

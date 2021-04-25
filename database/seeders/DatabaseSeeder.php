@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             AdminsTableSeeder::class,
             RoleAdminTableSeeder::class,
             /*RoleUserTableSeeder::class,*/
+            MessagesTableSeeder::class
 
         ]);
     }

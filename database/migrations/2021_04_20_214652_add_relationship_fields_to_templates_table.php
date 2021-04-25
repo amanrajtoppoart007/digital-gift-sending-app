@@ -15,7 +15,7 @@ class AddRelationshipFieldsToTemplatesTable extends Migration
     {
         Schema::table('templates', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id', 'user_fk_3068043')->references('id')->on('users');
+            $table->foreign('user_id', 'user_fk_3068043')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

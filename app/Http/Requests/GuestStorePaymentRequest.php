@@ -34,7 +34,7 @@ class GuestStorePaymentRequest extends FormRequest
                    'state_id'=>'nullable|numeric',
                    'city'=>'nullable',
                    'pin_code'=>'nullable|numeric|digits:6',
-
+                   'short_note'=>'nullable'
                ];
            }
            else

@@ -26,6 +26,7 @@ class CreatePaymentsTable extends Migration
              $table->string('pin_code')->nullable();
              $table->string('payment_type');
              $table->string('payment_status');
+             $table->text('short_note')->nullable();
              $table->timestamps();
              $table->softDeletes();
         });
