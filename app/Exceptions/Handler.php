@@ -57,12 +57,6 @@ class Handler extends ExceptionHandler
           case 'admin':
             $route = 'admin.login';
             break;
-            case 'help_center':
-            $route = 'helpCenter.login';
-            break;
-             case 'franchisee':
-            $route = 'franchisee.login';
-            break;
           default:
             $route = 'login';
             break;

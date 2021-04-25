@@ -3,7 +3,7 @@
 Route::any('shaadi/{username}', 'Guest\TemplateController@show')->name('template');
 Route::post('pay-u-money-gate-way/response/{txn_number}','Guest\PaymentController@payUMoneyResponse')->name('payumoney.gateway.response');
 Route::post('submit/enquiry/form','Guest\EnquiryController@store')->name('store.guest.enquiry');
-Route::get('/home','User\HomeController@index')->name('home');
+Route::get('/dashboard','User\HomeController@index')->name('home');
 
 Route::post('/store/registration/media','Ajax\MediaUploadController')->name('upload.media');
 Route::group(['prefix' => 'admin'], function () {

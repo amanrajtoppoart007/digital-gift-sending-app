@@ -1,69 +1,91 @@
-<aside class="h-100" style="min-height: 100vh">
-    <ul class="c-sidebar-nav">
-        <li class="c-sidebar-nav-item align-items-center">
-            <img class="c-sidebar-nav-icon mr-2" src="{{asset('front-assets/images/house.svg')}}" alt="">
-            <a href="{{ route("home") }}" class="c-sidebar-nav-link">Home</a>
-        </li>
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h6>{{trans('panel.site_title')}}</h6>
+    </div>
 
-        @if(auth()->user()->template)
-            <li class="c-sidebar-nav-item align-items-center">
+    <ul class="list-unstyled components c-sidebar-nav">
+        <li>
+            <a href="{{route('home')}}">Dashboard</a>
+        </li>
+        <li class="active">
+            <a href="#page-management-sub-menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                 <img class="c-sidebar-nav-icon mr-2" src="{{ asset('front-assets/images/account.svg') }}" alt="">
-                <a href="{{route('template.edit', auth()->user()->template->id)}}" class="c-sidebar-nav-link">Edit
-                    Page</a>
-            </li>
-        @else
-            <li class="c-sidebar-nav-item align-items-center">
-                <img class="c-sidebar-nav-icon mr-2" src="{{ asset('front-assets/images/account.svg') }}" alt="">
-                <a href="{{route('template.create')}}" class="c-sidebar-nav-link">Add Page</a>
-            </li>
-        @endif
+                <span>Page Management</span>
+            </a>
+            <ul class="collapsed list-unstyled" id="page-management-sub-menu">
 
-        @if(auth()->user()->userUserProfile)
-            <li class="c-sidebar-nav-item align-items-center">
-                <img class="c-sidebar-nav-icon mr-2" src="{{asset('front-assets/images/create.svg')}}" alt="">
-                <a href="{{route('account.edit',auth()->user()->userUserProfile)}}" class="c-sidebar-nav-link">Edit
-                    Account</a>
-            </li>
-        @else
-            <li class="c-sidebar-nav-item align-items-center">
-                <img class="c-sidebar-nav-icon mr-2" src="{{asset('front-assets/images/create.svg')}}" alt="">
-                <a href="{{route('account.create')}}" class="c-sidebar-nav-link">Add Account</a>
-            </li>
-        @endif
-        @if(auth()->user()->template)
-            <li class="c-sidebar-nav-item align-items-center">
-                <img class="c-sidebar-nav-icon mr-2" src="{{asset('front-assets/images/link.svg')}}" alt="">
-                <a target="_blank" href="{{route('template', auth()->user()->template->username)}}" class="c-sidebar-nav-link">Share
-                    Page</a>
-            </li>
-        @endif
-        <li class="c-sidebar-nav-item align-items-center">
-            <img class="c-sidebar-nav-icon mr-2" src="{{asset('front-assets/images/delivered.svg')}}" alt="">
-            <a href="{{route('payments.history')}}" class="c-sidebar-nav-link">Received Amount</a>
-        </li>
-        <li class="c-sidebar-nav-item align-items-center">
-            <img class="c-sidebar-nav-icon mr-2" src="{{asset('front-assets/images/padlock.svg')}}" alt="">
-            <a href="{{ route('password.change') }}" class="c-sidebar-nav-link">Change Password</a>
-        </li>
-        <li class="c-sidebar-nav-item align-items-center">
-            <img class="c-sidebar-nav-icon mr-2" src="{{asset('front-assets/images/profile.svg')}}" alt="">
-            <a href="{{ route('profile.edit') }}" class="c-sidebar-nav-link">Profile</a>
-        </li>
-        <li class="c-sidebar-nav-item align-items-center">
-            <img class="c-sidebar-nav-icon mr-2" src="{{asset('front-assets/images/contact.svg')}}" alt="">
-            <a target="_blank" href="{{ route('contact') }}" class="c-sidebar-nav-link">Contact Us</a>
+                @if(!empty(auth()->user()->template))
+                    <li>
+                        <a href="{{route('template.edit', auth()->user()->template->id)}}">Edit Page</a>
+                    </li>
+                    <li>
+                        <a href="{{route('template', auth()->user()->template->username)}}">View Page</a>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{route('template.create')}}">Create Page</a>
+                    </li>
+
+                @endif
+
+            </ul>
         </li>
 
-        <li class="c-sidebar-nav-item align-items-center">
-            <img class="c-sidebar-nav-icon mr-2" src="{{asset('front-assets/images/logout.svg')}}" alt="">
-            <a class="c-sidebar-nav-link" href="{{ route('logout') }}"
-               onclick="event.preventDefault();
+        <li>
+            <a href="#bank-detail-sub-menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <img class="c-sidebar-nav-icon mr-2" src="{{asset('front-assets/images/delivered.svg')}}" alt="">
+                <span>Bank Detail</span>
+            </a>
+            <ul class="collapsed list-unstyled" id="bank-detail-sub-menu">
+                @if(auth()->user()->userUserProfile)
+                    <li>
+                        <a href="{{route('account.edit',auth()->user()->userUserProfile)}}">Edit Bank Detail</a>
+                    </li>
+                    <li>
+                        <a href="{{route('account.show',auth()->user()->userUserProfile)}}">View Bank Detail</a>
+                    </li>
+                    <li>
+                        <a href="{{route('payments.history')}}">View Payments</a>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{route('account.create')}}">Add Bank Detail</a>
+                    </li>
+                @endif
+
+            </ul>
+        </li>
+        <li>
+            <a href="#profile-sub-menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <img class="c-sidebar-nav-icon mr-2" src="{{asset('front-assets/images/profile.svg')}}" alt="">
+                <span>Profile</span>
+            </a>
+            <ul class="collapsed list-unstyled" id="profile-sub-menu">
+                <li>
+                    <a href="{{ route('profile.edit') }}">Edit Profile</a>
+                </li>
+                <li>
+                    <a href="{{ route('password.change') }}">Change Password</a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+
+            <a target="_blank" href="{{ route('contact') }}">
+                <img class="c-sidebar-nav-icon mr-2" src="{{asset('front-assets/images/contact.svg')}}" alt="">
+                <span>Support</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                              document.getElementById('sidebar-logout-form').submit();">
-                {{ __('Logout') }}
+                <img class="c-sidebar-nav-icon mr-2" src="{{asset('front-assets/images/logout.svg')}}" alt="">
+                <span>{{ __('Logout') }}</span>
             </a>
             <form id="sidebar-logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
         </li>
     </ul>
-</aside>
+</nav>

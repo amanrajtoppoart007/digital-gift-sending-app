@@ -47,7 +47,7 @@ button.btn-theme-2:hover {
 	color: var(--color-1);
 }
 *.bg-theme-1 {
-	background-color: var(--color-1);
+	background-color: var(--color-1) !important;
 }
 
 /* Header */
@@ -118,17 +118,6 @@ section#fourth-section {
 	background-attachment: fixed;
 }
 
-div#banner_image-dropzone.dropzone .dz-preview .dz-image {
-    overflow: hidden;
-    width:  auto;
-    height: 300px;
-    position: relative;
-    display: block;
-    z-index: 10;
-}
-div#banner_image-dropzone.dropzone .dz-preview:hover .dz-image img {
-    filter: blur(0px);
-}
 .ck-editor__editable {
     min-height: 500px;
 }

@@ -46,7 +46,7 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        return '/home';
+        return '/dashboard';
     }
     public function logout(Request $request)
     {

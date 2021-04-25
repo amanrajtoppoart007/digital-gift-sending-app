@@ -1,80 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-
-    <!-- Meta Tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Website description">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <!-- Bootstrap 4.6 -->
-    <link rel="stylesheet" href="{{asset('plugins/bootstrap/css/bootstrap.min.css')}}">
+    <title>{{trans('panel.site_title')}}</title>
+
+    <!-- Bootstrap CSS CDN -->
+     <link rel="stylesheet" href="{{asset('plugins/bootstrap/css/bootstrap.min.css')}}">
 
     <!-- Google Fonts Nunito -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
-
+      <link rel="stylesheet" href="{{asset('plugins/fontawesome/css/all.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-toast/jquery.toast.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/dropzone/min/dropzone.min.css') }}">
-
-    <!-- Stylesheet -->
+    <!-- Our Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/index.css') }}">
+    <link rel="stylesheet" href="{{asset('custom-css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/user-panel.css') }}">
     @yield('head')
-
-    <!-- Website Title -->
-    <title>{{trans('panel.site_title')}}</title>
-    @yield("styles")
+    @yield('style')
 </head>
 
 <body>
-<div id="overlay">
-    <img class="spinner" src="{{asset('img/spinner.gif')}}" alt="spinner">
-</div>
-@include('user.includes.navbar')
-<div class="row no-gutters">
-    <div class="col-2">
-        @include('user.includes.sidebar')
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        @includeIf('user.includes.sidebar')
+
+        <!-- Page Content  -->
+        <div id="content">
+            @includeIf('user.includes.navbar')
+            <div class="px-2">
+                 @yield("content")
+            </div>
+
+        </div>
     </div>
-    <div class="col">
-        <main id="main">
-            <section id="second-section" class="py-2 h-100">
-                <div class="container" style="min-height:100vh;">
-                    @yield('content')
-                </div>
-            </section>
-        </main>
-    </div>
-</div>
 
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('plugins/popper/popper.min.js')}}"></script>
+    <script src="{{asset('plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('plugins/dropzone/min/dropzone.min.js')}}"></script>
+    <script src="{{asset('plugins/ckeditor5-build/ckeditor.js')}}"></script>
+    <script src="{{asset('plugins/jquery-toast/jquery.toast.min.js')}}"></script>
+    <script src="{{asset('js/function.js')}}"></script>
 
-@include("user.includes.footer")
-
-<!-- Jquery (Start) -->
-<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
-<script src="{{asset('plugins/popper/popper.min.js')}}"></script>
-<script src="{{asset('plugins/bootstrap/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('plugins/dropzone/min/dropzone.min.js')}}"></script>
-<script src="{{asset('plugins/ckeditor5-build/ckeditor.js')}}"></script>
-<script src="{{asset('plugins/jquery-toast/jquery.toast.min.js')}}"></script>
-<script src="{{asset('js/function.js')}}"></script>
-<script>
-    $(document).ready(function () {
-
-        $("#navbar-toggler").click(function () {
-            $("#navbar-menu").toggle(0);
-        })
-        $("#navbar-toggler").blur(function () {
-            $("#navbar-collapse").hide(0);
-        })
-
-        $.ajaxSetup({headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'}});
-    });
-</script>
-
-
-@yield("script")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+            $.ajaxSetup({headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'}});
+        });
+    </script>
+    @yield("script")
 </body>
 
 </html>

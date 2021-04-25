@@ -13,6 +13,27 @@ nav  ul.navbar-nav  li  a:hover {
 .c-sidebar-nav-item:hover>.c-sidebar-nav-link {
     color: #ffffff !important;
 }
+div#banner_image-dropzone.dropzone .dz-preview .dz-image {
+    overflow: hidden;
+    width:  auto;
+    height: auto;
+    position: relative;
+    display: block;
+    z-index: 10;
+}
+
+div#banner_image-dropzone.dropzone .dz-preview .dz-image img {
+    overflow: hidden;
+    width:  1024px;
+    height: 300px;
+    position: relative;
+    display: block;
+    z-index: 10;
+}
+div#banner_image-dropzone.dropzone .dz-preview:hover .dz-image img {
+    filter: blur(0px);
+}
+
         #overlay {
             position: fixed; /* Sit on top of the page content */
             display: none; /* Hidden by default */

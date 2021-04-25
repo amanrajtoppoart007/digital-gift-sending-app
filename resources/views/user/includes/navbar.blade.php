@@ -1,29 +1,35 @@
-<!-- Header (Start) -->
-<header id="header">
-    <nav class="navbar bg-theme-1 navbar-dark  navbar-expand-md shadow-sm">
-            <a href="{{route('home')}}" class="navbar-brand logo font-weight-bold">{{ trans('panel.site_title') }}</a>
-            <div class="collapse navbar-collapse" id="navbar-menu">
-                <ul class="navbar-nav ml-auto">
-                    <hr>
-                    <li class="nav-item mx-auto px-1">
-                        <a href="{{ route('home') }}" class="nav-link text-secondary">Home</a>
-                    </li>
-                    <hr>
-                    <li class="nav-item mx-auto px-1">
-                        <a class="nav-link text-secondary" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
+<nav class="navbar navbar-expand-lg navbar-dark bg-theme-1">
+    <div class="container-fluid">
+
+
+        <button class="btn btn-dark d-inline-block mr-auto" id="sidebarCollapse" type="button">
+            <i class="fas fa-align-justify"></i>
+        </button>
+
+        <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <i class="fas fa-align-justify"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a href="{{ route('home') }}" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                    </li>
-                </ul>
-            </div>
-            <button class="navbar-toggler text-white text-center" id="navbar-toggler">
-                <img src="{{ asset('front-assets/images/menu.svg') }}" alt="navbar-menu">
-            </button>
-    </nav>
-</header>
-<!-- Header (End) -->
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                          style="display: none;">
+                        @csrf
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
