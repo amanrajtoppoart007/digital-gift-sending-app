@@ -1,8 +1,27 @@
 @extends("guest.layout.view")
+@section('meta')
+    <meta property="og:title" content="{{$template->banner_title}}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:description" content="Keeping the current pandemic situation in mind, our team of young enthusiasts,
+                    came up with this idea to create a platform where physical presence in not required to send or
+                    receive the gifts. We want you to enjoy your special moment"/>
+    <meta property="og:url" content="{{route('template',$template->username)}}"/>
+    <meta property="og:image" content="{{$template->banner_image->thumb}}"/>
+@endsection
 @section("head")
-    <script type='text/javascript'
-            src='https://platform-api.sharethis.com/js/sharethis.js#property=6081b96b1c703400184e0d6d&product=sop'
-            async='async'></script>
+    <style>
+        div.background-image-section {
+            background-image: url("{{$template->banner_image->url}}");
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        div.card-header-content
+        {
+            min-height: 300px;
+        }
+    </style>
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6081b96b1c703400184e0d6d&product=sop' async='async'></script>
 @endsection
 @section('content')
     <main id="main">
@@ -23,14 +42,13 @@
                     </div>
                 @endif
                 <div class="card">
-                    <div class="card-body">
-                        <div style="background-image: url('{{$template->banner_image->url}}'); background-repeat: no-repeat;background-size: cover;-moz-background-size: cover;
-                        -o-background-size: cover;opacity: 0.8;" class="jumbotron jumbotron mt-3">
-                    <div style="min-height: 200px;"
-                         class="d-flex flex-column justify-content-center align-items-center">
+                    <div class="card-header background-image-section">
+                        <div class="d-flex flex-column justify-content-center align-items-center card-header-content">
                         <h1 class="font-weight-bold text-white my-auto text-center">{{$template->banner_title}}</h1>
                     </div>
-                </div>
+                    </div>
+                    <div class="card-body">
+
                 <div class="text-center mb-3">
                     <p class="lead">{!! $template->description !!}.</p>
                 </div>

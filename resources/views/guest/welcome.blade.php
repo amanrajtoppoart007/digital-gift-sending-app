@@ -7,7 +7,7 @@
             <br>
             <div class="container" align="center">
 
-                <h1 class="display-4 text-white font-weight-bold">Welcome to Online Ashirvaad</h1>
+                <h1 class="display-4 text-white font-weight-bold">Welcome to Online Aashirvaad</h1>
                 <hr class="w-25 bg-white">
                 <h4 class="text-light">Keeping the current pandemic situation in mind, our team of young enthusiasts,
                     came up with this idea to create a platform where physical presence in not required to send or
