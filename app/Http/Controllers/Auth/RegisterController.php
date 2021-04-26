@@ -22,14 +22,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\FarmerRegistrationRequest;
 use App\Models\Crop;
 use App\Models\Membership;
+use App\Models\Otp;
 use App\Models\Pincode;
 use App\Models\State;
 use App\Models\User;
 use App\Models\UserAddress;
 use App\Models\UserProfile;
 use App\Models\VerificationMessage;
-use http\Env\Request;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -68,7 +70,10 @@ class RegisterController extends Controller
     public function store(UserRegistrationRequest $request)
     {
         try {
-            $user = User::create($request->validated());
+
+            $mobileVerifiedAt = Carbon::now()->format(config('panel.date_format') . ' ' . config('panel.time_format'));
+            $request->request->add(['mobile_verified_at' => $mobileVerifiedAt]);
+            $user = User::create($request->all());
             if ($request->input('identity_proof', false)) {
                 $user->addMedia(storage_path('tmp/uploads/' . $request->input('identity_proof')))->toMediaCollection('identity_proof');
             }
@@ -133,6 +138,54 @@ class RegisterController extends Controller
         $token = Crypt::decryptString($token);
         return view("guest.auth.message", compact('user', 'token'));
 
+    }
+
+    public function sendRegistrationOtp(UserRegistrationRequest $request)
+    {
+
+        Otp::where('mobile', $request->mobile)->update(['is_expired'=>'1']);
+        $gatewayResponse = ['status' => 'success'];
+        $otp = rand(1000,9999);
+//        $sms = new TextLocal();
+//        $gatewayResponse = $sms->send($otp . " is your otp", $request->mobile,null);
+
+        $otpObj                     = new Otp();
+        $otpObj->mobile             = $request->mobile;
+        $otpObj->otp                = $otp;
+        $otpObj->sms_status         = $gatewayResponse['status'];
+        $otpObj->gateway_response   = json_encode($gatewayResponse);
+        $otpObj->save();
+        if($gatewayResponse['status'] == 'success'){
+            $result = ["status" => 1, "response" => "success", "message" => "Otp send to your mobile please check"];
+        }else{
+            $result = ["status" => 0, "response" => "error", "message" => 'Failed sending otp'];
+        }
+
+        return response()->json($result);
+    }
+
+    public function verifyOtp(Request $request)
+    {
+        $request->validate([
+            'mobile' => 'required',
+            'otp' => 'required'
+        ]);
+
+        $otpObj = Otp::whereOtp($request->otp)->whereMobile($request->mobile)->whereIsExpired(false)->first();
+
+        if($otpObj){
+            $otpObj->is_expired = true;
+            if($otpObj->save()){
+                $result = ["status" => 1, "response" => "success", "message" => "OTP Verified successfully."];
+
+            }else{
+                $result = ["status" => 0, "response" => "error", "message" => 'Something went wrong please try again'];
+            }
+        }else{
+            $result = ["status" => 0, "response" => "error", "message" => 'Please enter a valid otp'];
+        }
+
+        return response()->json($result);
     }
 
 }

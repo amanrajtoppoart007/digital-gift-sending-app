@@ -44,9 +44,10 @@
                                             class="text-danger ml-2 font-weight-bolder">*</label>
                                         <input type="number" name="mobile"
                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                               id="mobile" maxlength="10"
+                                               id="mobile" maxlength="10" minlength="10"
                                                pattern="[1-9]{1}[0-9]{9}" required
-                                               class="input-group-text bg-transparent w-100 text-left" required autocomplete>
+                                               class="input-group-text bg-transparent w-100 text-left" required
+                                               autocomplete>
                                     </div>
 
 
@@ -54,7 +55,8 @@
                                         <label class="font-weight-bolder text-dark" for="email">Email</label><label
                                             class="text-danger ml-2 font-weight-bolder">*</label>
                                         <input type="email" name="email" id="email"
-                                               class="input-group-text bg-transparent w-100 text-left" required autocomplete>
+                                               class="input-group-text bg-transparent w-100 text-left" required
+                                               autocomplete>
                                     </div>
 
                                     <div class="mt-3">
@@ -62,14 +64,16 @@
                                                for="password">Password</label><label
                                             class="text-danger ml-2 font-weight-bolder">*</label>
                                         <input type="password" name="password" id="password"
-                                               class="input-group-text bg-transparent w-100 text-left" required autocomplete>
+                                               class="input-group-text bg-transparent w-100 text-left" required
+                                               autocomplete>
                                     </div>
 
                                     <div class="mt-3">
                                         <label class="font-weight-bolder text-dark" for="password_confirmation">Confirm
                                             Password</label><label class="text-danger ml-2 font-weight-bolder">*</label>
                                         <input type="password" name="password_confirmation" id="password_confirmation"
-                                               class="input-group-text bg-transparent w-100 text-left" required autocomplete="false">
+                                               class="input-group-text bg-transparent w-100 text-left" required
+                                               autocomplete="false">
                                     </div>
 
                                 </div>
@@ -116,7 +120,8 @@
                                                 <h6>Account type</h6>
                                             </div>
                                             <div class="col form-check">
-<input class="form-check-input" type="radio" value="self" name="account_type" id="checkbox-for-self" checked>
+                                                <input class="form-check-input" type="radio" value="self"
+                                                       name="account_type" id="checkbox-for-self" checked>
                                                 <label class="form-check-label" for="checkbox-for-self">
                                                     Creating for self
                                                 </label>
@@ -133,19 +138,22 @@
                                         <div class="row">
                                             <div class="col">
                                                 <label class="font-weight-bolder text-dark" for="identity_proof">Id
-                                            card self </label><label
-                                            class="text-danger ml-2 font-weight-bolder">*</label>
-                                        <input type="file" name="identity_proof_file" id="identity_proof_file"
-                                               class="input-group-text bg-transparent w-100 text-left" required>
-                                        <input type="hidden" name="identity_proof" id="identity_proof" value="">
+                                                    card self </label><label
+                                                    class="text-danger ml-2 font-weight-bolder">*</label>
+                                                <input type="file" name="identity_proof_file" id="identity_proof_file"
+                                                       class="input-group-text bg-transparent w-100 text-left" required>
+                                                <input type="hidden" name="identity_proof" id="identity_proof" value="">
                                             </div>
                                             <div class="col other-person-id-proof-div" style="display: none">
-                                                <label class="font-weight-bolder text-dark" for="identity_proof_other_person">Id
-                                            card of other person </label><label
-                                            class="text-danger ml-2 font-weight-bolder">*</label>
-                                        <input type="file" name="identity_proof_other_file" id="identity_proof_other_file"
-                                               class="input-group-text bg-transparent w-100 text-left">
-                                        <input type="hidden" name="identity_proof_other_person" id="identity_proof_other_person" value="">
+                                                <label class="font-weight-bolder text-dark"
+                                                       for="identity_proof_other_person">Id
+                                                    card of other person </label><label
+                                                    class="text-danger ml-2 font-weight-bolder">*</label>
+                                                <input type="file" name="identity_proof_other_file"
+                                                       id="identity_proof_other_file"
+                                                       class="input-group-text bg-transparent w-100 text-left">
+                                                <input type="hidden" name="identity_proof_other_person"
+                                                       id="identity_proof_other_person" value="">
                                             </div>
                                         </div>
 
@@ -165,9 +173,10 @@
                                        id="agree_checkbox" value="accept" required>
                                 <p class="description-1">
                                     <span>By clicking here,you agree with our</span>
-                                    <a target="_blank" href="{{route('terms')}}" class="card-link">terms & conditions </a>
+                                    <a target="_blank" href="{{route('terms')}}" class="card-link">terms &
+                                        conditions </a>
                                     <span>and</span>
-                                     <a target="_blank" href="{{route('privacy')}}" class="card-link">privacy policy</a>
+                                    <a target="_blank" href="{{route('privacy')}}" class="card-link">privacy policy</a>
                                 </p>
                             </div>
                             <br>
@@ -186,6 +195,30 @@
 
     </main>
     <!-- Main (End) -->
+
+    <div class="modal" id="otpModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="OtpModalTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="OtpModalTitle">Verify Otp</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="otpForm">
+                        <input type="hidden" id="otp_mobile" name="mobile" required>
+                        <div class="form-group">
+                            <input type="text" name="otp" id="otp" placeholder="Enter otp"
+                                   class="input-group-text bg-transparent w-100 text-left" required>
+                        </div>
+
+                        <div class="form-group text-right">
+                            <button class="btn btn-primary">Verify</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 
@@ -193,10 +226,12 @@
     <script>
         $(document).ready(function () {
 
-            $("#identity_proof_file").on("change",function(){
+            let isVerified = false;
+
+            $("#identity_proof_file").on("change", function () {
 
                 let form = new FormData();
-                form.append('file',$("#identity_proof_file")[0].files[0]);
+                form.append('file', $("#identity_proof_file")[0].files[0]);
 
                 $.ajax({
                     url: "{{route('upload.media')}}",
@@ -208,19 +243,17 @@
                         $("#overlay").show();
                     },
                     success: function (response) {
-                        if (response.name)
-                        {
+                        if (response.name) {
                             $("#identity_proof").val(response.name)
 
-                        } else
-                        {
-                            $.notify('File upload failed','error','top-right');
+                        } else {
+                            $.notify('File upload failed', 'error', 'top-right');
                         }
 
                     },
                     error: function () {
 
-                        $.notify('File upload failed','error','top-right');
+                        $.notify('File upload failed', 'error', 'top-right');
                     },
 
                     complete: function () {
@@ -230,10 +263,10 @@
             });
 
 
-            $("#identity_proof_other_file").on("change",function(){
+            $("#identity_proof_other_file").on("change", function () {
 
                 let form = new FormData();
-                form.append('file',$("#identity_proof_other_file")[0].files[0]);
+                form.append('file', $("#identity_proof_other_file")[0].files[0]);
 
                 $.ajax({
                     url: "{{route('upload.media')}}",
@@ -245,18 +278,16 @@
                         $("#overlay").show();
                     },
                     success: function (response) {
-                        if (response.name)
-                        {
+                        if (response.name) {
                             $("#identity_proof_other_person").val(response.name)
 
-                        } else
-                        {
-                            $.notify('File upload failed','error','top-right');
+                        } else {
+                            $.notify('File upload failed', 'error', 'top-right');
                         }
 
                     },
                     error: function () {
-                        $.notify('File upload failed','error','top-right');
+                        $.notify('File upload failed', 'error', 'top-right');
                     },
 
                     complete: function () {
@@ -268,62 +299,139 @@
 
             $("#user_registration_form").on("submit", function (e) {
                 e.preventDefault();
-                $.ajax({
-                    url: "{{route('store.user.registration')}}",
-                    type: 'POST',
-                    data: $('#user_registration_form').serialize(),
-                    dataType: 'json',
-                    beforeSend: function () {
-                        $("#overlay").show();
-                    },
-                    success: function (res) {
-                        if (res.response === "success")
-                        {
+                if (isVerified) {
+                    $.ajax({
+                        url: "{{route('store.user.registration')}}",
+                        type: 'POST',
+                        data: $('#user_registration_form').serialize(),
+                        dataType: 'json',
+                        beforeSend: function () {
+                            $("#overlay").show();
+                        },
+                        success: function (res) {
+                            if (res.response === "success") {
 
-                            $.notify(res.message,'success','top-right');
-                            window.open(res.url, '_self');
-                        } else
-                            {
+                                $.notify(res.message, 'success', 'top-right');
+                                window.open(res.url, '_self');
+                            } else {
 
-                             $.notify(res.message,'error','top-right');
+                                $.notify(res.message, 'error', 'top-right');
+                            }
+                        },
+                        error: function (jqXhr, json, errorThrown) {
+                            let data = jqXhr.responseJSON;
+
+                            if (data.errors) {
+                                let error = '';
+                                $.each(data.errors, function (index, item) {
+                                    $(`#${index}`).addClass("is-invalid").tooltip({title: item[0]});
+                                    error += item[0] + "\n";
+                                });
+
+                                $.notify(error, 'error', 'top-right');
+                            }
+
+                        },
+
+                        complete: function () {
+                            $("#overlay").hide();
                         }
-                    },
-                    error: function (jqXhr, json, errorThrown) {
-                        let data = jqXhr.responseJSON;
+                    });
+                } else {
+                    $.ajax({
+                        url: "{{route('send.otp.user.registration')}}",
+                        type: 'POST',
+                        data: $('#user_registration_form').serialize(),
+                        dataType: 'json',
+                        beforeSend: function () {
+                            $("#overlay").show();
+                        },
+                        success: function (res) {
+                            if (res.response === "success") {
+                                $.notify(res.message, 'success', 'top-right');
+                                $('#otp_mobile').val($('#mobile').val());
+                                $('#otpModal').modal({backdrop: 'static', keyboard: false, show: true});
+                            } else {
+                                $.notify(res.message, 'error', 'top-right');
+                            }
+                        },
+                        error: function (jqXhr, json, errorThrown) {
+                            let data = jqXhr.responseJSON;
 
-                        if (data.errors) {
-                            let error = '';
-                            $.each(data.errors, function (index, item) {
-                                $(`#${index}`).addClass("is-invalid").tooltip({title: item[0]});
-                               error += item[0]+"\n";
-                            });
+                            if (data.errors) {
+                                let error = '';
+                                $.each(data.errors, function (index, item) {
+                                    $(`#${index}`).addClass("is-invalid").tooltip({title: item[0]});
+                                    error += item[0] + "\n";
+                                });
 
-                             $.notify(error,'error','top-right');
+                                $.notify(error, 'error', 'top-right');
+                            }
+
+                        },
+
+                        complete: function () {
+                            $("#overlay").hide();
                         }
+                    });
+                }
+            });
 
-                    },
+            $("#otpForm").on("submit", function (e) {
+                e.preventDefault();
 
-                    complete: function () {
-                        $("#overlay").hide();
-                    }
-                });
+                    $.ajax({
+                        url: "{{route('verify.otp.user.registration')}}",
+                        type: 'POST',
+                        data: $('#otpForm').serialize(),
+                        dataType: 'json',
+                        beforeSend: function () {
+                            $("#overlay").show();
+                        },
+                        success: function (res) {
+                            if (res.response === "success") {
+
+                                $.notify(res.message, 'success', 'top-right');
+                                isVerified = true;
+                                $('#user_registration_form').submit();
+                                $('#otpModal').modal('hide');
+                            } else {
+
+                                $.notify(res.message, 'error', 'top-right');
+                            }
+                        },
+                        error: function (jqXhr, json, errorThrown) {
+                            let data = jqXhr.responseJSON;
+
+                            if (data.errors) {
+                                let error = '';
+                                $.each(data.errors, function (index, item) {
+                                    $(`#${index}`).addClass("is-invalid").tooltip({title: item[0]});
+                                    error += item[0] + "\n";
+                                });
+
+                                $.notify(error, 'error', 'top-right');
+                            }
+
+                        },
+
+                        complete: function () {
+                            $("#overlay").hide();
+                        }
+                    });
+
             });
 
 
-            $("input[name='account_type']").on('click',function(){
-                if($(this).val()==='self')
-                {
+            $("input[name='account_type']").on('click', function () {
+                if ($(this).val() === 'self') {
                     $(".other-person-id-proof-div").hide();
-                    $("#identity_proof_other_file").attr({'required':false});
-                }
-                else
-                {
+                    $("#identity_proof_other_file").attr({'required': false});
+                } else {
                     $(".other-person-id-proof-div").show();
-                    $("#identity_proof_other_file").attr({'required':true});
+                    $("#identity_proof_other_file").attr({'required': true});
                 }
             })
-
-
 
 
         });

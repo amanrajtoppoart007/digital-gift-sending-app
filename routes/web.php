@@ -36,6 +36,8 @@ Auth::routes();
 Route::prefix('registration')->group(function () {
      Route::get('/', 'Auth\RegisterController@showRegistrationForm')->name("register");
      Route::post('/store', 'Auth\RegisterController@store')->name("store.user.registration");
+     Route::post('/otp/send', 'Auth\RegisterController@sendRegistrationOtp')->name("send.otp.user.registration");
+     Route::post('/otp/verify', 'Auth\RegisterController@verifyOtp')->name("verify.otp.user.registration");
      Route::post('upload/media', 'Auth\RegisterController@storeMedia')->name('registration.storeMedia');
      Route::get('/message/{entity_id}/{token}', 'Auth\RegisterController@message')->name("registration.message");
 
