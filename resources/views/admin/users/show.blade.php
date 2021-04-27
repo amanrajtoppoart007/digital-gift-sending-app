@@ -4,6 +4,9 @@
 <div class="card">
     <div class="card-header">
         {{ trans('global.show') }} {{ trans('cruds.user.title') }}
+        <div class="float-right">
+            <button class="btn btn-sm btn-danger" id="reject-button">Reject</button>
+        </div>
     </div>
 
     <div class="card-body">
@@ -161,9 +164,55 @@
     </div>
 </div>
 
+<div class="modal fade" id="rejectModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Reject remark</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form id="rejectForm">
+                @csrf
+                <input type="hidden" name="id" id="id" value="{{ $user->id }}">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="required"
+                               for="remark">Remark</label>
+                        <textarea name="remark" id="remark" class="form-control" rows="3" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-danger" type="submit">{{ trans('global.save') }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @section("scripts")
     @parent
     @includeIf('admin.users.status')
+    <script>
+        $('#reject-button').click(() => {
+            $('#rejectModal').modal('show');
+        });
+
+        $('#rejectForm').submit(function (e){
+            e.preventDefault();
+            $('#rejectForm').find('button').prop('disabled', true);
+            $.post("{{ route('admin.users.reject') }}", $(this).serialize(), result => {
+                alert(result.message)
+                if (result.status) {
+                    location.reload();
+                    $('#rejectModal').modal('hide');
+                }else{
+                    $('#rejectForm').find('button').prop('disabled', false);
+                }
+            }, 'json');
+        })
+    </script>
 @endsection

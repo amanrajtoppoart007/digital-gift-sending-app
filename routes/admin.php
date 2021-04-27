@@ -13,6 +13,7 @@ Route::post('users/parse-csv-import', 'Admin\UsersController@parseCsvImport')->n
 Route::post('users/process-csv-import', 'Admin\UsersController@processCsvImport')->name('users.processCsvImport');
 Route::resource('users', 'Admin\UsersController');
 Route::post('users/add-profile/{$user}', [\App\Http\Controllers\Admin\UsersController::class, 'addProfile'])->name('users.add-profile');
+Route::post('reject-user', [\App\Http\Controllers\Admin\UsersController::class, 'reject'])->name('users.reject');
 
 Route::post('users/change/approval/status', 'Admin\UsersController@changeApprovalStatus')->name('users.changeApprovalStatus');
 Route::post('users/change/verification/status', 'Admin\UsersController@changeVerificationStatus')->name('users.changeVerificationStatus');

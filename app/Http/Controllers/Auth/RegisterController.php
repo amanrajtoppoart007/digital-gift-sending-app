@@ -188,4 +188,43 @@ class RegisterController extends Controller
         return response()->json($result);
     }
 
+    public function uploadDocumentForm()
+    {
+        $user = User::whereEmail(request()->email)->first();
+        if(!$user) abort(404);
+        $states = State::get();
+        return view("guest.auth.uploadDocument", compact("states", 'user'));
+    }
+
+    public function uploadDocumentSubmit(Request $request)
+    {
+        $request->validate([
+            "id" => "required|exists:users",
+            'identity_proof' => 'required',
+            'identity_proof_other_person' => 'nullable',
+        ]);
+        try {
+            $user = User::find($request->id);
+            if ($request->input('identity_proof', false)) {
+                $user->addMedia(storage_path('tmp/uploads/' . $request->input('identity_proof')))->toMediaCollection('identity_proof');
+            }
+
+            if ($request->hasFile('identity_proof_other_person')) {
+                if ($request->input('identity_proof_other_person', false)) {
+                    $user->addMedia(storage_path('tmp/uploads/' . $request->input('identity_proof_other_person')))->toMediaCollection('identity_proof_other_person');
+                }
+            }
+
+            VerificationMessage::whereUserId($request->id)->update(['is_expired' => true]);
+
+            $url = route('index');
+
+            $result = ["status" => 1, "response" => "success", "url" => $url, "message" => "Document uploaded successful"];
+        } catch (\Exception $exception) {
+            $result = ["status" => 0, "response" => "error", "message" => $exception->getMessage()];
+        }
+
+        return response()->json($result);
+    }
+
 }

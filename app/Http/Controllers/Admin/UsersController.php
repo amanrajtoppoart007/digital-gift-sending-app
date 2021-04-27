@@ -9,17 +9,21 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\UserApprovalStatusRequest;
 use App\Http\Requests\UserVerificationStatusRequest;
+use App\Mail\UserRejectionMessage;
 use App\Mail\UserWelcomeMessage;
 
 use App\Models\Role;
 use App\Models\State;
 use App\Models\User;
 use App\Models\UserProfile;
+use App\Models\VerificationMessage;
 use App\Notifications\RegistrationSuccessSms;
 use Gate;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -249,5 +253,34 @@ class UsersController extends Controller
         User::whereIn('id', request('ids'))->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function reject(Request $request)
+    {
+        $user = User::find($request->id);
+
+        $token = Str::random(64);
+        $emailUrl = url("upload/" . $token . "?email=" . $user->email);
+        $data = [
+            'name' => $user->name,
+            'url' => $emailUrl,
+            'remark' => $request->remark
+        ];
+
+        $email = new VerificationMessage();
+        $email->email = $user->email;
+        $email->mobile = $user->mobile;
+        $email->token = $token;
+        $email->user_id = $user->id;
+
+        Mail::to($user->email)->send(new UserRejectionMessage($data));
+        if($email->save()){
+            $result = ["status" => 1, "response" => "success",  "message" => "Rejected user successfully"];
+        }else{
+            $result = ["status" => 0, "response" => "error", "message" => 'Something went wrong.'];
+
+        }
+        return response()->json($result,200);
+
     }
 }
