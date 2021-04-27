@@ -57,7 +57,7 @@
         <li>
             <a href="{{route('payments.history')}}">
                 <img class="c-sidebar-nav-icon mr-2" src="{{ asset('front-assets/images/account.svg') }}" alt="">
-                <span>Received Payments </span>
+                <span>Total Transactions </span>
             </a>
         </li>
         <li>
