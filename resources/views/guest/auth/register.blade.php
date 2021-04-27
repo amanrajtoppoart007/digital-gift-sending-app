@@ -7,11 +7,11 @@
             <div class="container">
 
                 <!-- Back Buttton -->
-                <a href="{{ URL::to('/') }}" class="btn btn-theme-2 shadow">
-                    <img
-                        src="{{ asset('assets/assets/icons/back.svg') }}" class="img-fluid btn-icon ml-0 mr-1">Back</a>
-                <br>
-                <br>
+{{--                <a href="{{ URL::to('/') }}" class="btn btn-theme-2 shadow">--}}
+{{--                    <img--}}
+{{--                        src="{{ asset('assets/assets/icons/back.svg') }}" class="img-fluid btn-icon ml-0 mr-1">Back</a>--}}
+{{--                <br>--}}
+{{--                <br>--}}
 
                 <!-- Registration Form Card (Start) -->
                 <div class="card border-0 shadow">
@@ -36,7 +36,7 @@
                                         <label class="font-weight-bolder text-dark" for="name">Name</label><label
                                             class="text-danger ml-2 font-weight-bolder">*</label>
                                         <input type="text" name="name" id="name"
-                                               class="input-group-text bg-transparent w-100 text-left" required>
+                                               class="form-control input-group-text bg-transparent w-100 text-left" required>
                                     </div>
 
                                     <div class="mt-3">
@@ -46,7 +46,7 @@
                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                id="mobile" maxlength="10" minlength="10"
                                                pattern="[1-9]{1}[0-9]{9}" required
-                                               class="input-group-text bg-transparent w-100 text-left" required
+                                               class="form-control input-group-text bg-transparent w-100 text-left" required
                                                autocomplete>
                                     </div>
 
@@ -55,7 +55,7 @@
                                         <label class="font-weight-bolder text-dark" for="email">Email</label><label
                                             class="text-danger ml-2 font-weight-bolder">*</label>
                                         <input type="email" name="email" id="email"
-                                               class="input-group-text bg-transparent w-100 text-left" required
+                                               class="form-control input-group-text bg-transparent w-100 text-left" required
                                                autocomplete>
                                     </div>
 
@@ -63,19 +63,36 @@
                                         <label class="font-weight-bolder text-dark"
                                                for="password">Password</label><label
                                             class="text-danger ml-2 font-weight-bolder">*</label>
-                                        <input type="password" name="password" id="password"
-                                               class="input-group-text bg-transparent w-100 text-left" required
-                                               autocomplete>
+                                        <div class="input-group mb-3">
+                                            <input type="password" name="password" id="password"
+                                                   class="form-control input-group-text bg-transparent text-left" required
+                                                   autocomplete>
+                                            <div class="input-group-append">
+                                                <button class="btn" type="button" id="toggle-password"><i class="fa fa-eye"></i></button>
+                                            </div>
+                                        </div>
                                     </div>
-
                                     <div class="mt-3">
                                         <label class="font-weight-bolder text-dark" for="password_confirmation">Confirm
                                             Password</label><label class="text-danger ml-2 font-weight-bolder">*</label>
-                                        <input type="password" name="password_confirmation" id="password_confirmation"
-                                               class="input-group-text bg-transparent w-100 text-left" required
-                                               autocomplete="false">
+                                        <div class="input-group mb-3">
+                                            <input type="password" name="password_confirmation" id="password_confirmation"
+                                                   class="form-control input-group-text bg-transparent text-left" required
+                                                   autocomplete="false">
+                                            <div class="input-group-append">
+                                                <button class="btn" type="button" id="toggle-conf-password"><i class="fa fa-eye"></i></button>
+                                            </div>
+                                        </div>
                                     </div>
-
+                                    <div class="px-3 text-danger">
+                                        <ul>
+                                            <li>Must be at least 8 characters long.</li>
+                                            <li>Should contain at-least 1 Uppercase.</li>
+                                            <li>Should contain at-least 1 Lowercase.</li>
+                                            <li>Should contain at-least 1 Numeric.</li>
+                                            <li>Should contain at-least 1 special character.</li>
+                                        </ul>
+                                    </div>
                                 </div>
 
                                 <div class="col-lg-6 col-md-12 col-sm-12">
@@ -84,10 +101,15 @@
                                         <label class="font-weight-bolder text-dark" for="address">Address</label><label
                                             class="text-danger ml-2 font-weight-bolder">*</label>
                                         <input type="address" name="address"
-                                               class="input-group-text bg-transparent w-100 text-left" id="address"
+                                               class="form-control input-group-text bg-transparent w-100 text-left" id="address"
                                                required>
                                     </div>
-
+                                    <div class="mt-3">
+                                        <label class="font-weight-bolder text-dark" for="city">City</label><label
+                                            class="text-danger ml-2 font-weight-bolder">*</label>
+                                        <input type="text" name="city" id="city"
+                                               class="form-control input-group-text bg-transparent w-100 text-left" required>
+                                    </div>
                                     <div class="mt-3">
                                         <label class="font-weight-bolder text-dark" for="state_id">State</label><label
                                             class="text-danger ml-2 font-weight-bolder">*</label>
@@ -99,18 +121,12 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="mt-3">
-                                        <label class="font-weight-bolder text-dark" for="city">City</label><label
-                                            class="text-danger ml-2 font-weight-bolder">*</label>
-                                        <input type="text" name="city" id="city"
-                                               class="input-group-text bg-transparent w-100 text-left" required>
-                                    </div>
 
                                     <div class="mt-3">
                                         <label class="font-weight-bolder text-dark" for="pin_code">Pincode</label><label
                                             class="text-danger ml-2 font-weight-bolder">*</label>
                                         <input type="text" name="pin_code" id="pin_code"
-                                               class="input-group-text bg-transparent w-100 text-left" required>
+                                               class="form-control input-group-text bg-transparent w-100 text-left" required>
                                     </div>
 
                                     <div class="mt-3">
@@ -141,7 +157,7 @@
                                                     card self </label><label
                                                     class="text-danger ml-2 font-weight-bolder">*</label>
                                                 <input type="file" name="identity_proof_file" id="identity_proof_file"
-                                                       class="input-group-text bg-transparent w-100 text-left" required>
+                                                       class="input-group-text bg-transparent w-100 text-left" accept=".jpg, .jpeg, .png, .pdf" required>
                                                 <input type="hidden" name="identity_proof" id="identity_proof" value="">
                                             </div>
                                             <div class="col other-person-id-proof-div" style="display: none">
@@ -150,10 +166,13 @@
                                                     card of other person </label><label
                                                     class="text-danger ml-2 font-weight-bolder">*</label>
                                                 <input type="file" name="identity_proof_other_file"
-                                                       id="identity_proof_other_file"
+                                                       id="identity_proof_other_file" accept=".jpg, .jpeg, .png, .pdf"
                                                        class="input-group-text bg-transparent w-100 text-left">
                                                 <input type="hidden" name="identity_proof_other_person"
                                                        id="identity_proof_other_person" value="">
+                                            </div>
+                                            <div class="col-12 text-danger">
+                                                Supported file types JPG, PNG, PDF
                                             </div>
                                         </div>
 
@@ -180,9 +199,12 @@
                                 </p>
                             </div>
                             <br>
-                            <button type="submit" class="btn btn-theme-2 shadow">Submit<img
+                            <button type="submit" id="submit-button" class="btn btn-theme-2 shadow">Submit<img
                                     src="{{ asset('assets/assets/icons/circle-arrow.svg') }}" alt="submit"
                                     class="btn-icon ml-2"></button>
+                            <div class="mt-3">
+                                Already a member? <a href="{{ route('login') }}" class="card-link">Login</a>
+                            </div>
                         </div>
 
                     </form>
@@ -227,6 +249,32 @@
         $(document).ready(function () {
 
             let isVerified = false;
+
+            $('#submit-button').mouseenter(function (){
+                $(this).find('img').attr('src', "{{ asset('assets/assets/icons/circle-arrow-blue.svg') }}")
+            });
+            $('#submit-button').mouseleave(function (){
+                $(this).find('img').attr('src', "{{ asset('assets/assets/icons/circle-arrow.svg') }}")
+            });
+
+            $('#toggle-password').click(function () {
+                if($('#password').attr('type') == 'password'){
+                    $('#password').attr('type', 'text');
+                    $(this).find('i').removeClass('fa-eye').addClass('fa-eye-slash')
+                }else{
+                    $('#password').attr('type', 'password');
+                    $(this).find('i').removeClass('fa-eye-slash').addClass('fa-eye')
+                }
+            });
+            $('#toggle-conf-password').click(function () {
+                if($('#password_confirmation').attr('type') == 'password'){
+                    $('#password_confirmation').attr('type', 'text');
+                    $(this).find('i').removeClass('fa-eye').addClass('fa-eye-slash')
+                }else{
+                    $('#password_confirmation').attr('type', 'password');
+                    $(this).find('i').removeClass('fa-eye-slash').addClass('fa-eye')
+                }
+            });
 
             $("#identity_proof_file").on("change", function () {
 

@@ -88,7 +88,7 @@
                                                        class="text-info">
                                                         <img height="35" class=""
                                                              src="{{asset('front-assets/images/create.svg')}}" alt="">
-                                                        <span class="ml-2">Show Bank Detail</span>
+                                                        <span class="ml-2">View Bank Detail</span>
                                                     </a>
                                                 </div>
                                             @else
@@ -101,13 +101,13 @@
                                                 </div>
                                                 @endif
 
-                                            <div class="col align-items-center">
-                                                <a href="{{route('payments.history')}}" class="text-info">
-                                                    <img height="35" class=""
-                                                         src="{{asset('front-assets/images/delivered.svg')}}" alt="">
-                                                    <span class="ml-2">Received Payments</span>
-                                                </a>
-                                            </div>
+{{--                                            <div class="col align-items-center">--}}
+{{--                                                <a href="{{route('payments.history')}}" class="text-info">--}}
+{{--                                                    <img height="35" class=""--}}
+{{--                                                         src="{{asset('front-assets/images/delivered.svg')}}" alt="">--}}
+{{--                                                    <span class="ml-2">Received Payments</span>--}}
+{{--                                                </a>--}}
+{{--                                            </div>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -117,16 +117,16 @@
                                     <div class="card-header bg-blue">Profile</div>
                                     <div class="card-body align-items-center">
                                         <div class="row">
-                                            @if(auth()->user()->template)
-                                                <div class="col-4 align-items-center">
-                                                    <a href="{{route('template', auth()->user()->template->username)}}"
-                                                       target="_blank" class="text-info">
-                                                        <img height="35" class=""
-                                                             src="{{asset('front-assets/images/link.svg')}}" alt="">
-                                                        <span class="ml-2">View Page</span>
-                                                    </a>
-                                                </div>
-                                            @endif
+{{--                                            @if(auth()->user()->template)--}}
+{{--                                                <div class="col-4 align-items-center">--}}
+{{--                                                    <a href="{{route('template', auth()->user()->template->username)}}"--}}
+{{--                                                       target="_blank" class="text-info">--}}
+{{--                                                        <img height="35" class=""--}}
+{{--                                                             src="{{asset('front-assets/images/link.svg')}}" alt="">--}}
+{{--                                                        <span class="ml-2">View Page</span>--}}
+{{--                                                    </a>--}}
+{{--                                                </div>--}}
+{{--                                            @endif--}}
 
                                             <div class="col-4 align-items-center">
                                                 <a href="{{ route('profile.edit') }}" class="text-info">
@@ -151,17 +151,20 @@
 
                         </div>
                     </div>
-                    <div class="col-5">
-                        <div class="card h-100">
+                    <div class="col-5 h-100">
+                        <div class="card mb-2">
+                            <div class="card-body text-center py-4 bg-blue">
+                                <h4 class="font-weight-bold">{{ auth()->user()->payments->sum('amount') ?? 0 }}</h4>
+                                <div>Total Collected Amount</div>
+                            </div>
+                        </div>
+                        <div class="card">
 
                             <div class="card-header bg-blue">
                                 <h6><strong>User Detail</strong></h6>
                             </div>
 
-                            <div class="card-body">
-
-
-
+                            <div class="card-body mb-1" style="height: 200px">
                                 <table class="table">
                                     <tbody>
                                     <tr>

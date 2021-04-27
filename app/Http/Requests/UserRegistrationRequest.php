@@ -32,7 +32,7 @@ class UserRegistrationRequest extends FormRequest
             "state_id" => "required",
             "city" => "required",
             "pin_code" => "required|numeric|digits:6",
-            "password" => "required|required_with:password_confirmation|confirmed|min:6|same:password_confirmation",
+            "password" => "required|required_with:password_confirmation|confirmed|min:8|same:password_confirmation|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/",
             "password_confirmation" => "required",
             'identity_proof' => 'nullable',
              'identity_proof_other_person' => 'nullable',

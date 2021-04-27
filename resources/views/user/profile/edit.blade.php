@@ -22,6 +22,19 @@
                                        aria-describedby="name_help">
                             </div>
                             <div class="form-group">
+                                <label for="description"><strong>Address </strong> <span
+                                        class="text-danger">*</span></label>
+                                <textarea class="form-control" id="address" name="address"
+                                          aria-describedby="address_help">{{ $user->address }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="city"><strong>City </strong> <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="city" name="city"
+                                       value="{{$user->city}}"
+                                       aria-describedby="city_help">
+                            </div>
+                            <div class="form-group">
                                 <label for="state_id"><strong>State </strong> <span
                                         class="text-danger">*</span></label>
                                 <select class="custom-select select2" name="state_id" id="state_id"
@@ -32,14 +45,6 @@
                                     @endforeach
                                 </select>
                             </div>
-
-                            <div class="form-group">
-                                <label for="city"><strong>City </strong> <span
-                                        class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="city" name="city"
-                                       value="{{$user->city}}"
-                                       aria-describedby="city_help">
-                            </div>
                             <div class="form-group">
                                 <label for="pin_code"><strong>Pincode </strong> <span
                                         class="text-danger">*</span></label>
@@ -47,13 +52,6 @@
                                        value="{{$user->pin_code}}"
                                        aria-describedby="pin_code_help">
                             </div>
-                            <div class="form-group">
-                                <label for="description"><strong>Address </strong> <span
-                                        class="text-danger">*</span></label>
-                                <textarea class="form-control" id="address" name="address"
-                                          aria-describedby="address_help">{{ $user->address }}</textarea>
-                            </div>
-
                             <button type="submit" class="btn btn-primary">Update</button>
                         </form>
                     </div>

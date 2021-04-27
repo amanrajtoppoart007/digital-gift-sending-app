@@ -17,7 +17,7 @@ class PasswordController extends Controller
     {
         $request->validate([
             'current_password' => 'required',
-            'password' => 'required',
+            'password' => 'required|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/',
             'password_confirmation' => 'required|same:password'
         ]);
 
@@ -26,6 +26,13 @@ class PasswordController extends Controller
                 "status" => 0,
                 "response" => "error",
                 "message" => 'You have entered wrong password'
+            ]);
+        }
+        if (Hash::check($request->password, auth()->user()->password)) {
+            return response()->json([
+                "status" => 0,
+                "response" => "error",
+                "message" => "Your new password should not be same as current password"
             ]);
         }
         try {

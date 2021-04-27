@@ -6,13 +6,13 @@
 
             <div class="row justify-content-center mb-5">
     <div class="col-md-8">
-        <a href="{{URL::to('/')}}" class="btn btn-theme-2 shadow my-2">
-                    <img src="{{asset('assets/assets/icons/back.svg')}}" class="img-fluid btn-icon ml-0 mr-1">Back</a>
+{{--        <a href="{{URL::to('/')}}" class="btn btn-theme-2 shadow my-2">--}}
+{{--                    <img src="{{asset('assets/assets/icons/back.svg')}}" class="img-fluid btn-icon ml-0 mr-1">Back</a>--}}
         <div class="card">
             <div class="card-body p-4">
                 <h1 class="text-theme-1">{{ trans('panel.site_title') }}</h1>
 
-                <p class="text-muted">{{ trans('global.login') }}</p>
+                <p class="text-muted">User login</p>
 
                 @if(session('message'))
                     <div class="alert alert-info" role="alert">
@@ -39,13 +39,19 @@
                         @endif
                     </div>
 
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                    <div class="mt-3">
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                            </div>
+                            <input type="password" name="password" id="password"
+                                   class="form-control input-group-text bg-transparent text-left {{ $errors->has('password') ? ' is-invalid' : '' }}" required
+                                   placeholder="{{ trans('global.login_password') }}">
+                            <div class="input-group-append">
+                                <button class="btn" type="button" id="toggle-password"><i class="fa fa-eye"></i></button>
+                            </div>
                         </div>
-
-                        <input id="password" name="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" required placeholder="{{ trans('global.login_password') }}">
-
                         @if($errors->has('password'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('password') }}
@@ -64,7 +70,7 @@
 
                     <div class="row">
                         <div class="col-6">
-                            <button type="submit" class="btn btn-theme-2 shadow">
+                            <button type="submit" id="submit-button" class="btn btn-theme-2 shadow">
                                 {{ trans('global.login') }}
                                 <img src="{{asset('assets/assets/icons/circle-arrow.svg')}}" alt="submit" class="btn-icon ml-2">
                             </button>
@@ -72,11 +78,12 @@
                         <div class="col-6 text-right">
                             @if(Route::has('password.request'))
                                 <a class="card-link px-0" href="{{ route('password.request') }}">
-                                    {{ trans('global.forgot_password') }}
+                                    Forgot password?
                                 </a><br>
                             @endif
+                            <span>New to Online Aashirvaad? </span>
                             <a class="card-link px-0" href="{{ route('register') }}">
-                                {{ trans('global.register') }}
+                                Sign Up!
                             </a>
                         </div>
                     </div>
@@ -90,3 +97,29 @@
 
 </main>
 @endsection
+
+
+@section("script")
+    <script>
+        $(document).ready(function () {
+
+            $('#submit-button').mouseenter(function (){
+                $(this).find('img').attr('src', "{{ asset('assets/assets/icons/circle-arrow-blue.svg') }}")
+            });
+            $('#submit-button').mouseleave(function (){
+                $(this).find('img').attr('src', "{{ asset('assets/assets/icons/circle-arrow.svg') }}")
+            });
+
+            $('#toggle-password').click(function () {
+                if($('#password').attr('type') == 'password'){
+                    $('#password').attr('type', 'text');
+                    $(this).find('i').removeClass('fa-eye').addClass('fa-eye-slash')
+                }else{
+                    $('#password').attr('type', 'password');
+                    $(this).find('i').removeClass('fa-eye-slash').addClass('fa-eye')
+                }
+            });
+        });
+    </script>
+@endsection
+

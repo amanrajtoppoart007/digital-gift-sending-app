@@ -98,15 +98,15 @@
                         <!-- Contact From (End) -->
 
                         <!-- Map (Start) -->
-                        <div class="card border-0 shadow mt-3">
-                            <div class="card-body">
-                                <div class="card">
-                                    <iframe class="map-iframe"
-                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1859.796696388102!2d81.35160357087418!3d21.20830559887367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDEyJzI5LjkiTiA4McKwMjEnMDguMCJF!5e0!3m2!1sen!2sin!4v1613104881088!5m2!1sen!2sin"
-                                            frameborder="0" allowfullscreen></iframe>
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="card border-0 shadow mt-3">--}}
+{{--                            <div class="card-body">--}}
+{{--                                <div class="card">--}}
+{{--                                    <iframe class="map-iframe"--}}
+{{--                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1859.796696388102!2d81.35160357087418!3d21.20830559887367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDEyJzI5LjkiTiA4McKwMjEnMDguMCJF!5e0!3m2!1sen!2sin!4v1613104881088!5m2!1sen!2sin"--}}
+{{--                                            frameborder="0" allowfullscreen></iframe>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <!-- Map (End) -->
 
                         <br>
@@ -155,7 +155,7 @@
                         <!-- Mail Card (End) -->
 
                         <!-- Phone Card (Start) -->
-<!--                        <a href="tel: +1234567890" class="card-link">
+                        <a href="tel: +1234567890" class="card-link">
                             <div class="card border-0 shadow contact-card" align="center">
                                 <div class="card-body">
                                     <div class="contact-img-div">
@@ -168,7 +168,7 @@
                                     </p>
                                 </div>
                             </div>
-                        </a>-->
+                        </a>
                         <!-- Phone Card (End) -->
 
                     </div>

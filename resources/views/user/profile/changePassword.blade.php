@@ -33,6 +33,15 @@
                                        name="password_confirmation" required>
                             </div>
                         </div>
+                        <div class="col-md-8 my-2 px-5 text-danger">
+                            <ul>
+                                <li>Must be at least 8 characters long.</li>
+                                <li>Should contain at-least 1 Uppercase.</li>
+                                <li>Should contain at-least 1 Lowercase.</li>
+                                <li>Should contain at-least 1 Numeric.</li>
+                                <li>Should contain at-least 1 special character.</li>
+                            </ul>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Change</button>
                 </form>

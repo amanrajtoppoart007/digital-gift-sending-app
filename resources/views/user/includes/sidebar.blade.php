@@ -19,7 +19,7 @@
                         <a href="{{route('template.edit', auth()->user()->template->id)}}">Edit Page</a>
                     </li>
                     <li>
-                        <a href="{{route('template', auth()->user()->template->username)}}">View Page</a>
+                        <a href="{{route('template', auth()->user()->template->username)}}" target="_blank">View Page as User</a>
                     </li>
                 @else
                     <li>
@@ -44,7 +44,7 @@
                     <li>
                         <a href="{{route('account.show',auth()->user()->userUserProfile)}}">View Bank Detail</a>
                     </li>
-                    
+
                 @else
                     <li>
                         <a href="{{route('account.create')}}">Add Bank Detail</a>
