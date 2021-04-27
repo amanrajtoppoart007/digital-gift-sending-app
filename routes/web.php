@@ -40,7 +40,6 @@ Route::prefix('registration')->group(function () {
      Route::post('/otp/verify', 'Auth\RegisterController@verifyOtp')->name("verify.otp.user.registration");
      Route::post('upload/media', 'Auth\RegisterController@storeMedia')->name('registration.storeMedia');
      Route::get('/message/{entity_id}/{token}', 'Auth\RegisterController@message')->name("registration.message");
-
 });
 Route::resource('account', 'User\AccountController');
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
@@ -83,5 +82,7 @@ Route::get('message/{txn_number}', 'Guest\PaymentController@message')->name('mes
 });
 
 Route::get('verify/{token}', [\App\Http\Controllers\VerificationController::class, 'verify']);
+Route::get('upload/{token}', 'Auth\RegisterController@uploadDocumentForm');
+Route::post('upload-document', 'Auth\RegisterController@uploadDocumentSubmit')->name('upload.submit');
 require __DIR__.'/cmd.php';
 
