@@ -27,4 +27,14 @@ class PaymentController extends Controller
       $invoiceName = date('YmdhiA').'-invoice.pdf';
       return $pdf->download("$invoiceName");
     }
+
+    public function createReportPDF()
+    {
+        $payments = auth()->user()->payments;
+        view()->share('payments', $payments);
+        $pdf = PDF::loadView('user.payment.reportpdf', $payments);
+        $pdf->setPaper('a4', 'landscape');
+        $invoiceName = date('YmdhiA').'-payments.pdf';
+        return $pdf->download("$invoiceName");
+    }
 }
