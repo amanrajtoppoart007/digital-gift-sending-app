@@ -62,7 +62,7 @@
                                             <input type="text" name="amount" id="amount" class="form-control"
                                                    minlength="3"
                                                    maxlength="10"
-                                                   placeholder="Amount"
+                                                   placeholder="Amount *"
                                                    pattern="[0-9]+"
                                                    onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
                                                    value="" required>

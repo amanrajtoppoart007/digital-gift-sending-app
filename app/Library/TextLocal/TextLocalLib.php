@@ -84,7 +84,6 @@ class TextLocalLib
             'simple_reply' => $simpleReplyService,
         );
 
-
         return $this->_sendRequest('send', $params);
     }
 

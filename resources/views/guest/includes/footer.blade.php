@@ -1,29 +1,28 @@
 <!-- Footer (Start) -->
 <footer class="bg-light" id="footer">
-    <br>
-    <div class="container py-5">
-
+    <div class="container pt-3 pb-1">
         <div class="row">
-
-            <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="col-lg-3 col-md-6 col-sm-12  text-center mb-2">
                 <h5 class="font-weight-bold text-theme-1">{{ trans('panel.site_title') }}</h5>
                 <p class="text-secondary">Keeping the current pandemic situation in mind, our team of young enthusiasts, came up with this idea to create a platform where physical presence in not required to send or receive the gifts. We want you to enjoy your special moment.</p>
                 <br>
                 <br>
             </div>
 
-            <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="col-lg-3 col-md-6 col-sm-12 text-center mb-2">
                 <h5 class="font-weight-bold text-theme-1 mb-2">Quick Links</h5>
-                <ul class="ml-4">
+                <div class="text-center">
+                    <ul class="ml-4" style=" list-style-type: none;">
                     <li class="my-2"><a href="{{ route('index') }}" class="card-link text-theme-1">Home</a></li>
                     <li class="my-2"><a href="{{ route('contact') }}" class="card-link text-theme-1">Contact Us</a></li>
                     <li class="my-2"><a href="{{ route('terms') }}" class="card-link text-theme-1">Terms of Use</a></li>
                     <li class="my-2"><a href="{{ route('privacy') }}" class="card-link text-theme-1">Privacy Policy</a></li>
                     <li class="my-2"><a href="{{ route('about') }}" class="card-link text-theme-1">About us</a></li>
                 </ul>
+                </div>
             </div>
 
-            <div class="col-lg-3 col-md-6 col-sm-12text-center">
+            <div class="col-lg-3 col-md-6 col-sm-12 text-center mb-2">
                 <h5 class="font-weight-bold text-theme-1 mb-2">Payment Partner</h5>
                 <img src="{{ asset('img/payumoney.png') }}" alt="">
                     <div class="mt-4">
@@ -35,9 +34,14 @@
                     </div>
             </div>
 
-            <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="col-lg-3 col-md-6 col-sm-12  text-center mb-2">
                 <h5 class="font-weight-bold text-theme-1">Company</h5>
-                <p class="text-secondary">Company address</p>
+                <p class="text-secondary">Company Address:
+                    Kamal Enterprises
+                    Village - Kankrola,
+                    P.O. - Bhangrola,
+                    Distt. - Gurgaon,
+                    State - Haryana (India) - 122505</p>
                 <ul class="mt-4">
                     <li class="d-inline-block mr-1"><a href="#"><img
                                 src="{{ asset('front-assets/images/facebook.svg') }}" alt="facebook"></a></li>

@@ -5,14 +5,6 @@
 
         <section id="second-section">
             <div class="container">
-
-                <!-- Back Buttton -->
-{{--                <a href="{{ URL::to('/') }}" class="btn btn-theme-2 shadow">--}}
-{{--                    <img--}}
-{{--                        src="{{ asset('assets/assets/icons/back.svg') }}" class="img-fluid btn-icon ml-0 mr-1">Back</a>--}}
-{{--                <br>--}}
-{{--                <br>--}}
-
                 <!-- Registration Form Card (Start) -->
                 <div class="card border-0 shadow">
                     <form class="form-group"
@@ -100,7 +92,7 @@
                                     <div class="mt-3">
                                         <label class="font-weight-bolder text-dark" for="address">Address</label><label
                                             class="text-danger ml-2 font-weight-bolder">*</label>
-                                        <input type="address" name="address"
+                                        <input type="text" name="address"
                                                class="form-control input-group-text bg-transparent w-100 text-left" id="address"
                                                required>
                                     </div>
@@ -159,6 +151,7 @@
                                                 <input type="file" name="identity_proof_file" id="identity_proof_file"
                                                        class="input-group-text bg-transparent w-100 text-left" accept=".jpg, .jpeg, .png, .pdf" required>
                                                 <input type="hidden" name="identity_proof" id="identity_proof" value="">
+                                                <span class="text-danger">Supported file types JPG, PNG, PDF</span>
                                             </div>
                                             <div class="col other-person-id-proof-div" style="display: none">
                                                 <label class="font-weight-bolder text-dark"
@@ -170,10 +163,9 @@
                                                        class="input-group-text bg-transparent w-100 text-left">
                                                 <input type="hidden" name="identity_proof_other_person"
                                                        id="identity_proof_other_person" value="">
+                                                <span class="text-danger">Supported file types JPG, PNG, PDF</span>
                                             </div>
-                                            <div class="col-12 text-danger">
-                                                Supported file types JPG, PNG, PDF
-                                            </div>
+
                                         </div>
 
                                     </div>
@@ -186,7 +178,7 @@
                         <!-- Card Body (End) -->
 
                         <!-- Card Footer -->
-                        <div class="card-footer bg-white" align="center">
+                        <div class="card-footer bg-white text-center">
                             <div class="form-check-inline">
                                 <input type="checkbox" name="terms" class="custom-checkbox mt-n3 mr-2"
                                        id="agree_checkbox" value="accept" required>

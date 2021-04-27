@@ -12,7 +12,7 @@ class TextLocal extends TextLocalLib
     public function __construct()
     {
         parent::__construct('', '', 'QxR3Do53a2w-2G8lL0bwsIv9cYgfNlaJ9bP8yPwxwP');
-        $this->sender = 'DGNRAY' ; # Default sender name
+        $this->sender = 'SFTFLS' ; # Default sender name
     }
 
     /**
@@ -26,4 +26,5 @@ class TextLocal extends TextLocalLib
     {
         return $this->sendSms([$receiver], $message, $sender != '' ? $sender : $this->sender);
     }
+
 }

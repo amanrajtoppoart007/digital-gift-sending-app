@@ -52,7 +52,7 @@
                                        value="{{$user->pin_code}}"
                                        aria-describedby="pin_code_help">
                             </div>
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-primary d-none">Update</button>
                         </form>
                     </div>
                 </div>
@@ -64,6 +64,12 @@
 
     <script>
         $(document).ready(function () {
+
+            let fields = ['input','textarea','select','radio','checkbox'];
+            $.each(fields,function(index,item){
+               $("form").find(`${item}`).prop({'disabled':true});
+            })
+
             $("#profileForm").on('submit', function (e) {
                 e.preventDefault();
                 $.ajax({

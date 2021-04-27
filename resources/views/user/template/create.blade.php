@@ -87,7 +87,11 @@
 @section('script')
     <script>
          ClassicEditor
-            .create(document.querySelector('#description'))
+            .create(document.querySelector('#description'),{
+                alignment : {
+                    options: ['left', 'right','center','justify']
+                }
+            })
             .catch(error => {
             });
     </script>

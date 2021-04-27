@@ -3,34 +3,19 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Traits\MediaUploadingTrait;
-use App\Http\Requests\FranchiseeRegistrationRequest;
-use App\Http\Requests\HelpCenterRegistrationRequest;
+
 use App\Http\Requests\UserRegistrationRequest;
 use App\Library\TextLocal\TextLocal;
 use App\Mail\EmailVerificationMessage;
-use App\Mail\FranchiseeWelcomeMessage;
-use App\Mail\HelpCenterWelcomeMessage;
 use App\Mail\UserWelcomeMessage;
-use App\Models\City;
-use App\Models\District;
-use App\Models\Franchisee;
-use App\Models\FranchiseeProfile;
-use App\Models\HelpCenter;
-use App\Models\HelpCenterProfile;
-
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FarmerRegistrationRequest;
-use App\Models\Crop;
-use App\Models\Membership;
 use App\Models\Otp;
-use App\Models\Pincode;
 use App\Models\State;
 use App\Models\User;
-use App\Models\UserAddress;
-use App\Models\UserProfile;
+
 use App\Models\VerificationMessage;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
@@ -96,7 +81,7 @@ class RegisterController extends Controller
             $vEmail->token = $eToken;
             $vEmail->user_id = $user->id;
             $vEmail->save();
-            //Mail::to($user->email)->send(new EmailVerificationMessage($data));
+            Mail::to($user->email)->send(new EmailVerificationMessage($data));
 
             //FOR MOBILE VERIFICATION
             $mToken = Str::random(64);
@@ -105,16 +90,8 @@ class RegisterController extends Controller
             $vMobile->token = $mToken;
             $vMobile->user_id = $user->id;
             $vMobile->save();
+            Mail::to($user)->send(new UserWelcomeMessage());
 
-            $mobileUrl = url("verify/" . $mToken . "?mobile=" . $user->mobile);
-
-//            $sms = new TextLocal();
-//            $sms->send("Click this link to verify ". $mobileUrl, $user->mobile,null);
-
-           // Mail::to($user)->send(new UserWelcomeMessage());
-            /*$sms = new TextLocal();
-            $sms->send(trans('sms.registration',['reg_number'=>$user->mobile]),$user->mobile,null);
-            $sms->send('this is test', $user->mobile, null);*/
 
             $url = route("registration.message",
                 [
@@ -143,24 +120,34 @@ class RegisterController extends Controller
     public function sendRegistrationOtp(UserRegistrationRequest $request)
     {
 
-        Otp::where('mobile', $request->mobile)->update(['is_expired'=>'1']);
+        try {
+            Otp::where('mobile', $request->input('mobile'))->update(['is_expired'=>'1']);
         $gatewayResponse = ['status' => 'success'];
-        $otp = rand(1000,9999);
-//        $sms = new TextLocal();
-//        $gatewayResponse = $sms->send($otp . " is your otp", $request->mobile,null);
+        $otp = rand(100000,999999);
+        $sms = new TextLocal();
 
+        $message = trans('sms.registration', ['serviceType' => 'registration','otp'=>$otp]);
+
+        $sms->send($message, $request->input('mobile'), 'SFTFLS');
         $otpObj                     = new Otp();
         $otpObj->mobile             = $request->mobile;
         $otpObj->otp                = $otp;
         $otpObj->sms_status         = $gatewayResponse['status'];
         $otpObj->gateway_response   = json_encode($gatewayResponse);
         $otpObj->save();
-        if($gatewayResponse['status'] == 'success'){
+        if($gatewayResponse['status'] == 'success')
+        {
             $result = ["status" => 1, "response" => "success", "message" => "Otp send to your mobile please check"];
-        }else{
+        }
+        else
+        {
             $result = ["status" => 0, "response" => "error", "message" => 'Failed sending otp'];
         }
-
+        }
+        catch (\Exception $exception)
+        {
+             $result = ["status" => 0, "response" => "error", "message" => $exception->getMessage()];
+        }
         return response()->json($result);
     }
 
@@ -171,11 +158,23 @@ class RegisterController extends Controller
             'otp' => 'required'
         ]);
 
-        $otpObj = Otp::whereOtp($request->otp)->whereMobile($request->mobile)->whereIsExpired(false)->first();
+        try {
+            $otpObj = Otp::whereOtp($request->otp)->whereMobile($request->mobile)->whereIsExpired(false)->first();
 
-        if($otpObj){
+        if($otpObj)
+        {
             $otpObj->is_expired = true;
-            if($otpObj->save()){
+            if($otpObj->save())
+            {
+
+                $user = User::where(['mobile'=>$request->input('mobile')])->first();
+                $user->mobile_verified_at = now();
+                if($user->email_verified_at)
+                {
+                    $user->verified = 1;
+                }
+                $user->save();
+
                 $result = ["status" => 1, "response" => "success", "message" => "OTP Verified successfully."];
 
             }else{
@@ -183,6 +182,11 @@ class RegisterController extends Controller
             }
         }else{
             $result = ["status" => 0, "response" => "error", "message" => 'Please enter a valid otp'];
+        }
+        }
+        catch (\Exception $exception)
+        {
+            $result = ["status" => 0, "response" => "error", "message" => $exception->getMessage()];
         }
 
         return response()->json($result);

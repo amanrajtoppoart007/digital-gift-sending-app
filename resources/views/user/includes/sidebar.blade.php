@@ -19,7 +19,7 @@
                         <a href="{{route('template.edit', auth()->user()->template->id)}}">Edit Page</a>
                     </li>
                     <li>
-                        <a href="{{route('template', auth()->user()->template->username)}}" target="_blank">View Page as User</a>
+                        <a href="{{route('template', auth()->user()->template->username)}}" target="_blank">Show Page as Visitor</a>
                     </li>
                 @else
                     <li>
@@ -50,11 +50,15 @@
                         <a href="{{route('account.create')}}">Add Bank Detail</a>
                     </li>
                 @endif
-                <li>
-                        <a href="{{route('payments.history')}}">Received Payments</a>
-                    </li>
+
 
             </ul>
+        </li>
+        <li>
+            <a href="{{route('payments.history')}}">
+                <img class="c-sidebar-nav-icon mr-2" src="{{ asset('front-assets/images/account.svg') }}" alt="">
+                <span>Received Payments </span>
+            </a>
         </li>
         <li>
             <a href="#profile-sub-menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
