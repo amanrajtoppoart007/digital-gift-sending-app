@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 
 use App\Http\Requests\UserRegistrationRequest;
+use App\Jobs\SendRegisteredUserEmailToAdmin;
 use App\Library\TextLocal\TextLocal;
 use App\Mail\EmailVerificationMessage;
+use App\Mail\UserRegisteredMessage;
 use App\Mail\UserWelcomeMessage;
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\Otp;
 use App\Models\State;
 use App\Models\User;
@@ -84,13 +87,17 @@ class RegisterController extends Controller
             Mail::to($user->email)->send(new EmailVerificationMessage($data));
 
             //FOR MOBILE VERIFICATION
-            $mToken = Str::random(64);
-            $vMobile = new VerificationMessage();
-            $vMobile->mobile = $user->mobile;
-            $vMobile->token = $mToken;
-            $vMobile->user_id = $user->id;
-            $vMobile->save();
+//            $mToken = Str::random(64);
+//            $vMobile = new VerificationMessage();
+//            $vMobile->mobile = $user->mobile;
+//            $vMobile->token = $mToken;
+//            $vMobile->user_id = $user->id;
+//            $vMobile->save();
             Mail::to($user)->send(new UserWelcomeMessage());
+
+            $admin = Admin::first();
+
+            Mail::to($admin)->send(new UserRegisteredMessage(['name' => $user->name]));
 
 
             $url = route("registration.message",

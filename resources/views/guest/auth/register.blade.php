@@ -460,7 +460,7 @@
 
                                 $.notify(res.message, 'success', 'top-right');
                                 isVerified = true;
-                                $('#user_registration_form')[0].submit();
+                                $('#user_registration_form').submit();
 
                             } else {
 
