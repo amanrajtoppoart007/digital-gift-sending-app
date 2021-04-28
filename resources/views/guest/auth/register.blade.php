@@ -58,7 +58,7 @@
                                         <div class="input-group mb-3">
                                             <input type="password" name="password" id="password"
                                                    class="form-control input-group-text bg-transparent text-left" required
-                                                   autocomplete>
+                                                   autocomplete onKeyUp="checkPasswordStrength();">
                                             <div class="input-group-append">
                                                 <button class="btn" type="button" id="toggle-password"><i class="fa fa-eye"></i></button>
                                             </div>
@@ -76,8 +76,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="px-3 text-danger">
-                                        <ul>
+                                    <div class="px-3">
+                                      <span><strong id="password-strength-status"></strong></span>
+                                        <ul class="text-danger" id="strong-password-suggestion">
                                             <li>Must be at least 8 characters long.</li>
                                             <li>Should contain at-least 1 Uppercase.</li>
                                             <li>Should contain at-least 1 Lowercase.</li>
@@ -242,6 +243,26 @@
 
 @section("script")
     <script>
+        function checkPasswordStrength() {
+            let number = /([0-9])/;
+            let alphabets = /([a-zA-Z])/;
+            let special_characters = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
+             $('#password-strength-status').removeClass();
+            if ($('#password').val().length < 6) {
+
+                $('#password-strength-status').addClass('text-danger');
+                $('#password-strength-status').html("Weak (should be atleast 6 characters.)");
+            } else {
+                if ($('#password').val().match(number) && $('#password').val().match(alphabets) && $('#password').val().match(special_characters)) {
+                    $('#password-strength-status').addClass('text-success');
+                    $('#password-strength-status').html("Your password strength is strong");
+                    $("#strong-password-suggestion").hide();
+                } else {
+                    $('#password-strength-status').addClass('text-warning');
+                    $('#password-strength-status').html("Medium (should include alphabets, numbers and special characters.)");
+                }
+            }
+        }
         $(document).ready(function () {
 
             let isVerified = false;
@@ -435,11 +456,12 @@
                         },
                         success: function (res) {
                             if (res.response === "success") {
+                                $('#otpModal').modal('hide');
 
                                 $.notify(res.message, 'success', 'top-right');
                                 isVerified = true;
-                                $('#user_registration_form').submit();
-                                $('#otpModal').modal('hide');
+                                $('#user_registration_form')[0].submit();
+
                             } else {
 
                                 $.notify(res.message, 'error', 'top-right');
