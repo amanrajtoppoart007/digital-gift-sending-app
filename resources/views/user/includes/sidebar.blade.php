@@ -5,7 +5,10 @@
 
     <ul class="list-unstyled components c-sidebar-nav">
         <li>
-            <a href="{{route('home')}}">Dashboard</a>
+            <a href="{{route('home')}}">
+                <img class="c-sidebar-nav-icon mr-2" src="{{asset('front-assets/images/speedometer.png')}}" alt="">
+                <span>Dashboard</span>
+                </a>
         </li>
         <li class="active">
             <a href="#page-management-sub-menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
