@@ -4,9 +4,11 @@
 <div class="card">
     <div class="card-header">
         {{ trans('global.show') }} {{ trans('cruds.user.title') }}
-        <div class="float-right">
-            <button class="btn btn-sm btn-danger" id="reject-button">Reject</button>
-        </div>
+        @if(!$user->approved)
+            <div class="float-right">
+                <button class="btn btn-sm btn-danger" id="reject-button">Further Verify</button>
+            </div>
+        @endif
     </div>
 
     <div class="card-body">
@@ -135,7 +137,7 @@
         {{ trans('global.relatedData') }}
     </div>
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link active" href="#user_payments" role="tab" data-toggle="tab">
                 Payments
             </a>
@@ -152,7 +154,7 @@
         </li>
     </ul>
     <div class="tab-content">
-        <div class="tab-pane" role="tabpanel" id="user_payments">
+        <div class="tab-pane fade show active" role="tabpanel" id="user_payments">
           @includeIf('admin.users.relationships.userPayments',['payments'=>$user->payments])
         </div>
         <div class="tab-pane" role="tabpanel" id="user_templates">
