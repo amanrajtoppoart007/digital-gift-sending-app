@@ -166,15 +166,6 @@ class RegisterController extends Controller
             $otpObj->is_expired = true;
             if($otpObj->save())
             {
-
-                $user = User::where(['mobile'=>$request->input('mobile')])->first();
-                $user->mobile_verified_at = now();
-                if($user->email_verified_at)
-                {
-                    $user->verified = 1;
-                }
-                $user->save();
-
                 $result = ["status" => 1, "response" => "success", "message" => "OTP Verified successfully."];
 
             }else{

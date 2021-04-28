@@ -118,6 +118,10 @@
                                         <label class="font-weight-bolder text-dark" for="pin_code">Pincode</label><label
                                             class="text-danger ml-2 font-weight-bolder">*</label>
                                         <input type="text" name="pin_code" id="pin_code"
+                                                  minlength="6"
+                                                   maxlength="6"
+                                                    pattern="[0-9]+"
+                                                    onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
                                                class="form-control input-group-text bg-transparent w-100 text-left" required>
                                     </div>
 
@@ -250,7 +254,7 @@
             });
 
             $('#toggle-password').click(function () {
-                if($('#password').attr('type') == 'password'){
+                if($('#password').attr('type') === 'password'){
                     $('#password').attr('type', 'text');
                     $(this).find('i').removeClass('fa-eye').addClass('fa-eye-slash')
                 }else{
@@ -259,7 +263,7 @@
                 }
             });
             $('#toggle-conf-password').click(function () {
-                if($('#password_confirmation').attr('type') == 'password'){
+                if($('#password_confirmation').attr('type') === 'password'){
                     $('#password_confirmation').attr('type', 'text');
                     $(this).find('i').removeClass('fa-eye').addClass('fa-eye-slash')
                 }else{
@@ -387,7 +391,8 @@
                             $("#overlay").show();
                         },
                         success: function (res) {
-                            if (res.response === "success") {
+                            if (res.response === "success")
+                            {
                                 $.notify(res.message, 'success', 'top-right');
                                 $('#otp_mobile').val($('#mobile').val());
                                 $('#otpModal').modal({backdrop: 'static', keyboard: false, show: true});
