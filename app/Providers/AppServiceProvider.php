@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\ServiceProvider;
 use App\Channels\SmsChannel;
-
+use Illuminate\Routing\UrlGenerator;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,8 +23,12 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(UrlGenerator $url)
     {
+        if(config('app.env') === 'production')
+        {
+            $url->forceScheme('https');
+        }
          Notification::extend('sms', function ($app) {
             return new SmsChannel();
         });
