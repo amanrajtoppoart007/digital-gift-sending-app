@@ -1,4 +1,28 @@
 @extends("guest.layout.app")
+@section("styles")
+    <style>
+        .password-input-box {
+            border-right: 0 !important;
+        }
+
+        .view-password-button {
+            background-color: #fff;
+            border: 1px solid #ced4da;
+            border-left: 0 !important;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-clip: padding-box;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+        .view-password-button a {
+            color: #0e0e0e;
+        }
+    </style>
+@endsection
 @section("content")
     <!-- Main (Start) -->
     <main id="main">
@@ -28,7 +52,7 @@
                                         <label class="font-weight-bolder text-dark" for="name">Name</label><label
                                             class="text-danger ml-2 font-weight-bolder">*</label>
                                         <input type="text" name="name" id="name"
-                                               class="form-control input-group-text bg-transparent w-100 text-left" required>
+                                               class="form-control bg-transparent w-100 text-left" required>
                                     </div>
 
                                     <div class="mt-3">
@@ -65,7 +89,7 @@
                                         <label class="font-weight-bolder text-dark" for="email">Email</label><label
                                             class="text-danger ml-2 font-weight-bolder">*</label>
                                         <input type="email" name="email" id="email"
-                                               class="form-control input-group-text bg-transparent w-100 text-left" required
+                                               class="form-control bg-transparent w-100 text-left" required
                                                autocomplete>
                                     </div>
 
@@ -75,10 +99,10 @@
                                             class="text-danger ml-2 font-weight-bolder">*</label>
                                         <div class="input-group mb-3">
                                             <input type="password" name="password" id="password"
-                                                   class="form-control input-group-text bg-transparent text-left" required
+                                                   class="form-control bg-transparent text-left password-input-box" required
                                                    autocomplete onKeyUp="checkPasswordStrength();">
-                                            <div class="input-group-append">
-                                                <button class="btn" type="button" id="toggle-password"><i class="fa fa-eye"></i></button>
+                                            <div class="input-group-append view-password-button">
+                                                <a href="javascript:void(0)" id="toggle-password"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -87,10 +111,10 @@
                                             Password</label><label class="text-danger ml-2 font-weight-bolder">*</label>
                                         <div class="input-group mb-3">
                                             <input type="password" name="password_confirmation" id="password_confirmation"
-                                                   class="form-control input-group-text bg-transparent text-left" required
+                                                   class="form-control bg-transparent text-left password-input-box" required
                                                    autocomplete="false">
-                                            <div class="input-group-append">
-                                                <button class="btn" type="button" id="toggle-conf-password"><i class="fa fa-eye"></i></button>
+                                            <div class="input-group-append view-password-button">
+                                                <a href="javascript:void(0)" id="toggle-conf-password"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -106,14 +130,14 @@
                                         <label class="font-weight-bolder text-dark" for="address">Address</label><label
                                             class="text-danger ml-2 font-weight-bolder">*</label>
                                         <input type="text" name="address"
-                                               class="form-control input-group-text bg-transparent w-100 text-left" id="address"
+                                               class="form-control bg-transparent w-100 text-left" id="address"
                                                required>
                                     </div>
                                     <div class="mt-3">
                                         <label class="font-weight-bolder text-dark" for="city">City</label><label
                                             class="text-danger ml-2 font-weight-bolder">*</label>
                                         <input type="text" name="city" id="city"
-                                               class="form-control input-group-text bg-transparent w-100 text-left" required>
+                                               class="form-control bg-transparent w-100 text-left" required>
                                     </div>
                                     <div class="mt-3">
                                         <label class="font-weight-bolder text-dark" for="state_id">State</label><label
@@ -135,7 +159,7 @@
                                                    maxlength="6"
                                                     pattern="[0-9]+"
                                                     onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
-                                               class="form-control input-group-text bg-transparent w-100 text-left" required>
+                                               class="form-control bg-transparent w-100 text-left" required>
                                     </div>
 
                                     <div class="mt-3">
