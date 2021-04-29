@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 
+use App\Http\Requests\MobileValidationRequest;
 use App\Http\Requests\UserRegistrationRequest;
 use App\Library\TextLocal\TextLocal;
 use App\Mail\EmailVerificationMessage;
@@ -117,7 +118,7 @@ class RegisterController extends Controller
 
     }
 
-    public function sendRegistrationOtp(UserRegistrationRequest $request)
+    public function sendRegistrationOtp(MobileValidationRequest $request)
     {
 
         try {
@@ -148,7 +149,7 @@ class RegisterController extends Controller
         {
              $result = ["status" => 0, "response" => "error", "message" => $exception->getMessage()];
         }
-        return response()->json($result);
+        return response()->json($result,200);
     }
 
     public function verifyOtp(Request $request)

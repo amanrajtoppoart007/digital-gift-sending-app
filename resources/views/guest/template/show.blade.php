@@ -99,7 +99,7 @@
                                                                value="" required>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-12">
                                                     <div class="form-group">
                                                         <textarea type="text" name="short_note" id="short_note"
                                                                   class="form-control"

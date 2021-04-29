@@ -13,7 +13,7 @@
                             <div class="card-body">
                                 <div class="text-success" role="alert">
                                     <h4 class="alert-heading">Well done!</h4>
-                                    <p>Welcome to demo website , you are successfully registered with us.</p>
+                                    <p>Welcome to {{trans('panel.site_title')}} , you are successfully registered with us.You will get account confirmation email once admin will verify your account.</p>
                                     <p>Your login credential is as follows.</p>
                                     <p>Email    - <span>{{$user->email}}</span>.</p>
                                     <p>password - <span>{{$token}}</span></p>

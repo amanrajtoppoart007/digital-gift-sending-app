@@ -8,7 +8,7 @@
                 <!-- Registration Form Card (Start) -->
                 <div class="card border-0 shadow">
                     <form class="form-group"
-                          id="user_registration_form" enctype="multipart/form-data">
+                          id="user_registration_form" enctype="multipart/form-data" autocomplete="off">
                     @csrf
                     <!-- Card Header -->
                         <div class="card-header bg-white" align="center">
@@ -32,14 +32,32 @@
                                     </div>
 
                                     <div class="mt-3">
-                                        <label class="font-weight-bolder text-dark" for="mobile">Mobile</label><label
+                                        <label class="font-weight-bolder text-dark" for="mobile" id="mobile_title">Mobile <span class="text-danger ml-2 font-weight-bolder">*</span> </label>
+
+                                        <div class="input-group mb-3">
+                                            <input type="text" name="mobile" id="mobile" class="form-control mobile-validation" placeholder=""
+                                                  maxlength="10" minlength="10"  pattern="[1-9]{1}[0-9]{9}" required autocomplete aria-label="User's Mobile" aria-describedby="basic-addon2">
+                                            <div class="input-group-append" id="sendOTPButton" style="display: none;">
+                                                <span class="input-group-text btn bg-theme-1 text-white" id="sendOTPButtonText">
+                                                    Send OTP
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <span class="text-danger my-1" id="mobile-validation-suggestion"></span>
+                                        <div id="verify_otp_section" style="display: none;">
+                                            <label class="font-weight-bolder text-dark" for="OTP">Verify Otp</label><label
                                             class="text-danger ml-2 font-weight-bolder">*</label>
-                                        <input type="number" name="mobile"
-                                               oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                               id="mobile" maxlength="10" minlength="10"
-                                               pattern="[1-9]{1}[0-9]{9}" required
-                                               class="form-control input-group-text bg-transparent w-100 text-left" required
-                                               autocomplete>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" id="OTP" name="OTP" value="" placeholder=""
+                                                   aria-label="OTP" aria-describedby="verifyOTPButton">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text btn bg-theme-1 text-white" id="verifyOTPButton">
+                                                    Verify
+                                                </span>
+                                            </div>
+                                        </div>
+                                        </div>
+
                                     </div>
 
 
@@ -78,13 +96,7 @@
                                     </div>
                                     <div class="px-3">
                                       <span><strong id="password-strength-status"></strong></span>
-                                        <ul class="text-danger" id="strong-password-suggestion">
-                                            <li>Must be at least 8 characters long.</li>
-                                            <li>Should contain at-least 1 Uppercase.</li>
-                                            <li>Should contain at-least 1 Lowercase.</li>
-                                            <li>Should contain at-least 1 Numeric.</li>
-                                            <li>Should contain at-least 1 special character.</li>
-                                        </ul>
+
                                     </div>
                                 </div>
 
@@ -214,35 +226,13 @@
 
     </main>
     <!-- Main (End) -->
-
-    <div class="modal" id="otpModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="OtpModalTitle"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="OtpModalTitle">Verify Otp</h5>
-                </div>
-                <div class="modal-body">
-                    <form id="otpForm">
-                        <input type="hidden" id="otp_mobile" name="mobile" required>
-                        <div class="form-group">
-                            <input type="text" name="otp" id="otp" placeholder="Enter otp"
-                                   class="input-group-text bg-transparent w-100 text-left" required>
-                        </div>
-
-                        <div class="form-group text-right">
-                            <button class="btn btn-primary">Verify</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
 
 
 @section("script")
     <script>
+
+
         function checkPasswordStrength() {
             let number = /([0-9])/;
             let alphabets = /([a-zA-Z])/;
@@ -251,7 +241,7 @@
             if ($('#password').val().length < 6) {
 
                 $('#password-strength-status').addClass('text-danger');
-                $('#password-strength-status').html("Weak (should be atleast 6 characters.)");
+                $('#password-strength-status').html("Weak (should be at least 6 characters.)");
             } else {
                 if ($('#password').val().match(number) && $('#password').val().match(alphabets) && $('#password').val().match(special_characters)) {
                     $('#password-strength-status').addClass('text-success');
@@ -265,7 +255,151 @@
         }
         $(document).ready(function () {
 
-            let isVerified = false;
+             let isVerified = false;
+
+            $.ajaxSetup({headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'}});
+
+
+            $(document).on('keydown','.mobile-validation', function (e) {
+
+                if (isNaN(String.fromCharCode(e.keyCode))&&(e.keyCode!==8)) {
+                     $("#sendOTPButton").hide();
+                    return false;
+                }
+                let mobile = $(this).val();
+                let pattern = /^\d{9}$/;
+
+                if(pattern.test(mobile))
+                {
+                    $("#mobile-validation-suggestion").hide();
+                     if ($(this).val().length === 9) {
+                        $("#sendOTPButton").show();
+                    } else {
+                        $("#sendOTPButton").hide();
+                    }
+
+                }
+                else
+                {
+                    if(($(this).val().length> 9) && (!isNaN($(this).val()))&&(e.keyCode!==8))
+                    {
+                        return false;
+                    }
+                    $("#mobile-validation-suggestion").show();
+                    $("#sendOTPButton").hide();
+                    $("#mobile-validation-suggestion").html("Please enter 10 digit valid mobile number");
+
+                }
+
+            });
+
+            $(document).on("keydown",".mobile-input-disabled",function(e){
+                e.preventDefault();
+                return false;
+            });
+
+            $("#sendOTPButton").on('click',function(){
+
+                $.ajax({
+                        url: "{{route('send.otp.user.registration')}}",
+                        type: 'POST',
+                        data: $('#user_registration_form').serialize(),
+                        dataType: 'json',
+                        beforeSend: function () {
+                            $("#overlay").show();
+                        },
+                        success: function (res) {
+                            if (res.response === "success")
+                            {
+                                $.notify(res.message, 'success', 'top-right');
+                                $("#verify_otp_section").show();
+                                $("#mobile").removeClass('mobile-validation');
+                                $("#mobile").addClass('mobile-input-disabled');
+                                $("#sendOTPButtonText").html("Re-send OTP");
+                            } else {
+                                $.notify(res.message, 'error', 'top-right');
+                            }
+                        },
+                        error: function (jqXhr) {
+                            let data = jqXhr.responseJSON;
+
+                            if (data.errors) {
+                                let error = '';
+                                $.each(data.errors, function (index, item) {
+                                    $(`#${index}`).addClass("is-invalid").tooltip({title: item[0]});
+                                    error += item[0] + "\n";
+                                });
+
+                                $.notify(error, 'error', 'top-right');
+                            }
+
+                        },
+
+                        complete: function () {
+                            $("#overlay").hide();
+                        }
+                    });
+
+
+            });
+
+
+            $("#verifyOTPButton").on("click", function (e) {
+                e.preventDefault();
+
+                    $.ajax({
+                        url: "{{route('verify.otp.user.registration')}}",
+                        type: 'POST',
+                        data: {
+                            mobile: $("#mobile").val(),
+                            otp: $("#OTP").val()
+                        },
+                        dataType: 'json',
+                        beforeSend: function () {
+                            $("#overlay").show();
+                        },
+                        success: function (res) {
+                            if (res.response === "success")
+                            {
+                                $("#verify_otp_section").hide();
+                                $("#mobile_title").html(`<span>Mobile</span><small class="text-success ml-2">verified</small>`);
+                                $("#mobile").addClass('is-valid');
+                                $("#sendOTPButtonText").html('Send OTP');
+                                $("#sendOTPButton").hide();
+                                $.notify(res.message, 'success', 'top-right');
+                                isVerified = true;
+
+                            }
+                            else
+                            {
+
+                                $.notify(res.message, 'error', 'top-right');
+                            }
+                        },
+                        error: function (jqXhr, json, errorThrown) {
+                            let data = jqXhr.responseJSON;
+
+                            if (data.errors) {
+                                let error = '';
+                                $.each(data.errors, function (index, item) {
+                                    $(`#${index}`).addClass("is-invalid").tooltip({title: item[0]});
+                                    error += item[0] + "\n";
+                                });
+
+                                $.notify(error, 'error', 'top-right');
+                            }
+
+                        },
+
+                        complete: function () {
+                            $("#overlay").hide();
+                        }
+                    });
+
+            });
+
+
+
 
             $('#submit-button').mouseenter(function (){
                 $(this).find('img').attr('src', "{{ asset('assets/assets/icons/circle-arrow-blue.svg') }}")
@@ -362,10 +496,10 @@
             });
 
 
-            $("#user_registration_form").on("submit", function (e) {
-                e.preventDefault();
-                if (isVerified) {
-                    $.ajax({
+
+            function registerUser()
+            {
+                $.ajax({
                         url: "{{route('store.user.registration')}}",
                         type: 'POST',
                         data: $('#user_registration_form').serialize(),
@@ -383,7 +517,7 @@
                                 $.notify(res.message, 'error', 'top-right');
                             }
                         },
-                        error: function (jqXhr, json, errorThrown) {
+                        error: function (jqXhr) {
                             let data = jqXhr.responseJSON;
 
                             if (data.errors) {
@@ -402,92 +536,19 @@
                             $("#overlay").hide();
                         }
                     });
+            }
+
+
+            $("#user_registration_form").on("submit", function (e) {
+                e.preventDefault();
+                if (isVerified) {
+                       registerUser();
                 } else {
-                    $.ajax({
-                        url: "{{route('send.otp.user.registration')}}",
-                        type: 'POST',
-                        data: $('#user_registration_form').serialize(),
-                        dataType: 'json',
-                        beforeSend: function () {
-                            $("#overlay").show();
-                        },
-                        success: function (res) {
-                            if (res.response === "success")
-                            {
-                                $.notify(res.message, 'success', 'top-right');
-                                $('#otp_mobile').val($('#mobile').val());
-                                $('#otpModal').modal({backdrop: 'static', keyboard: false, show: true});
-                            } else {
-                                $.notify(res.message, 'error', 'top-right');
-                            }
-                        },
-                        error: function (jqXhr, json, errorThrown) {
-                            let data = jqXhr.responseJSON;
-
-                            if (data.errors) {
-                                let error = '';
-                                $.each(data.errors, function (index, item) {
-                                    $(`#${index}`).addClass("is-invalid").tooltip({title: item[0]});
-                                    error += item[0] + "\n";
-                                });
-
-                                $.notify(error, 'error', 'top-right');
-                            }
-
-                        },
-
-                        complete: function () {
-                            $("#overlay").hide();
-                        }
-                    });
+                     $.notify('Please verify user mobile number first', 'error', 'top-right');
                 }
             });
 
-            $("#otpForm").on("submit", function (e) {
-                e.preventDefault();
 
-                    $.ajax({
-                        url: "{{route('verify.otp.user.registration')}}",
-                        type: 'POST',
-                        data: $('#otpForm').serialize(),
-                        dataType: 'json',
-                        beforeSend: function () {
-                            $("#overlay").show();
-                        },
-                        success: function (res) {
-                            if (res.response === "success") {
-                                $('#otpModal').modal('hide');
-
-                                $.notify(res.message, 'success', 'top-right');
-                                isVerified = true;
-                                $('#user_registration_form')[0].submit();
-
-                            } else {
-
-                                $.notify(res.message, 'error', 'top-right');
-                            }
-                        },
-                        error: function (jqXhr, json, errorThrown) {
-                            let data = jqXhr.responseJSON;
-
-                            if (data.errors) {
-                                let error = '';
-                                $.each(data.errors, function (index, item) {
-                                    $(`#${index}`).addClass("is-invalid").tooltip({title: item[0]});
-                                    error += item[0] + "\n";
-                                });
-
-                                $.notify(error, 'error', 'top-right');
-                            }
-
-                        },
-
-                        complete: function () {
-                            $("#overlay").hide();
-                        }
-                    });
-
-            });
 
 
             $("input[name='account_type']").on('click', function () {
