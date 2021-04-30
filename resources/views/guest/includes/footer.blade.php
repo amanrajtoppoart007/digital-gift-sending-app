@@ -1,6 +1,6 @@
 <!-- Footer (Start) -->
 <footer class="bg-light" id="footer">
-    <div class="container pt-3 pb-1">
+    <div class="container py-5">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-12  text-center mb-2">
                 <h5 class="font-weight-bold text-theme-1">{{ trans('panel.site_title') }}</h5>

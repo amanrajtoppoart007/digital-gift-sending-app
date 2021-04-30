@@ -34,7 +34,7 @@
                                     {{ $errors->first('banner_image') }}
                                 </div>
                             @endif
-                            <span class="form-text text-muted">Enter image file in jpg or png format</span>
+                            <span class="form-text text-muted">Select image file in jpg or png format. Recommended (970×250)</span>
                         </div>
 
                         <div class="form-group">

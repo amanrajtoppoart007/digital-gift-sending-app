@@ -1,4 +1,28 @@
 @extends('guest.layout.app')
+@section("styles")
+    <style>
+        .password-input-box {
+            border-right: 0 !important;
+        }
+
+        .view-password-button {
+            background-color: #fff;
+            border: 1px solid #ced4da;
+            border-left: 0 !important;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-clip: padding-box;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+        .view-password-button a {
+            color: #0e0e0e;
+        }
+    </style>
+@endsection
 @section('content')
 <main id="main">
     <section id="second-section">
@@ -46,10 +70,10 @@
                                 <span class="input-group-text"><i class="fa fa-lock"></i></span>
                             </div>
                             <input type="password" name="password" id="password"
-                                   class="form-control input-group-text bg-transparent text-left {{ $errors->has('password') ? ' is-invalid' : '' }}" required
+                                   class="form-control bg-transparent text-left password-input-box {{ $errors->has('password') ? ' is-invalid' : '' }}" required
                                    placeholder="{{ trans('global.login_password') }}">
-                            <div class="input-group-append">
-                                <button class="btn" type="button" id="toggle-password"><i class="fa fa-eye"></i></button>
+                            <div class="input-group-append view-password-button">
+                                <a href="javascript:void(0)"  id="toggle-password"><i class="fa fa-eye"></i></a>
                             </div>
                         </div>
                         @if($errors->has('password'))

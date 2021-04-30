@@ -10,18 +10,14 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\UserApprovalStatusRequest;
 use App\Http\Requests\UserVerificationStatusRequest;
 use App\Mail\UserRejectionMessage;
-use App\Mail\UserWelcomeMessage;
+use App\Mail\UserApproved;
 
 use App\Models\Role;
 use App\Models\State;
 use App\Models\User;
-use App\Models\UserProfile;
 use App\Models\VerificationMessage;
-use App\Notifications\RegistrationSuccessSms;
 use Gate;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
@@ -126,10 +122,6 @@ class UsersController extends Controller
              }
 
 
-           // Mail::to($user)->send(new UserWelcomeMessage());
-            /*$sms = new TextLocal();
-            $sms->send(trans('sms.registration',['reg_number'=>$user->mobile]),$user->mobile,null);
-            $sms->send('this is test', $user->mobile, null);*/
 
             $url = route("admin.users.show",$user->id);
 
@@ -215,6 +207,14 @@ class UsersController extends Controller
            $user = User::find($request->input('id'));
            $user->approved = !($request->input('status'));
            $user->save();
+           if($request->input('status'))
+           {
+               $data = [
+                   'name'=>$user->name,
+                   'email'=>$user->email
+               ];
+               Mail::to($user)->send(new UserApproved($data));
+           }
            $result = ["status" => 1, "response" => "success",  "message" => "User approval status changed successfully"];
         }
         catch (\Exception $exception)
